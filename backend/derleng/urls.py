@@ -7,5 +7,5 @@ urlpatterns = [
     path('thumbnails/<uuid:pk>' , views.ThumbnailAPIView.as_view() , name=''),
     path('category' , views.CategoryAPIView.as_view(), name=''),
     path('category/<uuid:pk>' , views.CategoryAPIView.as_view(), name=''),
-    path('reviewpost' , views.ReviewPostAPIView.as_view() , name='')
+    path('reviews' , views.ReviewPostAPIView.as_view() , name='')
 ]
