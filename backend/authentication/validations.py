@@ -24,12 +24,10 @@ def is_valid_password(password):
     return True
 
 def is_valid_username(username):
-    # Use a regular expression to check if the username contains only letters, digits, and underscores
-    # ^ and $ ensure that the entire string matches the pattern
+    # username - only letters, digits, and underscores
     if re.match("^[a-zA-Z0-9_]+$", username):
         return True
-    else:
-        return False
+    return False
 
 def user_validation(data):
     username = data['username'].strip()
@@ -51,4 +49,46 @@ def user_validation(data):
         raise ValidationError(errors)
     
     return data
+
+def username_exist(username):
+    if User.objects.filter(username=username).exists():
+        return True
+    return False
+
+def validate_user_update(user_update, request_data):
+    errors = {}
+    if 'username' in request_data:
+        username = request_data['username']
+        if is_valid_username(username) and not username_exist(username):
+            user_update.username = username
+        else:
+            errors['username'] = 'This username already token. Please choose another one.'
+    if 'fullname' in request_data:
+        fullname = request_data['fullname']
+        user_update.fullname = fullname
+
+    if 'email' in request_data:
+        email = request_data['email']
+        if is_valid_email(email):
+            user_update.email = email
+        else:
+            errors['email'] = 'Please provide a valid email address'
+
+    if 'phone' in request_data:
+        phone = request_data['phone']
+        user_update.phone = request_data['phone']
+
+    if 'password' in request_data:
+        password = request_data['password']
+        if is_valid_password(password):
+            user_update.set_password(password)
+        else:
+            errors['password'] = 'Your password must be at least 8 charectors long, one letter and one digit.'
+    print(errors)
+    if errors:
+        raise ValidationError(errors)
+    user_update.save()
+    return user_update
+                        
+                        
     

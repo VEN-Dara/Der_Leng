@@ -2,6 +2,10 @@ User: hello
     hello@123.com
     hello@123.com
 
+SuperUser:
+    derleng
+    123
+
 Generate_Client:
     client_id: Wydpxn7G9BWLIgEqbxStNnnm2Q5cAFDZJdJmSDc4
     client_secret: t2nSA0EbDOOCQBjX7KunqGDpasuFauXpUU1Lj3krXostFpDBeRvfSTgGSUYWAMhypQ0BjOF6ZZXuL8okCjxyFw64ZS7OGwJLhFr5yawD7zD6BsZOosxd7iNCVSv2TtRF

@@ -4,3 +4,9 @@ pip install djangorestframework-simplejwt
 pip install django-environ
 pip install drf_social_oauth2==2.1.3
 python -m pip install django-cors-headers
+python -m pip install Pillow
+
+pip install pipreqs for write requirement.txt
+pipreqs /path/to/project
+
+pip install django-filter

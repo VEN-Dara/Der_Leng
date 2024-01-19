@@ -1,18 +1,25 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
-from django.core.exceptions import ValidationError
+from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from django.contrib.auth import authenticate, login, logout
+from django.utils import timezone
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import permissions, status, viewsets
+from rest_framework import permissions, status, viewsets, filters
 from rest_framework.permissions import IsAuthenticated
+
+from django_filters.rest_framework import DjangoFilterBackend
 
 from rest_framework_simplejwt.tokens import AccessToken, RefreshToken
 
 from backend.settings import SIMPLE_JWT
-from .validations import user_validation, is_valid_email, is_valid_username
+from .validations import user_validation, is_valid_email, is_valid_username, validate_user_update
 from .serializers import *
+from .permissions import IsAdmin, IsAdminOrStaffOrReadOnly, IsStaff
+
+from drf_social_oauth2.views import TokenView, ConvertTokenView
+from .mixins import get_jwt_by_token
 
 # Create your views here.
 def index(request):
@@ -31,7 +38,7 @@ class UserRegister(APIView):
         if serializer.is_valid(raise_exception=True):
             user = serializer.create(validate_data=validate_data)
             if user:
-                return Response(serializer.data, status=status.HTTP_201_CREATED)
+                return Response(UserSerializer(user).data, status=status.HTTP_201_CREATED)
         else:
             return Response({'message': 'Invalidate user data.'}, status=status.HTTP_400_BAD_REQUEST)
 
@@ -41,24 +48,28 @@ class UserLogin(APIView):
     def get_tokens_for_user(self, user):
         refresh = RefreshToken.for_user(user)
         access_token = refresh.access_token
-        access_token['user'] = UserSerializer(user).data
+        user_data = UserSerializer(user).data
 
         return {
-            'refresh': str(refresh),
-            'refresh_exp': SIMPLE_JWT['REFRESH_TOKEN_LIFETIME'],
-            'access': str(access_token),
-            'access_exp': SIMPLE_JWT['ACCESS_TOKEN_LIFETIME'],
+            'refresh_token': str(refresh),
+            'refresh_token_exp': SIMPLE_JWT['REFRESH_TOKEN_LIFETIME'],
+            'access_token': str(access_token),
+            'refresh_token_exp': SIMPLE_JWT['ACCESS_TOKEN_LIFETIME'],
+            'user': user_data,
         }
 
     def login_user(self, request, username, password):
         user = authenticate(username=username, password=password)
         if user:
+            user.last_login = timezone.now()
+            user.save()
             return Response(self.get_tokens_for_user(user), status=status.HTTP_200_OK)
         else:
             return Response({'errors': 'Invalid password. Please double-check your password and try again.'}, status=status.HTTP_401_UNAUTHORIZED)
 
     def post(self, request):
         data = request.data
+        print(data)
         username = data.get('username', '')
         password = data.get('password', '')
 
@@ -79,22 +90,29 @@ class UserLogin(APIView):
                 for user in find_users:
                     auth_user = authenticate(username=user.username, password=password)
                     if auth_user:
+                        auth_user.last_login = timezone.now()
+                        auth_user.save()
                         auth_users.append(auth_user)
 
                 if not auth_users:
                     return Response({'errors': 'Invalid password. Please double-check your password and try again.'}, status=status.HTTP_401_UNAUTHORIZED)
 
-                responses = [{'tokens': self.get_tokens_for_user(user), 'user': UserSerializer(user).data} for user in auth_users]
+                responses = [self.get_tokens_for_user(user) for user in auth_users]
                 return Response(responses, status=status.HTTP_202_ACCEPTED)
             
-class UserView(APIView):
+class CurrentUserView(APIView):
     permission_classes = [IsAuthenticated]
     def get(self, request):
-        print(request.user)
         return Response(UserSerializer(request.user).data, status=status.HTTP_200_OK)
-
-from drf_social_oauth2.views import TokenView, ConvertTokenView
-from .mixins import get_jwt_by_token
+    
+    def put(self, request, format=None):
+        user_update = request.user
+        print(user_update.id)
+        try:
+            updated_user = validate_user_update(user_update=user_update, request_data=request.data)
+            return Response(UserSerializer(updated_user).data, status=status.HTTP_200_OK)
+        except ValidationError as errors:
+            return Response({'error': errors}, status=status.HTTP_400_BAD_REQUEST)
 
 class SocialLoginView(ConvertTokenView):
     permission_classes = (permissions.AllowAny,)
@@ -110,3 +128,47 @@ class SocialLoginView(ConvertTokenView):
 
         return Response(new_data, status=response.status_code)
 
+
+"""
+This ViewSet automatically provides `list`, `create`, `retrieve`,
+`update` and `delete` actions.
+"""
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [IsAdminOrStaffOrReadOnly]
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
+    filterset_fields = '__all__'
+    search_fields = ['fullname', 'username', 'email']
+
+
+    def update(self, request, pk=None):
+        try:
+            user_update = User.objects.get(pk=pk)
+
+            try:
+                """
+                Update role user if role_id given
+                """
+                if 'role_id' in request.data:
+                    role_id = request.data['role_id']
+                    new_role = User_role.objects.filter(pk=role_id).first()
+
+                    if not new_role:
+                        raise ObjectDoesNotExist
+                    
+                    if IsStaff and (new_role.name == "admin" or new_role.name == "staff"):
+                        return Response({"error": "You do not have permission to assign role as admin or staff."}, status=status.HTTP_403_FORBIDDEN)
+                        
+                    user_update.role = new_role
+
+                serializer = UserSerializer(instance=user_update, data=request.data, partial=True)
+                serializer.is_valid(raise_exception=True)
+                updated_user = serializer.save()
+                return Response(UserSerializer(updated_user).data, status=status.HTTP_200_OK)
+            
+            except ValidationError as error:
+                return Response({"error": str(error)}, status=status.HTTP_404_NOT_FOUND)
+
+        except ObjectDoesNotExist as error:
+            return Response({"error": str(error)}, status=status.HTTP_404_NOT_FOUND)
