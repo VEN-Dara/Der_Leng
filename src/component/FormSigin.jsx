@@ -5,7 +5,7 @@ const FormLongin = () => {
   return (
     <div className=''>
        <div className="mt-12 flex flex-col items-center ">
-                <h1 className="text-2xl xl:text-3xl font-extrabold">
+                <h1 className="text-2xl xl:text-3xl font-extrabold text-sky-500">
                     Signin
                 </h1>
                 <div className="w-full flex-1 mt-8">
@@ -73,8 +73,8 @@ const FormLongin = () => {
                             </span>
                         </button>
                         <p className="mt-6 text-xs text-gray-600 text-center">
-                            I agree to abide by templatanas
-                            <a href="#" className="border-b border-gray-500 border-dotted">
+                            
+                            <a href="#" className="border-b text-sky-500 border-dotted">
                                forget password
                             </a>
                            

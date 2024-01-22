@@ -4,6 +4,7 @@ import './App.css'
 
 import Login_Page from './views/Login_Page'
 import Singin_Page from './views/Singin_Page'
+import HomePage from './views/HomePage';
 const router = createBrowserRouter([
   {
     path: "/signup",
@@ -13,19 +14,19 @@ const router = createBrowserRouter([
     path: "/signin",
     element: <Singin_Page/>,
   },
+  {
+    path: "/home",
+    element: <HomePage/>
+  },
+  
+
 ]);
 
 function App () {
    return <RouterProvider router={router}/>
 }
   
-// const App = () => {
-//   return (
-//     <div>
-//        <Login_Page/>
-//     </div>
-//   )
-// }
+
 
 export default App
 
