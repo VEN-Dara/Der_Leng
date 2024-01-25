@@ -1,0 +1,380 @@
+[
+{
+    "model": "authentication.user_role",
+    "pk": "3bf1c3f3-d53e-4be4-9555-510820a5535e",
+    "fields": {
+        "name": "customer",
+        "description": ""
+    }
+},
+{
+    "model": "authentication.user_role",
+    "pk": "424aad62-bb14-4113-8a0e-1dcc0d5da61e",
+    "fields": {
+        "name": "tour_guide",
+        "description": "Which so TV face case soon. Reflect explain drop. "
+    }
+},
+{
+    "model": "authentication.user_role",
+    "pk": "8f0c1fa4-a45d-4aea-b267-16f0ac9d6769",
+    "fields": {
+        "name": "staff",
+        "description": "Must garden view theory be management something. Y"
+    }
+},
+{
+    "model": "authentication.user_role",
+    "pk": "e2965c40-c97b-43c9-926b-0d37595b333c",
+    "fields": {
+        "name": "admin",
+        "description": "Store believe measure they relate great institutio"
+    }
+},
+{
+    "model": "authentication.user",
+    "pk": "b3c5ed69-949f-432c-ac21-a447e8c0b404",
+    "fields": {
+        "password": "bunheng@gmail.com",
+        "last_login": "1980-04-21T23:52:06Z",
+        "is_superuser": false,
+        "username": "bunheng",
+        "first_name": "Som",
+        "last_name": "Bunheng",
+        "email": "bunheng@gmail.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2024-01-25T06:34:17.943Z",
+        "fullname": "SOM Bunheng",
+        "role": "8f0c1fa4-a45d-4aea-b267-16f0ac9d6769",
+        "phone": "436-355-7978x31",
+        "registration_method": "email",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "authentication.user",
+    "pk": "d9f94640-d164-4b0b-b195-b89e733d8b19",
+    "fields": {
+        "password": "vortey@example.net",
+        "last_login": "1983-09-23T21:32:58Z",
+        "is_superuser": true,
+        "username": "vortey",
+        "first_name": "Carol",
+        "last_name": "Greene",
+        "email": "vortey@example.net",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2024-01-25T06:34:17.943Z",
+        "fullname": "Vortey",
+        "role": "3bf1c3f3-d53e-4be4-9555-510820a5535e",
+        "phone": "001-504-655-569",
+        "registration_method": "email",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "authentication.user",
+    "pk": "f0baf925-fe0f-43e0-a826-128bab84db53",
+    "fields": {
+        "password": "pbkdf2_sha256$600000$tffinuafd925J1TK0luXj8$PG3D4VSGbspalI1eLxd2Asm6q5a6ksXYgWov/N6Tq/k=",
+        "last_login": "2024-01-25T06:35:49.174Z",
+        "is_superuser": true,
+        "username": "derleng",
+        "first_name": "",
+        "last_name": "",
+        "email": "derleng@gmail.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2024-01-25T06:35:36.623Z",
+        "fullname": "",
+        "role": "3bf1c3f3-d53e-4be4-9555-510820a5535e",
+        "phone": "",
+        "registration_method": "email",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "authentication.user",
+    "pk": "f0baf925-fe0f-43e0-a826-128bab84db53",
+    "fields": {
+        "password": "pbkdf2_sha256$600000$tffinuafd925J1TK0luXj8$PG3D4VSGbspalI1eLxd2Asm6q5a6ksXYgWov/N6Tq/k=",
+        "last_login": "2024-01-25T06:35:49.174Z",
+        "is_superuser": true,
+        "username": "vendara",
+        "first_name": "VEN",
+        "last_name": "Dara",
+        "email": "vendara@gmail.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2024-01-25T06:35:36.623Z",
+        "fullname": "VEN Dara",
+        "role": "3bf1c3f3-d53e-4be4-9555-510820a5535e",
+        "phone": "",
+        "registration_method": "email",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "derleng.profile_image",
+    "pk": "0883b058-08c5-4ed8-a3e5-9b3e350a7e24",
+    "fields": {
+        "user": "b3c5ed69-949f-432c-ac21-a447e8c0b404",
+        "type": "profile",
+        "image": "images/profile_images/Untitled_design.png",
+        "is_active": true,
+        "created_at": "1988-07-12T16:39:33Z"
+    }
+},
+{
+    "model": "derleng.profile_image",
+    "pk": "d9f94640-d164-4b0b-b195-b89e733d8b19",
+    "fields": {
+        "user": "b3c5ed69-949f-432c-ac21-a447e8c0b404",
+        "type": "profile",
+        "image": "images/profile_images/_c2b1f97f-3e92-4c72-a03f-53c4cd7c819f.jpg",
+        "is_active": true,
+        "created_at": "1988-07-12T16:39:33Z"
+    }
+},
+{
+    "model": "derleng.profile_image",
+    "pk": "0883b058-08c5-4ed8-a3e5-9b3e350a7e24",
+    "fields": {
+        "user": "d9f94640-d164-4b0b-b195-b89e733d8b19",
+        "type": "profile",
+        "image": "images/profile_images/woman-profile-mascot-illustration-female-avatar-character-icon-cartoon-girl-head-face-business-user-logo-free-vector.jpg",
+        "is_active": true,
+        "created_at": "1988-07-12T16:39:33Z"
+    }
+},
+{
+    "model": "derleng.category",
+    "pk": "0883b058-08c5-4ed8-a3e5-9b3e350a7e24",
+    "fields": {
+        "name": "mountain"
+    }
+},
+{
+    "model": "derleng.category",
+    "pk": "110cd744-b75e-4585-a5a1-1ee73474b78f",
+    "fields": {
+        "name": "sea"
+    }
+},
+{
+    "model": "derleng.category",
+    "pk": "c9a64dfb-bfd7-4190-adba-da8dc1a8abba",
+    "fields": {
+        "name": "temple"
+    }
+},
+{
+    "model": "derleng.commission",
+    "pk": "55c0228d-1ffb-4ee4-bec3-bf17d431ae82",
+    "fields": {
+        "type": "normal",
+        "percentage_of_sale_price": 5
+    }
+},
+{
+    "model": "derleng.commission",
+    "pk": "57828399-c836-423d-9da7-221fd6a7bc2f",
+    "fields": {
+        "type": "premium",
+        "percentage_of_sale_price": 10
+    }
+},
+{
+    "model": "derleng.commission",
+    "pk": "eaae9b31-334d-46dd-92e9-4e5a21b2eb74",
+    "fields": {
+        "type": "free",
+        "percentage_of_sale_price": 0
+    }
+},
+{
+    "model": "derleng.booking",
+    "pk": "b02787f4-a5de-4e33-ad47-a068d387667f",
+    "fields": {
+        "customer": null,
+        "total_price": 0.47934072602566624,
+        "created_at": "1988-07-12T16:39:33Z"
+    }
+},
+{
+    "model": "derleng.booking",
+    "pk": "d75d75da-30fa-40b5-a520-8dba64f206b0",
+    "fields": {
+        "customer": null,
+        "total_price": 0.6452948504169572,
+        "created_at": "1988-07-12T16:39:33Z"
+    }
+},
+{
+    "model": "derleng.booking",
+    "pk": "dbf209cc-13cc-4517-a9f0-8955022d606d",
+    "fields": {
+        "customer": null,
+        "total_price": 0.8030973758652626,
+        "created_at": "1988-07-12T16:39:33Z"
+    }
+},
+{
+    "model": "derleng.booking_details",
+    "pk": "3af567b1-2851-4d8d-b7ca-c0fe6cdac2a4",
+    "fields": {
+        "card": null,
+        "booking": "d75d75da-30fa-40b5-a520-8dba64f206b0",
+        "unit_price": 0.7149393970393014,
+        "discount": 0.1234145015937459,
+        "is_accepted": false,
+        "created_at": "1988-07-12T16:39:33Z"
+    }
+},
+{
+    "model": "derleng.booking_details",
+    "pk": "8fb8435f-5251-4f21-a2d2-0857240f7297",
+    "fields": {
+        "card": null,
+        "booking": "b02787f4-a5de-4e33-ad47-a068d387667f",
+        "unit_price": 0.04111620504333369,
+        "discount": 0.2698130457177257,
+        "is_accepted": true,
+        "created_at": "2008-08-07T00:56:20Z"
+    }
+},
+{
+    "model": "derleng.booking_details",
+    "pk": "ef902ac3-6f18-4129-b536-003e00c4778e",
+    "fields": {
+        "card": null,
+        "booking": "d75d75da-30fa-40b5-a520-8dba64f206b0",
+        "unit_price": 0.02934047849420185,
+        "discount": 0.9554873864121931,
+        "is_accepted": false,
+        "created_at": "1971-07-08T00:24:14Z"
+    }
+},
+{
+    "model": "derleng.customer_payments",
+    "pk": "1372c67e-ce2a-4742-b230-4c443dd28100",
+    "fields": {
+        "customer": null,
+        "booking": "b02787f4-a5de-4e33-ad47-a068d387667f",
+        "amount": 0.4932006522490887,
+        "amount_received": 0.9920168056909623,
+        "currency": "mov",
+        "stripe_customer_id": "Thank risk hard seem again bad discuss. Manage prevent environmental fly report pull care.\nEducation produce along remember movement factor remember. Close wait marriage sense role. Pretty range force deep probably guess.",
+        "stripe_payment_method_id": "Remember bill leader quickly land long occur. Teach thing section among certainly direction approach over. Agreement some right.\nFoot hold ask detail although read mention. Show realize moment town bring. Environment general question. Matter worry world.",
+        "status": "Energy whether evidence sell.",
+        "created": -8519075636006436302
+    }
+},
+{
+    "model": "derleng.customer_payments",
+    "pk": "544206b5-d540-41fc-87f2-7a4cf5527257",
+    "fields": {
+        "customer": null,
+        "booking": "b02787f4-a5de-4e33-ad47-a068d387667f",
+        "amount": 0.09676087067366579,
+        "amount_received": 0.371594106123753,
+        "currency": "fam",
+        "stripe_customer_id": "Organization national purpose physical little stay age. Will ball center soon. Particular get specific either.\nHeavy teacher teach tell. Chance mean continue north full institution white. Field free there lot happy born list.",
+        "stripe_payment_method_id": "However goal store season go. No order state media with. Here college wife.\nPlayer approach each magazine environment. Fact unit art amount.\nInterest property administration. Director light expert official.",
+        "status": "Exist social specific carry.",
+        "created": 7823198159481926575
+    }
+},
+{
+    "model": "derleng.customer_payments",
+    "pk": "73b70f0d-7c07-4088-8318-5ccf5730b06d",
+    "fields": {
+        "customer": null,
+        "booking": "d75d75da-30fa-40b5-a520-8dba64f206b0",
+        "amount": 0.7118063890885045,
+        "amount_received": 0.7236424781664795,
+        "currency": "roa",
+        "stripe_customer_id": "Discover people first beat structure doctor try. Those situation way common.\nIssue risk picture tough. Area walk meet media commercial. Blue not accept serve surface record data.",
+        "stripe_payment_method_id": "Since it answer today follow lead film training. Effect per them glass I Democrat.\nEarly author task significant me down.\nSort yourself modern toward. Three just shake trial.",
+        "status": "Water reason cut.",
+        "created": 6081989244996286869
+    }
+},
+{
+    "model": "derleng.seller_transactions",
+    "pk": "8c0722c1-a24c-4f34-b264-42afb71d9b02",
+    "fields": {
+        "seller": null,
+        "booking_details": "ef902ac3-6f18-4129-b536-003e00c4778e",
+        "commission": 0.8562639614584853,
+        "amount": 0.5465984155329023,
+        "amount_received": 0.3373741083855317,
+        "currency": "own",
+        "stripe_admin_account_id": "Maintain section check.\nWife away make class agreement. His operation key man artist.\nThey actually run option energy article. Event wind require prevent road truth various.\nSociety although only laugh. Exactly space deep although total.",
+        "stripe_payment_method_id": "Away answer him size keep quickly side. Reality today for voice security coach state. Board challenge right room.\nCase however serious surface above just despite. Student tough amount reveal.",
+        "status": "Care television want money.",
+        "created": 1953707275232364484
+    }
+},
+{
+    "model": "derleng.seller_transactions",
+    "pk": "b73c776f-b4fb-45b9-a33c-7b4e2c4808f0",
+    "fields": {
+        "seller": null,
+        "booking_details": "8fb8435f-5251-4f21-a2d2-0857240f7297",
+        "commission": 0.035039063232974677,
+        "amount": 0.6989958857755343,
+        "amount_received": 0.7721525543856282,
+        "currency": "lif",
+        "stripe_admin_account_id": "Oil factor anyone management.\nOr price especially give wind. Imagine factor result executive good war. Drug recognize watch fight performance project.\nSkill include wide police person especially. Decision choose just reach provide.",
+        "stripe_payment_method_id": "Nation energy arm recently go letter. Trouble mother movie ahead. Answer for produce nor forget tree.\nCompare difference manager president. Radio yard girl institution.",
+        "status": "Indicate easy day family.",
+        "created": -1176663330537847535
+    }
+},
+{
+    "model": "derleng.seller_transactions",
+    "pk": "c5f5eb63-6a69-4513-b41b-d3fe0ee7f6e3",
+    "fields": {
+        "seller": null,
+        "booking_details": "ef902ac3-6f18-4129-b536-003e00c4778e",
+        "commission": 0.21767413649270262,
+        "amount": 0.9316682993764519,
+        "amount_received": 0.9341095095198091,
+        "currency": "nea",
+        "stripe_admin_account_id": "Gun station identify build drug. Office produce Democrat agree. Even certain quality woman.\nWindow interesting eat social likely staff. Fact simply able tough check choose. Final grow situation store.",
+        "stripe_payment_method_id": "Decision continue drive agency writer decade. People organization newspaper mission reduce. Yourself spring possible some sometimes.",
+        "status": "Pay catch voice.",
+        "created": -4187829704750571448
+    }
+},
+{
+    "model": "derleng.thumbnail",
+    "pk": "3d0c669a-6abd-4f69-8064-de83174b8a88",
+    "fields": {
+        "name": "Dream real join question.",
+        "image": "leg.txt"
+    }
+},
+{
+    "model": "derleng.thumbnail",
+    "pk": "d6a2e011-d9be-49ca-9a14-26db5934f0ff",
+    "fields": {
+        "name": "Citizen generation through feeling however.",
+        "image": "red.png"
+    }
+},
+{
+    "model": "derleng.thumbnail",
+    "pk": "f91bbe68-54c7-401f-9aa3-b9b89e3c6e96",
+    "fields": {
+        "name": "Smile develop everybody item.",
+        "image": "one.csv"
+    }
+}
+]

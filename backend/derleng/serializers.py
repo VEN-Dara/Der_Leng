@@ -51,7 +51,7 @@ class PackageSerializer(serializers.ModelSerializer):
 class BasicPayment_methodSerializer(serializers.ModelSerializer):
     class Meta:
         model = Payment_method
-        exclude = ('payment_method_id',)
+        exclude = ('payment_method_id', 'customer_id')
 
 class Payment_methodSerializer(serializers.ModelSerializer):
     class Meta:

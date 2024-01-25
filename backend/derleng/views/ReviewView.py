@@ -6,9 +6,6 @@ from derleng.models import *
 from derleng.serializers import *
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated , IsAuthenticatedOrReadOnly
-# from authentication.permissions import Is_Admin_Or_Staff_Or_TourGuide_Or_ReadOnly
-
-
 
 class ReviewAPIView(APIView):
     permission_classes = [IsAuthenticatedOrReadOnly]

@@ -1,0 +1,807 @@
+[
+    {
+        "model": "authentication.user_role",
+        "pk": "3bf1c3f3-d53e-4be4-9555-510820a5535e",
+        "fields": {
+            "name": "customer",
+            "description": ""
+        }
+    },
+    {
+        "model": "authentication.user_role",
+        "pk": "424aad62-bb14-4113-8a0e-1dcc0d5da61e",
+        "fields": {
+            "name": "tour_guide",
+            "description": "Which so TV face case soon. Reflect explain drop. "
+        }
+    },
+    {
+        "model": "authentication.user_role",
+        "pk": "8f0c1fa4-a45d-4aea-b267-16f0ac9d6769",
+        "fields": {
+            "name": "staff",
+            "description": "Must garden view theory be management something. Y"
+        }
+    },
+    {
+        "model": "authentication.user_role",
+        "pk": "e2965c40-c97b-43c9-926b-0d37595b333c",
+        "fields": {
+            "name": "admin",
+            "description": "Store believe measure they relate great institutio"
+        }
+    },
+    {
+        "model": "authentication.user",
+        "pk": "00daeca8-b1f0-489e-b8cd-05c28f5b7835",
+        "fields": {
+            "password": "pbkdf2_sha256$600000$vXIXezAzPzFUDIoFfL7Son$dly4DJi/8A0mso9ecYk5NtH/kQMh6L4+9gxraveth8o=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "chheangsrun",
+            "first_name": "Vuthy",
+            "last_name": "Chheangsrun",
+            "email": "chheangsrun@123.com",
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2024-01-25T07:36:38Z",
+            "fullname": "Vuthy Chheangsrun",
+            "role": "3bf1c3f3-d53e-4be4-9555-510820a5535e",
+            "phone": "0963180249",
+            "registration_method": "email",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "authentication.user",
+        "pk": "2cc9c3d5-dd7f-46f7-ab43-97db003079cd",
+        "fields": {
+            "password": "pbkdf2_sha256$600000$w5a7TuqSINb4J5JAsv3aub$JMa2KS+OrzeLhHRxOqo4yZsG3g7OoLgcQ0K+PYybZv0=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "vortey",
+            "first_name": "SOPHORN",
+            "last_name": "Sovortey",
+            "email": "vortey@123.com",
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2024-01-25T07:35:16Z",
+            "fullname": "SOPHORN Sovortey",
+            "role": "e2965c40-c97b-43c9-926b-0d37595b333c",
+            "phone": "0963180249",
+            "registration_method": "email",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "authentication.user",
+        "pk": "51376d3f-ba1b-4e7a-867d-ce32874166d1",
+        "fields": {
+            "password": "pbkdf2_sha256$600000$NC8mQEbWWwwhfK5pAFRosV$ps8EJswGebSKB1/Wb64FxpmEHTjGrQF+vxEMmxoaD9g=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "hello",
+            "first_name": "MR",
+            "last_name": "Hello",
+            "email": "hello@123.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2024-01-25T07:37:23.869Z",
+            "fullname": "Mr Hello",
+            "role": "3bf1c3f3-d53e-4be4-9555-510820a5535e",
+            "phone": "0123456789",
+            "registration_method": "email",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "authentication.user",
+        "pk": "600024fc-a2d6-4b86-8b60-c7cd0aa52418",
+        "fields": {
+            "password": "pbkdf2_sha256$600000$PAKBtN6svrQ9jADqNA8Ak4$gFCspf3aLkajzB9n0IMVPH0NU/9Tn9cMBVBPb3UvJ9M=",
+            "last_login": "2024-01-25T07:49:17.608Z",
+            "is_superuser": false,
+            "username": "tourguide",
+            "first_name": "MR",
+            "last_name": "Tourguide",
+            "email": "tourguide@123.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2024-01-25T07:45:12Z",
+            "fullname": "Mr Tourguide",
+            "role": "424aad62-bb14-4113-8a0e-1dcc0d5da61e",
+            "phone": "0123456789",
+            "registration_method": "email",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "authentication.user",
+        "pk": "6b80ecbb-5ad6-4ed5-9393-30e3639e1caf",
+        "fields": {
+            "password": "pbkdf2_sha256$600000$Wn1tlsjOxgtsEADKV5nzYU$3/dqQ0ofBGo5Lxt2F6+K+TILJ6ZUYZQd/sFAM7NrwBE=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "bunheng",
+            "first_name": "SOM",
+            "last_name": "Bunheng",
+            "email": "bunheng@123.com",
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2024-01-25T07:33:40Z",
+            "fullname": "SOM Bunheng",
+            "role": "8f0c1fa4-a45d-4aea-b267-16f0ac9d6769",
+            "phone": "0963180249",
+            "registration_method": "email",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "authentication.user",
+        "pk": "dddafcf9-02dd-4cb0-8b78-3f2f5abb1fda",
+        "fields": {
+            "password": "pbkdf2_sha256$600000$YllL0YOUbrjeRjla9BzJsj$cFEt6w4NYERYWiRRTswEb9GHc1OZIeBPRhyVAsv1+vg=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "derleng",
+            "first_name": "",
+            "last_name": "",
+            "email": "derleng@gmail.com",
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2024-01-25T07:25:36.964Z",
+            "fullname": "",
+            "role": "3bf1c3f3-d53e-4be4-9555-510820a5535e",
+            "phone": "",
+            "registration_method": "email",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "authentication.user",
+        "pk": "f0baf925-fe0f-43e0-a826-128bab84db53",
+        "fields": {
+            "password": "pbkdf2_sha256$600000$tffinuafd925J1TK0luXj8$PG3D4VSGbspalI1eLxd2Asm6q5a6ksXYgWov/N6Tq/k=",
+            "last_login": "2024-01-25T07:24:36Z",
+            "is_superuser": true,
+            "username": "vendara",
+            "first_name": "VEN",
+            "last_name": "Dara",
+            "email": "vendara@gmail.com",
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2024-01-25T06:35:36Z",
+            "fullname": "VEN Dara",
+            "role": "e2965c40-c97b-43c9-926b-0d37595b333c",
+            "phone": "0963180249",
+            "registration_method": "email",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "authentication.user",
+        "pk": "f9e9e08a-084a-4cba-a72b-032bc8e6c797",
+        "fields": {
+            "password": "pbkdf2_sha256$600000$appnkfZ0AawuI297eB70Rk$oXu7DDhxFJpzisGHYwNLDiKJ4fGCrCOHD8pwNJzezQo=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "staff",
+            "first_name": "MR",
+            "last_name": "Staff",
+            "email": "staff@123.com",
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2024-01-25T07:45:41Z",
+            "fullname": "Mr Staff",
+            "role": "8f0c1fa4-a45d-4aea-b267-16f0ac9d6769",
+            "phone": "0123456789",
+            "registration_method": "email",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "derleng.category",
+        "pk": "0883b058-08c5-4ed8-a3e5-9b3e350a7e24",
+        "fields": {
+            "name": "Γ¢░∩╕Åmountain"
+        }
+    },
+    {
+        "model": "derleng.category",
+        "pk": "110cd744-b75e-4585-a5a1-1ee73474b78f",
+        "fields": {
+            "name": "≡ƒîèsea"
+        }
+    },
+    {
+        "model": "derleng.category",
+        "pk": "c9a64dfb-bfd7-4190-adba-da8dc1a8abba",
+        "fields": {
+            "name": "≡ƒ¢òtemple"
+        }
+    },
+    {
+        "model": "derleng.commission",
+        "pk": "55c0228d-1ffb-4ee4-bec3-bf17d431ae82",
+        "fields": {
+            "type": "normal",
+            "percentage_of_sale_price": 5.0
+        }
+    },
+    {
+        "model": "derleng.commission",
+        "pk": "57828399-c836-423d-9da7-221fd6a7bc2f",
+        "fields": {
+            "type": "premium",
+            "percentage_of_sale_price": 10.0
+        }
+    },
+    {
+        "model": "derleng.commission",
+        "pk": "eaae9b31-334d-46dd-92e9-4e5a21b2eb74",
+        "fields": {
+            "type": "free",
+            "percentage_of_sale_price": 0.0
+        }
+    },
+    {
+        "model": "derleng.package",
+        "pk": "440a61ec-7220-4aa8-9a0f-027a1c17bf02",
+        "fields": {
+            "user": "600024fc-a2d6-4b86-8b60-c7cd0aa52418",
+            "name": "Bokor mountain",
+            "description": "Bokor is cute",
+            "category": "0883b058-08c5-4ed8-a3e5-9b3e350a7e24",
+            "discount": 10.0,
+            "tour_place_coordinate": "{\"lng\":100, \"lat\":200}",
+            "address": "Kompot Province",
+            "video_url": "https://www.youtube.com/watch?v=2J5uRcaiZcE&list=RD2J5uRcaiZcE&start_radio=1&ab_channel=14FAM",
+            "commission": "55c0228d-1ffb-4ee4-bec3-bf17d431ae82",
+            "is_close": false
+        }
+    },
+    {
+        "model": "derleng.package",
+        "pk": "46c88b53-8541-4b70-a7c0-50e7c8403fa5",
+        "fields": {
+            "user": "600024fc-a2d6-4b86-8b60-c7cd0aa52418",
+            "name": "Preah Vihea Temple",
+            "description": "Preah Vihea Temple is a beautiful place.",
+            "category": "c9a64dfb-bfd7-4190-adba-da8dc1a8abba",
+            "discount": 0.0,
+            "tour_place_coordinate": "{\"lng\":100, \"lat\":200}",
+            "address": "Preah Vihea",
+            "video_url": "https://www.youtube.com/watch?v=2J5uRcaiZcE&list=RD2J5uRcaiZcE&start_radio=1&ab_channel=14FAM",
+            "commission": "55c0228d-1ffb-4ee4-bec3-bf17d431ae82",
+            "is_close": false
+        }
+    },
+    {
+        "model": "derleng.package",
+        "pk": "626c3ddc-20ac-49ec-9b1e-3f57c98d3daa",
+        "fields": {
+            "user": "600024fc-a2d6-4b86-8b60-c7cd0aa52418",
+            "name": "Bokor mountain",
+            "description": "Bokor is cute",
+            "category": "0883b058-08c5-4ed8-a3e5-9b3e350a7e24",
+            "discount": 10.0,
+            "tour_place_coordinate": "{\"lng\":100, \"lat\":200}",
+            "address": "Kompot Province",
+            "video_url": "https://www.youtube.com/watch?v=2J5uRcaiZcE&list=RD2J5uRcaiZcE&start_radio=1&ab_channel=14FAM",
+            "commission": "55c0228d-1ffb-4ee4-bec3-bf17d431ae82",
+            "is_close": false
+        }
+    },
+    {
+        "model": "derleng.package",
+        "pk": "df6de793-0031-45eb-8071-8785e30e1023",
+        "fields": {
+            "user": "600024fc-a2d6-4b86-8b60-c7cd0aa52418",
+            "name": "ß₧Çßƒåß₧ûß₧äßƒïß₧ƒßƒäß₧ÿ",
+            "description": "ß₧Çßƒåß₧ûß₧╗ß₧äß₧ƒßƒäß₧ÿß₧ƒßƒÆß₧óß₧╢ß₧Å",
+            "category": "c9a64dfb-bfd7-4190-adba-da8dc1a8abba",
+            "discount": 10.0,
+            "tour_place_coordinate": "{\"lng\":100, \"lat\":200}",
+            "address": "Kompungsorm Province",
+            "video_url": "https://www.youtube.com/watch?v=2J5uRcaiZcE&list=RD2J5uRcaiZcE&start_radio=1&ab_channel=14FAM",
+            "commission": "55c0228d-1ffb-4ee4-bec3-bf17d431ae82",
+            "is_close": false
+        }
+    },
+    {
+        "model": "derleng.package",
+        "pk": "e70555bd-f5d7-4f29-a0df-7196bd2ff167",
+        "fields": {
+            "user": "600024fc-a2d6-4b86-8b60-c7cd0aa52418",
+            "name": "ß₧Çßƒåß₧ûß₧äßƒïß₧ƒßƒäß₧ÿ",
+            "description": "ß₧Çßƒåß₧ûß₧╗ß₧äß₧ƒßƒäß₧ÿß₧ƒßƒÆß₧óß₧╢ß₧Å",
+            "category": "110cd744-b75e-4585-a5a1-1ee73474b78f",
+            "discount": 10.0,
+            "tour_place_coordinate": "{\"lng\":100, \"lat\":200}",
+            "address": "Kompungsorm Province",
+            "video_url": "https://www.youtube.com/watch?v=2J5uRcaiZcE&list=RD2J5uRcaiZcE&start_radio=1&ab_channel=14FAM",
+            "commission": "55c0228d-1ffb-4ee4-bec3-bf17d431ae82",
+            "is_close": false
+        }
+    },
+    {
+        "model": "derleng.package_image",
+        "pk": "0f5c227e-2c5e-451e-90a4-7e4f053deb5d",
+        "fields": {
+            "package": "626c3ddc-20ac-49ec-9b1e-3f57c98d3daa",
+            "image": "images/package_images/TB_Waterfall_Ba1F7SI.jpg"
+        }
+    },
+    {
+        "model": "derleng.package_image",
+        "pk": "2378f7f9-3a6d-4e95-b60f-72a7cad272bd",
+        "fields": {
+            "package": "e70555bd-f5d7-4f29-a0df-7196bd2ff167",
+            "image": "images/package_images/a4694401-69a7-4251-b6a2-ab24c60479dc_kAs5Yhu.jpg"
+        }
+    },
+    {
+        "model": "derleng.package_image",
+        "pk": "2d569750-d1ec-411f-8003-55b678f9374b",
+        "fields": {
+            "package": "df6de793-0031-45eb-8071-8785e30e1023",
+            "image": "images/package_images/a4694401-69a7-4251-b6a2-ab24c60479dc.jpg"
+        }
+    },
+    {
+        "model": "derleng.package_image",
+        "pk": "55cd18d0-ece5-41fc-8cad-db50d3425855",
+        "fields": {
+            "package": "626c3ddc-20ac-49ec-9b1e-3f57c98d3daa",
+            "image": "images/package_images/maxresdefault_2.jpg"
+        }
+    },
+    {
+        "model": "derleng.package_image",
+        "pk": "63903c25-7e7a-48c7-8692-46b689d856a1",
+        "fields": {
+            "package": "e70555bd-f5d7-4f29-a0df-7196bd2ff167",
+            "image": "images/package_images/168.jpg"
+        }
+    },
+    {
+        "model": "derleng.package_image",
+        "pk": "68fe5bf2-0a45-40ab-9378-1398954d091b",
+        "fields": {
+            "package": "626c3ddc-20ac-49ec-9b1e-3f57c98d3daa",
+            "image": "images/package_images/Bokor_Mountain_Day_Trip_from_Sihanoukville_Cambodia.jpg"
+        }
+    },
+    {
+        "model": "derleng.package_image",
+        "pk": "7a3069a2-0fcd-435b-9da2-fad26cf1b64c",
+        "fields": {
+            "package": "46c88b53-8541-4b70-a7c0-50e7c8403fa5",
+            "image": "images/package_images/Angkor_Wat_Temple.jpg"
+        }
+    },
+    {
+        "model": "derleng.package_image",
+        "pk": "8c0daab7-e115-4b17-9615-89020046a2af",
+        "fields": {
+            "package": "e70555bd-f5d7-4f29-a0df-7196bd2ff167",
+            "image": "images/package_images/17_04_2011_LUX_DSCN0363.jpg"
+        }
+    },
+    {
+        "model": "derleng.package_image",
+        "pk": "9a46353d-8b15-4a67-b145-dc46761c02f0",
+        "fields": {
+            "package": "46c88b53-8541-4b70-a7c0-50e7c8403fa5",
+            "image": "images/package_images/16013937538_336f675b6d_o-scaled.jpg"
+        }
+    },
+    {
+        "model": "derleng.package_image",
+        "pk": "a47cf31e-ea4c-4b29-bb54-2184376e4541",
+        "fields": {
+            "package": "626c3ddc-20ac-49ec-9b1e-3f57c98d3daa",
+            "image": "images/package_images/theentranceofbokorresortimagebyviator.jpg"
+        }
+    },
+    {
+        "model": "derleng.package_image",
+        "pk": "a6dd9199-ec5d-42f4-99cf-cf5681084d05",
+        "fields": {
+            "package": "626c3ddc-20ac-49ec-9b1e-3f57c98d3daa",
+            "image": "images/package_images/Bokor_palace_hotel_Cambodia.jpg"
+        }
+    },
+    {
+        "model": "derleng.package_image",
+        "pk": "b8ba4b96-af32-428a-b319-0ba3940c24b1",
+        "fields": {
+            "package": "e70555bd-f5d7-4f29-a0df-7196bd2ff167",
+            "image": "images/package_images/maxresdefault.jpg"
+        }
+    },
+    {
+        "model": "derleng.package_image",
+        "pk": "d2dbdd83-e5bd-4bdd-b96f-d1397a575bbb",
+        "fields": {
+            "package": "46c88b53-8541-4b70-a7c0-50e7c8403fa5",
+            "image": "images/package_images/GettyImages-865119770.jpg"
+        }
+    },
+    {
+        "model": "derleng.package_image",
+        "pk": "eba92dc4-1ba9-4f6b-a81f-44f11ecfba42",
+        "fields": {
+            "package": "440a61ec-7220-4aa8-9a0f-027a1c17bf02",
+            "image": "images/package_images/TB_Waterfall.jpg"
+        }
+    },
+    {
+        "model": "derleng.package_image",
+        "pk": "ef9e4019-4e39-4eff-83a4-c7527c90f2a0",
+        "fields": {
+            "package": "626c3ddc-20ac-49ec-9b1e-3f57c98d3daa",
+            "image": "images/package_images/maxresdefault_1.jpg"
+        }
+    },
+    {
+        "model": "derleng.package_schedule",
+        "pk": "09f94536-1de9-4826-9d92-19d1a9b5501d",
+        "fields": {
+            "package": "46c88b53-8541-4b70-a7c0-50e7c8403fa5",
+            "destination": "Preah Vihea Mt",
+            "start_time": "06:30:00",
+            "end_time": "06:30:00"
+        }
+    },
+    {
+        "model": "derleng.package_schedule",
+        "pk": "110763d4-2c86-4f0b-9f62-dfbec15e3ab9",
+        "fields": {
+            "package": "df6de793-0031-45eb-8071-8785e30e1023",
+            "destination": "Preah Vihea Temple",
+            "start_time": "06:30:00",
+            "end_time": "06:30:00"
+        }
+    },
+    {
+        "model": "derleng.package_schedule",
+        "pk": "261339ae-d920-41dd-8e5a-0ce79f981721",
+        "fields": {
+            "package": "e70555bd-f5d7-4f29-a0df-7196bd2ff167",
+            "destination": "Koh sdach",
+            "start_time": "06:30:00",
+            "end_time": "06:30:00"
+        }
+    },
+    {
+        "model": "derleng.package_schedule",
+        "pk": "5e3d6886-4f8a-4457-a571-d4e78cad6a88",
+        "fields": {
+            "package": "e70555bd-f5d7-4f29-a0df-7196bd2ff167",
+            "destination": "Ocherteal beach",
+            "start_time": "06:30:00",
+            "end_time": "06:30:00"
+        }
+    },
+    {
+        "model": "derleng.package_schedule",
+        "pk": "669b91e1-ab07-4d30-ad15-b9fa87e8b246",
+        "fields": {
+            "package": "46c88b53-8541-4b70-a7c0-50e7c8403fa5",
+            "destination": "Preah Vihea Temple",
+            "start_time": "06:30:00",
+            "end_time": "06:30:00"
+        }
+    },
+    {
+        "model": "derleng.package_schedule",
+        "pk": "ae8dffc6-f703-474a-9859-a73105448654",
+        "fields": {
+            "package": "440a61ec-7220-4aa8-9a0f-027a1c17bf02",
+            "destination": "Merl sva",
+            "start_time": "06:30:00",
+            "end_time": "06:30:00"
+        }
+    },
+    {
+        "model": "derleng.package_schedule",
+        "pk": "c581de65-c055-4857-9968-21e9a0f27f64",
+        "fields": {
+            "package": "df6de793-0031-45eb-8071-8785e30e1023",
+            "destination": "Preah Vihea Mt",
+            "start_time": "06:30:00",
+            "end_time": "06:30:00"
+        }
+    },
+    {
+        "model": "derleng.package_schedule",
+        "pk": "d28d519c-8b39-4b99-92e3-06a5e8e371ea",
+        "fields": {
+            "package": "626c3ddc-20ac-49ec-9b1e-3f57c98d3daa",
+            "destination": "Cassino",
+            "start_time": "06:30:00",
+            "end_time": "06:30:00"
+        }
+    },
+    {
+        "model": "derleng.package_schedule",
+        "pk": "d5337666-62a9-47fa-b580-58bddeac358c",
+        "fields": {
+            "package": "626c3ddc-20ac-49ec-9b1e-3f57c98d3daa",
+            "destination": "Merl sva",
+            "start_time": "06:30:00",
+            "end_time": "06:30:00"
+        }
+    },
+    {
+        "model": "derleng.package_schedule",
+        "pk": "f33172a4-ebd0-476c-b773-2e8811c83118",
+        "fields": {
+            "package": "440a61ec-7220-4aa8-9a0f-027a1c17bf02",
+            "destination": "Cassino",
+            "start_time": "06:30:00",
+            "end_time": "06:30:00"
+        }
+    },
+    {
+        "model": "derleng.package_service",
+        "pk": "310201bf-6581-465c-90b7-8ed2e3d98636",
+        "fields": {
+            "detail": "free car",
+            "package": "df6de793-0031-45eb-8071-8785e30e1023",
+            "price": 10.0,
+            "is_close": false
+        }
+    },
+    {
+        "model": "derleng.package_service",
+        "pk": "67933e3d-c24b-4cad-ba8b-4ed484849ecc",
+        "fields": {
+            "detail": "free food",
+            "package": "440a61ec-7220-4aa8-9a0f-027a1c17bf02",
+            "price": 10.0,
+            "is_close": false
+        }
+    },
+    {
+        "model": "derleng.package_service",
+        "pk": "956656db-931c-4a01-8d9d-f0ade77b4791",
+        "fields": {
+            "detail": "free car",
+            "package": "626c3ddc-20ac-49ec-9b1e-3f57c98d3daa",
+            "price": 10.0,
+            "is_close": false
+        }
+    },
+    {
+        "model": "derleng.package_service",
+        "pk": "a939023a-ea7d-4fe5-8887-9ce1c5f8ed6d",
+        "fields": {
+            "detail": "free car",
+            "package": "46c88b53-8541-4b70-a7c0-50e7c8403fa5",
+            "price": 10.0,
+            "is_close": false
+        }
+    },
+    {
+        "model": "derleng.package_service",
+        "pk": "b02b3b40-1eaa-42c7-8ab2-d3701344d8fc",
+        "fields": {
+            "detail": "free food",
+            "package": "df6de793-0031-45eb-8071-8785e30e1023",
+            "price": 10.0,
+            "is_close": false
+        }
+    },
+    {
+        "model": "derleng.package_service",
+        "pk": "b3d9de14-5f4d-4078-935b-2e9b9f1f1faf",
+        "fields": {
+            "detail": "free car",
+            "package": "e70555bd-f5d7-4f29-a0df-7196bd2ff167",
+            "price": 10.0,
+            "is_close": false
+        }
+    },
+    {
+        "model": "derleng.package_service",
+        "pk": "bb18b443-6424-4abb-8aec-d700d6a45a17",
+        "fields": {
+            "detail": "free food",
+            "package": "46c88b53-8541-4b70-a7c0-50e7c8403fa5",
+            "price": 10.0,
+            "is_close": false
+        }
+    },
+    {
+        "model": "derleng.package_service",
+        "pk": "d06787a0-f8d8-4a0c-b4c7-bd6235694eac",
+        "fields": {
+            "detail": "free food",
+            "package": "626c3ddc-20ac-49ec-9b1e-3f57c98d3daa",
+            "price": 10.0,
+            "is_close": false
+        }
+    },
+    {
+        "model": "derleng.package_service",
+        "pk": "e78e430f-1b29-4291-bb7c-302960fc2b67",
+        "fields": {
+            "detail": "free food",
+            "package": "e70555bd-f5d7-4f29-a0df-7196bd2ff167",
+            "price": 10.0,
+            "is_close": false
+        }
+    },
+    {
+        "model": "derleng.package_service",
+        "pk": "ec3162e1-9cd5-43a6-a319-b412ac1c8e7d",
+        "fields": {
+            "detail": "free car",
+            "package": "440a61ec-7220-4aa8-9a0f-027a1c17bf02",
+            "price": 10.0,
+            "is_close": false
+        }
+    },
+    {
+        "model": "derleng.package_unavailable_date",
+        "pk": "5447b3eb-48b4-4721-98b8-8c3f6d116704",
+        "fields": {
+            "package": "df6de793-0031-45eb-8071-8785e30e1023",
+            "unavailable_at": "2024-01-15"
+        }
+    },
+    {
+        "model": "derleng.package_unavailable_date",
+        "pk": "5a23dfab-f6ce-4290-842d-ffa3727b7a59",
+        "fields": {
+            "package": "626c3ddc-20ac-49ec-9b1e-3f57c98d3daa",
+            "unavailable_at": "2024-01-15"
+        }
+    },
+    {
+        "model": "derleng.package_unavailable_date",
+        "pk": "5c6a76f9-5a5d-4f86-a692-6e23fd432ff1",
+        "fields": {
+            "package": "e70555bd-f5d7-4f29-a0df-7196bd2ff167",
+            "unavailable_at": "2024-01-15"
+        }
+    },
+    {
+        "model": "derleng.package_unavailable_date",
+        "pk": "6f16ca91-1b11-460f-937c-20d08554fb02",
+        "fields": {
+            "package": "df6de793-0031-45eb-8071-8785e30e1023",
+            "unavailable_at": "2024-01-14"
+        }
+    },
+    {
+        "model": "derleng.package_unavailable_date",
+        "pk": "9ed2e3c9-f643-42c4-bef9-0cc4cea4a17c",
+        "fields": {
+            "package": "46c88b53-8541-4b70-a7c0-50e7c8403fa5",
+            "unavailable_at": "2024-01-15"
+        }
+    },
+    {
+        "model": "derleng.package_unavailable_date",
+        "pk": "c7319dbb-34bf-416e-af89-a36688d6f7b5",
+        "fields": {
+            "package": "440a61ec-7220-4aa8-9a0f-027a1c17bf02",
+            "unavailable_at": "2024-01-15"
+        }
+    },
+    {
+        "model": "derleng.package_unavailable_date",
+        "pk": "e5b41d2c-76f1-4079-a7e0-51f1eb231517",
+        "fields": {
+            "package": "626c3ddc-20ac-49ec-9b1e-3f57c98d3daa",
+            "unavailable_at": "2024-01-14"
+        }
+    },
+    {
+        "model": "derleng.package_unavailable_date",
+        "pk": "ef101c63-5276-4b2f-811e-b4fffb44de1c",
+        "fields": {
+            "package": "e70555bd-f5d7-4f29-a0df-7196bd2ff167",
+            "unavailable_at": "2024-01-14"
+        }
+    },
+    {
+        "model": "derleng.package_unavailable_date",
+        "pk": "eff39d93-3e40-4361-a5cc-1f07ad3183f5",
+        "fields": {
+            "package": "46c88b53-8541-4b70-a7c0-50e7c8403fa5",
+            "unavailable_at": "2024-01-14"
+        }
+    },
+    {
+        "model": "derleng.package_unavailable_date",
+        "pk": "f157eb32-a5f1-45c8-a17f-aa24efe8b304",
+        "fields": {
+            "package": "440a61ec-7220-4aa8-9a0f-027a1c17bf02",
+            "unavailable_at": "2024-01-14"
+        }
+    },
+    {
+        "model": "derleng.seller_transactions",
+        "pk": "8c0722c1-a24c-4f34-b264-42afb71d9b02",
+        "fields": {
+            "seller": null,
+            "booking_details": null,
+            "commission": 0.8562639614584853,
+            "amount": 0.5465984155329023,
+            "amount_received": 0.3373741083855317,
+            "currency": "own",
+            "stripe_admin_account_id": "Maintain section check.\nWife away make class agreement. His operation key man artist.\nThey actually run option energy article. Event wind require prevent road truth various.\nSociety although only laugh. Exactly space deep although total.",
+            "stripe_payment_method_id": "Away answer him size keep quickly side. Reality today for voice security coach state. Board challenge right room.\nCase however serious surface above just despite. Student tough amount reveal.",
+            "status": "Care television want money.",
+            "created": 1953707275232364484
+        }
+    },
+    {
+        "model": "derleng.seller_transactions",
+        "pk": "b73c776f-b4fb-45b9-a33c-7b4e2c4808f0",
+        "fields": {
+            "seller": null,
+            "booking_details": null,
+            "commission": 0.035039063232974677,
+            "amount": 0.6989958857755343,
+            "amount_received": 0.7721525543856282,
+            "currency": "lif",
+            "stripe_admin_account_id": "Oil factor anyone management.\nOr price especially give wind. Imagine factor result executive good war. Drug recognize watch fight performance project.\nSkill include wide police person especially. Decision choose just reach provide.",
+            "stripe_payment_method_id": "Nation energy arm recently go letter. Trouble mother movie ahead. Answer for produce nor forget tree.\nCompare difference manager president. Radio yard girl institution.",
+            "status": "Indicate easy day family.",
+            "created": -1176663330537847535
+        }
+    },
+    {
+        "model": "derleng.seller_transactions",
+        "pk": "c5f5eb63-6a69-4513-b41b-d3fe0ee7f6e3",
+        "fields": {
+            "seller": null,
+            "booking_details": null,
+            "commission": 0.21767413649270262,
+            "amount": 0.9316682993764519,
+            "amount_received": 0.9341095095198091,
+            "currency": "nea",
+            "stripe_admin_account_id": "Gun station identify build drug. Office produce Democrat agree. Even certain quality woman.\nWindow interesting eat social likely staff. Fact simply able tough check choose. Final grow situation store.",
+            "stripe_payment_method_id": "Decision continue drive agency writer decade. People organization newspaper mission reduce. Yourself spring possible some sometimes.",
+            "status": "Pay catch voice.",
+            "created": -4187829704750571448
+        }
+    },
+    {
+        "model": "derleng.thumbnail",
+        "pk": "3d0c669a-6abd-4f69-8064-de83174b8a88",
+        "fields": {
+            "name": "Dream real join question.",
+            "image": "leg.txt"
+        }
+    },
+    {
+        "model": "derleng.thumbnail",
+        "pk": "d6a2e011-d9be-49ca-9a14-26db5934f0ff",
+        "fields": {
+            "name": "Citizen generation through feeling however.",
+            "image": "red.png"
+        }
+    },
+    {
+        "model": "derleng.thumbnail",
+        "pk": "f91bbe68-54c7-401f-9aa3-b9b89e3c6e96",
+        "fields": {
+            "name": "Smile develop everybody item.",
+            "image": "one.csv"
+        }
+    }
+]

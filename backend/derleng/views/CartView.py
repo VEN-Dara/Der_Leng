@@ -4,12 +4,12 @@ from rest_framework import status
 from derleng.models import Cart, Package_service
 from derleng.serializers import CartSerializer
 from rest_framework.permissions import IsAuthenticated
-from django.views.decorators.csrf import csrf_exempt
+# from django.views.decorators.csrf import csrf_exempt
 
 
 class CartAPIView(APIView):
     permission_classes = [IsAuthenticated]
-    @csrf_exempt
+    # @csrf_exempt
     def post(self, request):
         try:
             user = request.user

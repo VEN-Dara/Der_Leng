@@ -56,10 +56,8 @@ INSTALLED_APPS = [
     'social_django',
     'drf_social_oauth2',
     "corsheaders",
-    "django_filters" ,
+    "django_filters",
     'django_seed',
-    
-    
 ]
 
 MIDDLEWARE = [
@@ -166,6 +164,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'authentication.User'
 
+#===========================> Django Rest Framework Plugin <===========================
+
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
@@ -178,6 +178,7 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 10
 }
 
+#===========================> Django Rest Framework OAuth2 <===========================
 AUTHENTICATION_BACKENDS = (
     'social_core.backends.google.GoogleOAuth2',         # Google Token OAuth2
     'drf_social_oauth2.backends.DjangoOAuth2',          # drf-social-oauth2
@@ -204,6 +205,7 @@ OAUTH2_PROVIDER = {
     'ROTATE_REFRESH_TOKEN': True,
 }
 
+#===========================> JWT Token <===========================
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(days=1), #minutes=5
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
@@ -244,10 +246,11 @@ SIMPLE_JWT = {
     "SLIDING_TOKEN_REFRESH_SERIALIZER": "rest_framework_simplejwt.serializers.TokenRefreshSlidingSerializer",
 }
 
-#-----------> Media Dir <---------------
+#===========================> Media Dir and File <===========================
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+FILE_UPLOAD_MAX_MEMORY_SIZE = 10 * 1024 * 1024 # 10 Mb limit
 
-#------------- Stripe Key -------------------#
+#===========================> Stripe Key <===========================
 STRIPE_PUBLIC_KEY = env('STRIPE_PUBLISHABLE_KEY')
 STRIPE_SECRET_KEY = env('STRIPE_SECRET_KEY')

@@ -13,9 +13,9 @@ viewsetRouter = DefaultRouter()
 viewsetRouter.register(r'packages', PackageView.PackageViewSet, basename='package')
 
 urlpatterns = [
-    path('cart', CartView.CartAPIView.as_view(), name='cart'),
-    path('cart/<uuid:pk>', CartView.CartAPIView.as_view(), name='cart'),
     path('', include(viewsetRouter.urls), name='viewset'),
+    path('carts', CartView.CartAPIView.as_view(), name='cart'),
+    path('carts/<uuid:pk>', CartView.CartAPIView.as_view(), name='cart'),
     path('thumbnails' , ThumbnailView.ThumbnailAPIView.as_view() , name=''),
     path('thumbnails/<uuid:pk>' , ThumbnailView.ThumbnailAPIView.as_view() , name=''),
     path('categorys' , CategoryView.CategoryAPIView.as_view(), name=''),
@@ -23,5 +23,6 @@ urlpatterns = [
     path('reviews' , ReviewView.ReviewAPIView.as_view(), name=''),
     path('reviews/<uuid:pk>' , ReviewView.ReviewAPIView.as_view(), name=''),
     path('test-payment/', Payment_methodView.test_payment, name="test_payment"),
-    path('payments', Payment_methodView.Payment_methodAPIView.as_view(), name='payment_method')
+    path('test-payment_intent', Payment_methodView.test_payment_intent, name="test_payment"),
+    path('payments', Payment_methodView.Payment_methodAPIView.as_view(), name='payment_method'),
 ]
