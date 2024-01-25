@@ -45,16 +45,20 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # local --------------------------------
     'authentication',
     'derleng',
 
+    # 3rd party modules -------------------------------
     'rest_framework',
     'rest_framework_simplejwt',
     'oauth2_provider',
     'social_django',
     'drf_social_oauth2',
     "corsheaders",
-    "django_filters"
+    "django_filters" ,
+    'django_seed',
+    
     
 ]
 
