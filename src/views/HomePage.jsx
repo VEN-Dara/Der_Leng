@@ -1,13 +1,16 @@
 
 import '../App.css'
+import ImageSlide from '../component/ImageSlide'
 import Navbar from '../component/Navbar'
-import Slideshow from '../component/Slideshow'
+
+
 
 const HomePage = () => {
   return (
     <div>
        <Navbar/>
-       <Slideshow/>
+       <ImageSlide/>
+       
     </div>
   )
 }
