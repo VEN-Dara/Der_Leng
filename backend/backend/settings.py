@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     # local --------------------------------
     'authentication',
     'derleng',
+    'chat'
 
     # 3rd party modules -------------------------------
     'rest_framework',
@@ -58,6 +59,14 @@ INSTALLED_APPS = [
     "corsheaders",
     "django_filters",
     'django_seed',
+    'channels'
+    # add new -------------------------------------------
+    'rest_framework.authtoken',
+    'dj_rest_auth',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'dj_rest_auth.registration',
 ]
 
 MIDDLEWARE = [

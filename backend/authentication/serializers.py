@@ -53,3 +53,7 @@ class UserSerializer(serializers.ModelSerializer):
         if cover_image:
             images['cover_image'] = cover_image.image.url
         return images
+    
+
+
+
