@@ -1,11 +1,10 @@
-import React, { lazy, Suspense, useEffect } from 'react';
+import React, { lazy, Suspense, useEffect, useState } from 'react';
 import { Row, Col, Skeleton } from 'antd';
 import { Route, Routes } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 
 // =========================================> Local Import
 import { PageHeader } from '../../components/page-headers/page-headers';
-import { cartGetData } from '../../redux/cart/actionCreator';
+import { getCart } from '../../hooks/Product/useCartFetcher';
 
 const CartTable = lazy(() => import('../ecommerce/overview/CartTable'));
 const Ordersummary = lazy(() => import('../ecommerce/overview/Ordersummary'));
@@ -18,38 +17,46 @@ function ShoppingCart() {
     },
     {
       path: '',
-      breadcrumbName: 'Shopping Cart',
+      breadcrumbName: 'Tour Service Cart',
     },
   ];
-  const dispatch = useDispatch();
-  const { cartData } = useSelector((state) => {
-    return {
-      cartData: state.cart.data,
-      rtl: state.ChangeLayoutMode.rtlData,
-    };
-  });
 
-  useEffect(() => {
-    if (cartGetData) {
-      dispatch(cartGetData());
-    }
-  }, [dispatch]);
+  const [state, setState] = useState({
+    carts: [],
+    isLoader: true,
+  })
+  
+  const [refreshData, setRefreshData] = useState(true)
 
+  const {isLoader, carts} = state;
+  
   let subtotal = 0;
+  let subDiscountPrice = 0;
 
-  if (cartData !== null) {
-    cartData.map((data) => {
-      const { quantity, price } = data;
+  if (!isLoader && carts !== null) {
+    carts.map((cart) => {
+      const percentage_discount = cart["package"].percentage_discount;
+      console.log(percentage_discount)
+      const quantity = cart.customer_amount;
+      const price = cart.service.price;
+      const discountPrice = percentage_discount*cart.service.price/100;
       subtotal += parseInt(quantity, 10) * parseInt(price, 10);
+      subDiscountPrice += parseInt(quantity, 10) * parseInt(discountPrice, 10)
       return subtotal;
     });
   }
+
+  useEffect(() => {
+    getCart(setState)
+    setRefreshData(false)
+  }, [refreshData])
+
 
   return (
     <>
       <PageHeader
         routes={PageRoutes}
-        title="Shopping Cart"
+        title="Tour Service Cart"
         className="flex  justify-between items-center px-8 xl:px-[15px] pt-2 pb-6 sm:pb-[30px] bg-transparent sm:flex-col"
       />
       <main className="min-h-[715px] lg:min-h-[580px] bg-transparent px-8 xl:px-[15px] pb-[50px] ssm:pb-[30px]">
@@ -67,7 +74,7 @@ function ShoppingCart() {
                       }
                     >
                       <Routes>
-                        <Route index element={<CartTable />} />
+                        <Route index element={<CartTable dataProp={state} setRefreshData={setRefreshData}/>} />
                       </Routes>
                     </Suspense>
                   </Col>
@@ -79,7 +86,7 @@ function ShoppingCart() {
                         </div>
                       }
                     >
-                      <Ordersummary subtotal={subtotal} checkout={false} />
+                      <Ordersummary subtotal={subtotal} discount={subDiscountPrice} checkout={false} />
                     </Suspense>
                   </Col>
                 </Row>
