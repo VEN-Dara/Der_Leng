@@ -1,16 +1,45 @@
-import React from 'react'
+import "../App.css";
 
-const ImageSlide = () => {
+
+import { TECarousel, TECarouselItem } from "tw-elements-react";
+
+export default function ImageSlide():JSX.Element {
   return (
-    <div className='h-screen w-full flex md:flex-row '>
-       <div className=' xl:m-16 w-full bg-contain bg-center bg-no-repeat '>
-         <img src="https://images.pexels.com/photos/5279020/pexels-photo-5279020.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" />
-       </div>
-       <div className=' xl:m-16 w-full bg-contain bg-center bg-no-repeat '>
-         <img src="https://images.pexels.com/photos/457878/pexels-photo-457878.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" />
-       </div>
-    </div>
-  )
+    <>
+      <TECarousel showControls showIndicators crossfade ride="carousel">
+        <div className="relative w-full overflow-hidden after:clear-both after:block after:content-['']">
+          <TECarouselItem
+            itemID={1}
+            className="relative float-left -mr-[100%] hidden w-full !transform-none transition-opacity duration-[600ms] ease-in-out motion-reduce:transition-none"
+          >
+            <img
+              src="https://mdbcdn.b-cdn.net/img/new/slides/041.webp"
+              className="block w-full"
+              alt="..."
+            />
+          </TECarouselItem>
+          <TECarouselItem
+            itemID={2}
+            className="relative float-left -mr-[100%] hidden w-full !transform-none opacity-0 transition-opacity duration-[600ms] ease-in-out motion-reduce:transition-none"
+          >
+            <img
+              src="https://mdbcdn.b-cdn.net/img/new/slides/042.webp"
+              className="block w-full"
+              alt="..."
+            />
+          </TECarouselItem>
+          <TECarouselItem
+            itemID={3}
+            className="relative float-left -mr-[100%] hidden w-full !transform-none opacity-0 transition-opacity duration-[600ms] ease-in-out motion-reduce:transition-none"
+          >
+            <img
+              src="https://mdbcdn.b-cdn.net/img/new/slides/043.webp"
+              className="block w-full"
+              alt="..."
+            />
+          </TECarouselItem>
+        </div>
+      </TECarousel>
+    </>
+  );
 }
-
-export default ImageSlide
