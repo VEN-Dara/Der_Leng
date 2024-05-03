@@ -1,0 +1,51 @@
+# Python
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+
+# Django
+*.sqlite3
+db.sqlite3
+# /media/
+# /static/
+
+# IDE/Editor Files
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Compiled Files
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual Environments
+/venv/
+/env/
+/env3/
+
+# Logs and Databases
+*.log
+*.sql
+
+# OS and Temporary Files
+.DS_Store
+Thumbs.db
+.DS_Store?
+*.swp
+*~
+
+# Dependency Files
+/node_modules/
+/bower_components/
+
+# Compiled Java Classes
+*.class
+
+# Compiled C++ Files
+*.out
+
+# Jupyter Notebooks
+.ipynb_checkpoints/

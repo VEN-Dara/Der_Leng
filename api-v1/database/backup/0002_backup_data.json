@@ -1,0 +1,581 @@
+[
+{
+  "model": "authentication.user_role",
+  "pk": "525c7407-dc9e-4220-9a89-9ad6ae00e7f5",
+  "fields": {
+    "name": "admin",
+    "description": "He's everything"
+  }
+},
+{
+  "model": "authentication.user_role",
+  "pk": "c0249bc4-80bc-4080-aeff-1a285ac0f3af",
+  "fields": {
+    "name": "staff",
+    "description": "employee"
+  }
+},
+{
+  "model": "authentication.user_role",
+  "pk": "d5bc5492-f2ed-4300-9b98-d19332f8c2c3",
+  "fields": {
+    "name": "tour_guide",
+    "description": "can sell"
+  }
+},
+{
+  "model": "authentication.user_role",
+  "pk": "e2ead997-e584-4cfd-93f3-646d98e7c411",
+  "fields": {
+    "name": "customer",
+    "description": ""
+  }
+},
+{
+  "model": "authentication.user",
+  "pk": "0bb13a1d-e5f2-4c68-a5c4-0ee708168954",
+  "fields": {
+    "password": "pbkdf2_sha256$720000$casYuNhVcGSs6GMIHiC1RR$kLcwWvf67j6BPW9uLkd7z9NSruPKqmVPZsVzn/S1zYk=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "staff",
+    "first_name": "Ms",
+    "last_name": "Staff",
+    "email": "staff@123.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2024-01-25T16:20:09Z",
+    "fullname": "Ms Staff",
+    "role": "c0249bc4-80bc-4080-aeff-1a285ac0f3af",
+    "phone": "0963180249",
+    "registration_method": "email",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "authentication.user",
+  "pk": "33be413a-dd3e-477a-ac7a-e8280c33ebbf",
+  "fields": {
+    "password": "pbkdf2_sha256$720000$nrhq0zhWj2M88nFjtofzhu$02jMLpzeNi4SOjSOY1OgQKDCxTKTqgN5eXKD47ogLM8=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "tourguide",
+    "first_name": "Mr",
+    "last_name": "Tourguide",
+    "email": "tourguide@123.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-01-25T16:19:24Z",
+    "fullname": "Mr Tourguide",
+    "role": "d5bc5492-f2ed-4300-9b98-d19332f8c2c3",
+    "phone": "0963180249",
+    "registration_method": "email",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "authentication.user",
+  "pk": "38a42599-1550-4a4a-9de9-a7caf8068433",
+  "fields": {
+    "password": "pbkdf2_sha256$720000$3OUSLpRudvSa8vvc9pEDf1$10QRin+N+yHWG4SG8DwafYqSDiEn59EBRNV/4iVB8bM=",
+    "last_login": "2024-01-25T16:14:32.069Z",
+    "is_superuser": true,
+    "username": "derleng",
+    "first_name": "",
+    "last_name": "",
+    "email": "derleng@123.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2024-01-25T15:51:38Z",
+    "fullname": "Mr Derleng",
+    "role": "525c7407-dc9e-4220-9a89-9ad6ae00e7f5",
+    "phone": "0963180249",
+    "registration_method": "email",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "authentication.user",
+  "pk": "3c807f9b-7e76-4bcc-832c-8a0b2864794f",
+  "fields": {
+    "password": "pbkdf2_sha256$720000$MVYorx2VwnKIwicOBbdN2Y$kaLLLx8A7h/SQUkm/qX5/Mwc2nwcdQERgFI/16zkVlk=",
+    "last_login": "2024-01-25T15:53:36Z",
+    "is_superuser": true,
+    "username": "vendara",
+    "first_name": "",
+    "last_name": "",
+    "email": "vendara@123.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2024-01-25T15:52:48Z",
+    "fullname": "VEN Dara",
+    "role": "525c7407-dc9e-4220-9a89-9ad6ae00e7f5",
+    "phone": "0963180249",
+    "registration_method": "email",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "authentication.user",
+  "pk": "97e15a02-f15a-4e9a-9dc3-b07480657055",
+  "fields": {
+    "password": "pbkdf2_sha256$720000$MnLqgGkV3HNRJ4wGNw7AAn$QSJN0UWxacDhxbdG/I9/Ao1P6sW7ES8yfuJRkjIlzNg=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "hello",
+    "first_name": "Mr",
+    "last_name": "Hello",
+    "email": "hello@123.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-01-25T16:20:51.468Z",
+    "fullname": "Mr Hello",
+    "role": "e2ead997-e584-4cfd-93f3-646d98e7c411",
+    "phone": "0123456789",
+    "registration_method": "email",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "authentication.user",
+  "pk": "f21fc5eb-34d4-43ce-af59-e7b1788da440",
+  "fields": {
+    "password": "pbkdf2_sha256$720000$xdDOVseEjIV8COw7WCRQ5P$SD0fkZ/9eyyrb+70kHLoXl47V/Gi79UAVlaVYfR6vks=",
+    "last_login": null,
+    "is_superuser": true,
+    "username": "bunheng",
+    "first_name": "",
+    "last_name": "",
+    "email": "bunheng@123.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2024-01-25T16:27:20Z",
+    "fullname": "Bun Heng",
+    "role": "525c7407-dc9e-4220-9a89-9ad6ae00e7f5",
+    "phone": "0963180249",
+    "registration_method": "email",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "derleng.profile_image",
+  "pk": "a31b1417-7e8d-4a25-9377-99402c8b931b",
+  "fields": {
+    "user": "33be413a-dd3e-477a-ac7a-e8280c33ebbf",
+    "image": "images/initail_profile_images/4736352.png",
+    "type": "profile",
+    "is_active": true,
+    "created_at": "2024-01-25T16:25:16.097Z"
+  }
+},
+{
+  "model": "derleng.profile_image",
+  "pk": "b694628b-9f97-47cb-a7d7-d295455d0380",
+  "fields": {
+    "user": "3c807f9b-7e76-4bcc-832c-8a0b2864794f",
+    "image": "images/initail_profile_images/Untitled_design_YoyaYQT.png",
+    "type": "profile",
+    "is_active": true,
+    "created_at": "2024-01-25T16:23:44.182Z"
+  }
+},
+{
+  "model": "derleng.profile_image",
+  "pk": "f27d4e57-a1ca-444d-bf7c-3ad2479ee493",
+  "fields": {
+    "user": "0bb13a1d-e5f2-4c68-a5c4-0ee708168954",
+    "image": "images/initail_profile_images/3849701_stock-vector-angry-girl.jpg",
+    "type": "profile",
+    "is_active": true,
+    "created_at": "2024-01-25T16:26:42.377Z"
+  }
+},
+{
+  "model": "derleng.profile_image",
+  "pk": "fbea848c-7944-4995-853b-ca1f4c61159a",
+  "fields": {
+    "user": "38a42599-1550-4a4a-9de9-a7caf8068433",
+    "image": "images/initail_profile_images/GettyImages-865119770.jpg",
+    "type": "profile",
+    "is_active": true,
+    "created_at": "2024-01-25T16:24:05.499Z"
+  }
+},
+{
+  "model": "derleng.category",
+  "pk": "15b9fc8c-637c-48fc-b60a-69091d2dc3f8",
+  "fields": {
+    "name": "temple"
+  }
+},
+{
+  "model": "derleng.category",
+  "pk": "6d8c7924-36b9-4d12-aa81-488b35efa5aa",
+  "fields": {
+    "name": "sea"
+  }
+},
+{
+  "model": "derleng.category",
+  "pk": "75646237-76cd-41bf-82e4-c2eb435a73b7",
+  "fields": {
+    "name": "artventure"
+  }
+},
+{
+  "model": "derleng.category",
+  "pk": "91d2ad1e-b8ad-4772-a5f1-c066156f799e",
+  "fields": {
+    "name": "mountain"
+  }
+},
+{
+  "model": "derleng.category",
+  "pk": "c49ed9cb-0933-4ed3-b359-ce08006b2de2",
+  "fields": {
+    "name": "camping"
+  }
+},
+{
+  "model": "derleng.commission",
+  "pk": "613b6caf-7bee-4d6d-a58a-c1641eb21a4f",
+  "fields": {
+    "type": "free",
+    "percentage_of_sale_price": 0.0
+  }
+},
+{
+  "model": "derleng.commission",
+  "pk": "cfaec487-6a90-4992-9b86-651a2f588b90",
+  "fields": {
+    "type": "normal",
+    "percentage_of_sale_price": 5.0
+  }
+},
+{
+  "model": "derleng.package",
+  "pk": "0ed81905-718d-4584-85df-460dc875fbe0",
+  "fields": {
+    "user": "3c807f9b-7e76-4bcc-832c-8a0b2864794f",
+    "name": "Ankor wat Temple",
+    "description": "Preah Vihea Temple is a beautiful place.",
+    "category": "6d8c7924-36b9-4d12-aa81-488b35efa5aa",
+    "discount": 0.0,
+    "tour_place_coordinate": "{\"lng\":100, \"lat\":200}",
+    "address": "Preah Vihea",
+    "video_url": "https://www.youtube.com/watch?v=2J5uRcaiZcE&list=RD2J5uRcaiZcE&start_radio=1&ab_channel=14FAM",
+    "commission": "cfaec487-6a90-4992-9b86-651a2f588b90",
+    "is_close": false
+  }
+},
+{
+  "model": "derleng.package",
+  "pk": "6fd827b8-976f-4748-89a5-e3a29083c98e",
+  "fields": {
+    "user": "3c807f9b-7e76-4bcc-832c-8a0b2864794f",
+    "name": "Bokor Mountain",
+    "description": "Preah Vihea Temple is a beautiful place.",
+    "category": "6d8c7924-36b9-4d12-aa81-488b35efa5aa",
+    "discount": 0.0,
+    "tour_place_coordinate": "{\"lng\":100, \"lat\":200}",
+    "address": "Kompot",
+    "video_url": "https://www.youtube.com/watch?v=2J5uRcaiZcE&list=RD2J5uRcaiZcE&start_radio=1&ab_channel=14FAM",
+    "commission": "cfaec487-6a90-4992-9b86-651a2f588b90",
+    "is_close": false
+  }
+},
+{
+  "model": "derleng.package",
+  "pk": "b658776b-135d-40ba-a4e5-01f089548a92",
+  "fields": {
+    "user": "3c807f9b-7e76-4bcc-832c-8a0b2864794f",
+    "name": "Preah Vihea Temple",
+    "description": "Preah Vihea Temple is a beautiful place.",
+    "category": "6d8c7924-36b9-4d12-aa81-488b35efa5aa",
+    "discount": 0.0,
+    "tour_place_coordinate": "{\"lng\":100, \"lat\":200}",
+    "address": "Preah Vihea",
+    "video_url": "https://www.youtube.com/watch?v=2J5uRcaiZcE&list=RD2J5uRcaiZcE&start_radio=1&ab_channel=14FAM",
+    "commission": "cfaec487-6a90-4992-9b86-651a2f588b90",
+    "is_close": false
+  }
+},
+{
+  "model": "derleng.package_image",
+  "pk": "1a2a4f9e-9c55-4b13-a144-53818899f185",
+  "fields": {
+    "package": "0ed81905-718d-4584-85df-460dc875fbe0",
+    "image": "images/initail_package_images/Angkor_Wat_Temple_IfIifAn.jpg"
+  }
+},
+{
+  "model": "derleng.package_image",
+  "pk": "36903083-dd2f-4849-b786-6ff4290cda23",
+  "fields": {
+    "package": "b658776b-135d-40ba-a4e5-01f089548a92",
+    "image": "images/initail_package_images/Angkor_Wat_Temple.jpg"
+  }
+},
+{
+  "model": "derleng.package_image",
+  "pk": "3990573a-4a55-4fd1-86d8-7beed97eab47",
+  "fields": {
+    "package": "6fd827b8-976f-4748-89a5-e3a29083c98e",
+    "image": "images/initail_package_images/Bokor_palace_hotel_Cambodia.jpg"
+  }
+},
+{
+  "model": "derleng.package_image",
+  "pk": "40fb7605-5f93-441e-87cd-91de9c9de7c2",
+  "fields": {
+    "package": "6fd827b8-976f-4748-89a5-e3a29083c98e",
+    "image": "images/initail_package_images/GettyImages-865119770_Xr4jIRc.jpg"
+  }
+},
+{
+  "model": "derleng.package_image",
+  "pk": "5d68e8ca-5d10-4d56-b689-0d3cb8b09954",
+  "fields": {
+    "package": "0ed81905-718d-4584-85df-460dc875fbe0",
+    "image": "images/initail_package_images/TB_Waterfall.jpg"
+  }
+},
+{
+  "model": "derleng.package_image",
+  "pk": "5d98c6fb-7443-444e-b880-5f55c88548e0",
+  "fields": {
+    "package": "b658776b-135d-40ba-a4e5-01f089548a92",
+    "image": "images/initail_package_images/GettyImages-865119770.jpg"
+  }
+},
+{
+  "model": "derleng.package_image",
+  "pk": "633a4d8f-b313-425b-9e39-be1a72dbc9f1",
+  "fields": {
+    "package": "0ed81905-718d-4584-85df-460dc875fbe0",
+    "image": "images/initail_package_images/16013937538_336f675b6d_o-scaled_mXINrPn.jpg"
+  }
+},
+{
+  "model": "derleng.package_image",
+  "pk": "6ac042de-6147-4e93-ad69-8ee9e8583381",
+  "fields": {
+    "package": "6fd827b8-976f-4748-89a5-e3a29083c98e",
+    "image": "images/initail_package_images/_12b566c4-ffbd-412e-9af8-60fd654489aa.jpg"
+  }
+},
+{
+  "model": "derleng.package_image",
+  "pk": "9994bf43-9cdd-4b44-8855-45a5dc618d9a",
+  "fields": {
+    "package": "0ed81905-718d-4584-85df-460dc875fbe0",
+    "image": "images/initail_package_images/GettyImages-865119770_vQeJsvn.jpg"
+  }
+},
+{
+  "model": "derleng.package_image",
+  "pk": "a00d7fc1-581b-402c-b39c-8e722294f444",
+  "fields": {
+    "package": "6fd827b8-976f-4748-89a5-e3a29083c98e",
+    "image": "images/initail_package_images/maxresdefault_2.jpg"
+  }
+},
+{
+  "model": "derleng.package_image",
+  "pk": "b9690a9c-76ab-4d73-98b3-122319a2de0f",
+  "fields": {
+    "package": "6fd827b8-976f-4748-89a5-e3a29083c98e",
+    "image": "images/initail_package_images/a4694401-69a7-4251-b6a2-ab24c60479dc.jpg"
+  }
+},
+{
+  "model": "derleng.package_image",
+  "pk": "f5a10c97-a185-46e8-87b0-d828907d1903",
+  "fields": {
+    "package": "b658776b-135d-40ba-a4e5-01f089548a92",
+    "image": "images/initail_package_images/16013937538_336f675b6d_o-scaled.jpg"
+  }
+},
+{
+  "model": "derleng.package_image",
+  "pk": "fa75b0a4-cded-4796-afa5-1db866660172",
+  "fields": {
+    "package": "6fd827b8-976f-4748-89a5-e3a29083c98e",
+    "image": "images/initail_package_images/16013937538_336f675b6d_o-scaled_FZkBuYS.jpg"
+  }
+},
+{
+  "model": "derleng.package_schedule",
+  "pk": "06b5062f-21f8-42c0-9e5d-e3205f1d4a88",
+  "fields": {
+    "package": "0ed81905-718d-4584-85df-460dc875fbe0",
+    "destination": "Preah Vihea Temple",
+    "start_time": "06:30:00",
+    "end_time": "06:30:00"
+  }
+},
+{
+  "model": "derleng.package_schedule",
+  "pk": "07236d6f-0f05-4da3-bd48-a94f41fdd02f",
+  "fields": {
+    "package": "6fd827b8-976f-4748-89a5-e3a29083c98e",
+    "destination": "Dong teh beach",
+    "start_time": "06:30:00",
+    "end_time": "06:30:00"
+  }
+},
+{
+  "model": "derleng.package_schedule",
+  "pk": "4eded0a6-ce28-4039-8fb2-a044f63730b8",
+  "fields": {
+    "package": "b658776b-135d-40ba-a4e5-01f089548a92",
+    "destination": "Preah Vihea Mt",
+    "start_time": "06:30:00",
+    "end_time": "06:30:00"
+  }
+},
+{
+  "model": "derleng.package_schedule",
+  "pk": "b99025e4-08e8-43c0-bfb4-efb3999bfd5a",
+  "fields": {
+    "package": "b658776b-135d-40ba-a4e5-01f089548a92",
+    "destination": "Preah Vihea Temple",
+    "start_time": "06:30:00",
+    "end_time": "06:30:00"
+  }
+},
+{
+  "model": "derleng.package_schedule",
+  "pk": "f535fe41-9c2a-42dc-96f4-da5f1ce89df0",
+  "fields": {
+    "package": "6fd827b8-976f-4748-89a5-e3a29083c98e",
+    "destination": "Cassino",
+    "start_time": "06:30:00",
+    "end_time": "06:30:00"
+  }
+},
+{
+  "model": "derleng.package_schedule",
+  "pk": "fecb98e0-66ed-40ee-bab1-4b140295a36d",
+  "fields": {
+    "package": "0ed81905-718d-4584-85df-460dc875fbe0",
+    "destination": "Preah Vihea Mt",
+    "start_time": "06:30:00",
+    "end_time": "06:30:00"
+  }
+},
+{
+  "model": "derleng.package_service",
+  "pk": "1d80cce7-92ec-422d-95e6-3129533dfe07",
+  "fields": {
+    "detail": "free car",
+    "package": "6fd827b8-976f-4748-89a5-e3a29083c98e",
+    "price": 10.0,
+    "is_close": false
+  }
+},
+{
+  "model": "derleng.package_service",
+  "pk": "42c8853a-d265-44fb-802e-9677e037434e",
+  "fields": {
+    "detail": "free food",
+    "package": "6fd827b8-976f-4748-89a5-e3a29083c98e",
+    "price": 10.0,
+    "is_close": false
+  }
+},
+{
+  "model": "derleng.package_service",
+  "pk": "648a9eae-5690-4578-a782-f2d9184f5153",
+  "fields": {
+    "detail": "free food",
+    "package": "b658776b-135d-40ba-a4e5-01f089548a92",
+    "price": 10.0,
+    "is_close": false
+  }
+},
+{
+  "model": "derleng.package_service",
+  "pk": "76f94119-3f6e-4778-94cf-4e8491a4c0ba",
+  "fields": {
+    "detail": "free car",
+    "package": "b658776b-135d-40ba-a4e5-01f089548a92",
+    "price": 10.0,
+    "is_close": false
+  }
+},
+{
+  "model": "derleng.package_service",
+  "pk": "bfe670e0-36b4-4b3a-aaa2-f363873b3d00",
+  "fields": {
+    "detail": "free food",
+    "package": "0ed81905-718d-4584-85df-460dc875fbe0",
+    "price": 10.0,
+    "is_close": false
+  }
+},
+{
+  "model": "derleng.package_service",
+  "pk": "fcb78e64-1112-488d-8754-cde7de1237ff",
+  "fields": {
+    "detail": "free car",
+    "package": "0ed81905-718d-4584-85df-460dc875fbe0",
+    "price": 10.0,
+    "is_close": false
+  }
+},
+{
+  "model": "derleng.package_unavailable_date",
+  "pk": "7ab5c0d8-ae04-4b72-b9e8-1ed646e924c9",
+  "fields": {
+    "package": "b658776b-135d-40ba-a4e5-01f089548a92",
+    "unavailable_at": "2024-01-15"
+  }
+},
+{
+  "model": "derleng.package_unavailable_date",
+  "pk": "890404f5-7b1c-4371-a2a1-776e249ddc57",
+  "fields": {
+    "package": "0ed81905-718d-4584-85df-460dc875fbe0",
+    "unavailable_at": "2024-01-15"
+  }
+},
+{
+  "model": "derleng.package_unavailable_date",
+  "pk": "a476df64-37b5-4ead-b347-591909e8160c",
+  "fields": {
+    "package": "6fd827b8-976f-4748-89a5-e3a29083c98e",
+    "unavailable_at": "2024-01-14"
+  }
+},
+{
+  "model": "derleng.package_unavailable_date",
+  "pk": "b09a04b1-cbd9-445a-b655-37341e8d4ced",
+  "fields": {
+    "package": "b658776b-135d-40ba-a4e5-01f089548a92",
+    "unavailable_at": "2024-01-14"
+  }
+},
+{
+  "model": "derleng.package_unavailable_date",
+  "pk": "c5cb0ad2-5a88-4b0a-a07f-1109cce0f907",
+  "fields": {
+    "package": "0ed81905-718d-4584-85df-460dc875fbe0",
+    "unavailable_at": "2024-01-14"
+  }
+},
+{
+  "model": "derleng.package_unavailable_date",
+  "pk": "fec3ad3d-2b12-42d8-9084-241ea57d9667",
+  "fields": {
+    "package": "6fd827b8-976f-4748-89a5-e3a29083c98e",
+    "unavailable_at": "2024-01-15"
+  }
+}
+]

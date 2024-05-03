@@ -1,0 +1,34 @@
+[
+    {
+        "model": "authentication.user_role",
+        "pk": "525c7407-dc9e-4220-9a89-9ad6ae00e7f5",
+        "fields": {
+          "name": "admin",
+          "description": "He's everything"
+        }
+      },
+      {
+        "model": "authentication.user_role",
+        "pk": "c0249bc4-80bc-4080-aeff-1a285ac0f3af",
+        "fields": {
+          "name": "staff",
+          "description": "employee"
+        }
+      },
+      {
+        "model": "authentication.user_role",
+        "pk": "d5bc5492-f2ed-4300-9b98-d19332f8c2c3",
+        "fields": {
+          "name": "tour_guide",
+          "description": "can sell"
+        }
+      },
+      {
+        "model": "authentication.user_role",
+        "pk": "e2ead997-e584-4cfd-93f3-646d98e7c411",
+        "fields": {
+          "name": "customer",
+          "description": ""
+        }
+      }
+]
