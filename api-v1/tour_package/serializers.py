@@ -64,8 +64,8 @@ class MediumPackageSerializer(serializers.ModelSerializer):
         data['thumbnail'] = get_thumbnail_image(instance)
         data['description'] = ' '.join(instance.description.split()[:40])
         data['user'] = {"id": instance.user.id, "fullname": instance.user.fullname}
-        data['default_price'] = instance.package_service_set.first().price / 100   #Update from cent to dollar
-        data['schedule_place'] = instance.package_schedule_set.first().destination
+        data['default_price'] = instance.packageservice_set.first().price / 100   #Update from cent to dollar
+        data['schedule_place'] = instance.packageschedule_set.first().destination
         data['avg_rating'] = instance.review_set.all().aggregate(Avg("rating", default=0))['rating__avg']
         data['amount_rating'] = instance.review_set.count()
         data['favorite'] = False
@@ -78,14 +78,14 @@ class MediumPackageSerializer(serializers.ModelSerializer):
         return data
 
 class PackageSerializer(serializers.ModelSerializer):
-    # package_service = PackageServiceSerializer(source='packageService_set', many=True, read_only=True)
-    # package_schedule = PackageScheduleSerializer(source='packageSchedule_set', many=True, read_only=True)
-    # package_image = PackageImageSerializer(source='packageImage_set', many=True, read_only=True)
-    # user = UserSerializer(read_only=True)
-    # category = PackageCategorySerializer(read_only=True)
+    package_service = PackageServiceSerializer(source='packageservice_set', many=True, read_only=True)
+    package_schedule = PackageScheduleSerializer(source='packageschedule_set', many=True, read_only=True)
+    package_image = PackageImageSerializer(source='packageimage_set', many=True, read_only=True)
+    user = UserSerializer(read_only=True)
+    category = PackageCategorySerializer(read_only=True)
     class Meta:
         model = Package
-        fields = '__all__'
+        exclude = ('favorites',)
 
     def to_representation(self, instance):
         data = super().to_representation(instance)
@@ -104,7 +104,7 @@ class PackageSerializer(serializers.ModelSerializer):
 # =======================> Package Serializers Mixin <======================= 
         
 def get_thumbnail_image(instance):
-    thumbnail = instance.package_image_set.filter(type='thumbnail').first()
+    thumbnail = instance.packageimage_set.filter(type='thumbnail').first()
     thumbnail_image = None
     if thumbnail:
         thumbnail_image = MEDIA_URL + str(thumbnail.image)

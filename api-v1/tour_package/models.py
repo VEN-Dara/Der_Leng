@@ -99,4 +99,5 @@ class PackageUnavailableDate(models.Model):
 
     class Meta:
         db_table = 'tour_package_package_unavailable_date'
+
     

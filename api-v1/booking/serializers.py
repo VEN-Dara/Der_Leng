@@ -52,7 +52,7 @@ class MediumBookingSerializer(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         data = super().to_representation(instance)
-        cartList = Cart.objects.filter(booking_details__booking_id=instance.id)
+        cartList = Cart.objects.filter(bookingdetails__booking_id=instance.id)
         data['total_price'] = instance.total_price / 100
         data["carts"] = MediumCartSerializer(cartList, many=True).data
         return data

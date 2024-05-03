@@ -16,13 +16,15 @@ from rest_framework.decorators import api_view, permission_classes
 from authentication.permissions import IsAdminOrStaffOrReadOnly, IsAdminOrStaffOrTourGuideOrReadOnly, UserRolePermission
 from booking.tasks import cancel_payment_task
 from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.permissions import IsAuthenticated , IsAuthenticatedOrReadOnly
+from rest_framework.pagination import PageNumberPagination
 
 #=========================================> Local
 from booking.mixins import BookingMixin
 from booking.models import Booking, BookingDetails, Cart
 from payment.models import PaymentMethod
 from payment.mixins import create_payment_intent, create_transfer
-from booking.serializers import BookingDetailsSerializer, BookingSerializer, CartSerializer, MediumBookingSerializer, MediumCartSerializer
+from booking.serializers import *
 from payment.serializers import CustomerPaymentSerializer, SellerTransactionSerializer
 
 class BookingPackageAPIView(APIView, BookingMixin):
@@ -157,7 +159,7 @@ class CartAPIView(APIView):
 
     def get(self , request):
         try:
-            cartList = request.user.cart_set.filter(booking_details__isnull=True).distinct()
+            cartList = request.user.cart_set.filter(bookingdetails__isnull=True).distinct()
             serializer = MediumCartSerializer(cartList , many = True)
             
             return Response(serializer.data , status=status.HTTP_200_OK)
@@ -203,6 +205,73 @@ class CartAPIView(APIView):
             return Response({'Delete Successfully'} , status=status.HTTP_204_NO_CONTENT)
         except Cart.DoesNotExist:
             return Response({'error': 'Cart not found'}, status=status.HTTP_404_NOT_FOUND)
+        except Exception as error:
+            return Response({'error': str(error)}, status=status.HTTP_400_BAD_REQUEST)
+        
+class ReviewAPIView(APIView):
+    permission_classes = [IsAuthenticatedOrReadOnly]
+    pagination_class = PageNumberPagination
+    page_size = 10
+
+    def post(self  , request , *args, **kwargs):
+        try:
+            data = request.data.copy()
+            data['user'] = request.user.id
+            data['package'] = data['package_id']
+            serializers = ReviewSerializer(data=data)
+            serializers.is_valid(raise_exception=True)
+            serializers.save()
+            
+            respone_data = {
+                'message' : 'Review post successfully.' ,
+                'review_data' : serializers.data
+            }
+            return Response( respone_data , status=status.HTTP_201_CREATED)
+        
+        except Exception as error:
+            return Response( error.detail , status=status.HTTP_400_BAD_REQUEST)
+        
+    def get(self ,request):
+        try:
+            reviewList = Review.objects.all().order_by("-created_at")
+
+            package_param = self.request.query_params.get("package", None)
+            if package_param:
+                reviewList = Review.objects.filter(package__id=package_param).order_by("-created_at")
+
+            paginator = self.pagination_class()
+            results = paginator.paginate_queryset(reviewList, request)
+            serializers = ReviewSerializer(results , many = True)
+            return paginator.get_paginated_response(serializers.data)
+        except Exception as error:
+            return Response( {'error' : str(error)} , status=status.HTTP_400_BAD_REQUEST)
+        
+    def put(self , request , pk):
+        try:
+            review_id = Review.objects.get(pk=pk)
+            print(request.user)
+            print(pk)
+            
+            serializers = ReviewSerializer(review_id, data=request.data ,partial = True)
+            
+            serializers.is_valid(raise_exception=True)
+            serializers.save()
+            respone_data = {
+                    'message' : 'Review Update successfully.' ,
+                    'review_data' : serializers.data
+                }
+            return Response( respone_data , status=status.HTTP_201_CREATED)
+        except Exception as error:
+            return Response( {'error' : str(error)} , status=status.HTTP_400_BAD_REQUEST)
+        
+    def delete(self ,request ,  pk):
+        try:
+            review_id = Review.objects.get(pk=pk)
+            print(pk)
+            review_id.delete()
+            return Response({'Delete Successfully'} , status=status.HTTP_204_NO_CONTENT)
+        except Review.DoesNotExist:
+            return Response({'error': 'Review not found'}, status=status.HTTP_404_NOT_FOUND)
         except Exception as error:
             return Response({'error': str(error)}, status=status.HTTP_400_BAD_REQUEST)
         

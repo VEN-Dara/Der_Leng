@@ -39,6 +39,6 @@ if existing_backups:
 
 # Perform the data dump using dumpdata
 backup_path = os.path.join(backup_dir, latest_backup_name)
-call_command("dumpdata", "--indent", "2", "authentication", "derleng", "-o", backup_path)
+call_command("dumpdata", "--indent", "2", "authentication", "tour_package", "oauth2_provider", "-o", backup_path)
 
 print(f"Data dumped to {backup_path}")

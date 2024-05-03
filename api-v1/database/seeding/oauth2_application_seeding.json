@@ -1,0 +1,20 @@
+[
+    {
+        "model": "oauth2_provider.application",
+        "pk": 1,
+        "fields": {
+            "client_id": "FJfTHZjuIRwzmOgjtJQeYzt5r5FXmgJHwDnMNsXP",
+            "user": "38a42599-1550-4a4a-9de9-a7caf8068433",
+            "redirect_uris": "",
+            "post_logout_redirect_uris": "",
+            "client_type": "confidential",
+            "authorization_grant_type": "password",
+            "client_secret": "pbkdf2_sha256$720000$fO106Gv7uTcIvG8bMpZvZe$WVk5Ir3evSXe3dBVwYUMY8++A0tt/xW65N2RAnupK/g=",
+            "name": "derleng social oauth2",
+            "skip_authorization": false,
+            "created": "2024-05-03T07:22:59.311Z",
+            "updated": "2024-05-03T07:22:59.311Z",
+            "algorithm": ""
+        }
+    }
+]
