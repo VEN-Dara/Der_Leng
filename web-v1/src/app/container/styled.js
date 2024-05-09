@@ -2,6 +2,9 @@ import Styled from 'styled-components';
 import { Alert, AutoComplete } from 'antd';
 
 const GlobalUtilityStyle = Styled.div`
+  img.ant-image-preview-img { 
+    display: inline-block; 
+  }
   .ant-card-body-p-25{
     .ant-card-body {
       padding: 25px!important;

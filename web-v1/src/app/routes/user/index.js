@@ -1,7 +1,8 @@
 import { Spin } from 'antd';
 import React, { lazy, Suspense, useEffect } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
-import withUserLayout from '../../../layout/withUserLayout';
+// import withUserLayout from '../../../layout/withUserLayout';
+import withUserLayout from '../../layout/withUserLayout.js';
 // import with
 import Category from './category.js';
 import ResultSearch from './resultSearch.js';
@@ -12,10 +13,11 @@ const NotFound = lazy(() => import('../../container/pages/404'));
 const Home = lazy(() => import('../../container/pages/Home'));
 const Cart = lazy(() => import('../../container/pages/Cart'));
 const BookingPage = lazy(() => import('../../container/pages/Booking.js'))
-const ProductDetails = lazy(() => import('../../container/product/ProductDetails.js'))
+const ProductDetails = lazy(() => import('../../container/tour_package/ProductDetails.js'))
 const CheckoutPage = lazy(() => import('../../../container/ecommerce/Checkout.js'))
-const AddProduct = lazy(() => import('../../../container/ecommerce/product/AddProduct.js'))
-const EditProduct = lazy(() => import('../../../container/ecommerce/product/EditProduct.js'))
+// const EditProduct = lazy(() => import('../../../container/ecommerce/tour_package/EditProduct.js'))
+import CreatePackage from '../../container/tour_package/CreatePackage.js';
+
 
 const User = React.memo(() => {
   const { pathname } = useLocation();
@@ -35,9 +37,9 @@ const User = React.memo(() => {
         <Route index path="/" element={<Home />} />
         <Route index path="/results" element={<ResultSearch/>} />
         <Route index path="/category/:category" element={<Category/>} />
-        <Route exact path="tour-service/new" element={<AddProduct />} />
+        <Route exact path="/new" element={<CreatePackage/>} />
         <Route index path="tour-service/:id" element={<ProductDetails />} />
-        <Route exact path="edit-tour-service/*" element={<EditProduct />} />
+        {/* <Route exact path="edit-tour-service/*" element={<EditProduct />} /> */}
         <Route path="profile/myProfile/*" element={<CustomerProfile/>} />
         <Route path='/cart' element={<Cart/>}/>
         <Route path='/checkout' element={<CheckoutPage/>}/>

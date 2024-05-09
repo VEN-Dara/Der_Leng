@@ -1,7 +1,7 @@
 import React from 'react';
 import { Timeline } from 'antd';
 import { TimeLinePointerIconWrap, TimelineNormalWrap, TimelineBoxWrap } from '../../../../container/ui-elements/ui-elements-styled.js';
-import { SwClock } from '../../../../components/utilities/icons';
+import { SwClock } from '../../../../components/utilities/icons.js';
 
 function PackageSchedule({schedules}) {
   const colors = ["#FB3586", "#2C99FF", "#fa8b0c", "#FB3586", "#ff4d4f", "#20c997", "#FF69A5"]

@@ -1,11 +1,12 @@
 import { Suspense, useEffect, useState } from "react"
 import UseFetcher, { get } from "../../../hooks/useFetcher"
 import { Skeleton } from "antd";
-import List from "../../product/overview/List";
+import List from "../../tour_package/overview/List";
 import { NavLink, Route, Routes } from "react-router-dom";
 import Profile from "./Profile";
-import Password from "./Passwoard";
+import Password from "./Password";
 import NotFound from "../../pages/404";
+import EditPaymentMethod from "./EditPaymentMethod";
 
 function EditProfile() {
     const path = '.';
@@ -50,6 +51,14 @@ function EditProfile() {
                                     Password
                                 </NavLink>
                             </li>
+                            <li>
+                                <NavLink
+                                    className="relative block py-[18px] px-[5px] text-light dark:text-white60 [&.active]:text-primary after:[&.active]:bg-primary after:absolute after:bottom-0 ltr:after:left-0 rtl:after:right-0 after:w-full after:h-[2px] after:bg-transparent after:transition-all after:duration-300 after:ease-in-out after:invisible [&.active]:after:visible font-medium"
+                                    to={`${path}/payment`}
+                                >
+                                    Payment
+                                </NavLink>
+                            </li>
                         </ul>
                     </nav>
                     <Suspense
@@ -63,6 +72,7 @@ function EditProfile() {
                             <Route index element={<Profile />} />
                             <Route path="info" element={<Profile />} />
                             <Route path="password" element={<Password />} />
+                            <Route path="payment" element={<EditPaymentMethod/>} />
                             <Route path="*" element={<NotFound/>} />
                         </Routes>
                     </Suspense>

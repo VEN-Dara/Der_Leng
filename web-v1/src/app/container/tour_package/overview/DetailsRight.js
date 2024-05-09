@@ -137,18 +137,6 @@ const DetailsRight = React.memo(({ product }) => {
         as="h1"
       >
         {name}
-        <button
-          onClick={() => handleFavorite(id)}
-          className={` inline-flex items-center justify-center absolute min-3xl:ltr:right-5 min-3xl:rtl:left-5 ltr:right-0 rtl:left-0  min-3xl:top-[15px] top-0 bg-white dark:bg-white10 w-[40px] h-[40px] rounded-full shadow-[0_5px_10px_rgba(160,160,260,0.13)] ${
-            true ? 'text-danger' : 'text-body dark:text-white60'
-          } `}
-        >
-          {isFavorite ? (
-            <ReactSVG src={require(`@/static/img/icon/heart-fill.svg`).default} />
-          ) : (
-            <UilHeart className="w-[18px] h-[18px]" />
-          )}
-          </button>
       </Heading>
       <Rate className="relative -top-[3px] [&>li]:mr-0.5" allowHalf defaultValue={avg_rating} disabled />
       <span className="inline-block ltr:mr-1 ltr:ml-2 rtl:ml-1 rtl:mr-2 text-dark dark:text-white87 text-[15px] font-semibold">
@@ -179,7 +167,7 @@ const DetailsRight = React.memo(({ product }) => {
       <p className="max-w-[580px] mb-2 text-body dark:text-white60 text-[15px]">{description}</p>
       <div className="mt-[25px]">
         <p className="my-[30px] text-body dark:text-white60 flex flex-col gap-1">
-          <span className="mr-[30px] text-dark dark:text-white87 font-medium">Services:</span>
+          <span className="mr-[30px] text-secondary dark:text-white87 font-medium">Services:</span>
           <Select
             className="[&>div]:border-normal w-[287px] dark:[&>div]:border-white10 [&>div]:rounded-6 [&>.ant-select-arrow]:text-theme-gray dark:[&>.ant-select-arrow]:text-white60 [&>div>div>div>span]:bg-transparent [&>div]:h-[38px] [&>div>div>div>span]:items-center [&>div>.ant-select-selection-item]:flex [&>div>.ant-select-selection-item]:items-center dark:[&>div>.ant-select-selection-item]:text-white60"
             defaultValue={package_service[0].id}
@@ -189,18 +177,18 @@ const DetailsRight = React.memo(({ product }) => {
             {
               package_service.map((service) => {
                 return (
-                  <Option value={service.id} key={service.id} disabled={service.is_close} >{service.detail}</Option>
+                  <Option value={service.id} key={service.id} disabled={service.is_close} >{service.detail} {`${service.price}${service.currency === "usd" ? "$" : service.currency}`}</Option>
                 )
               })
             }
           </Select>
         </p>
         <p className=" text-body dark:text-white60 flex flex-col gap-1">
-          <span className="mr-[30px] text-dark dark:text-white87 font-medium">Booking date:</span>
+          <span className="mr-[30px] text-secondary dark:text-white87 font-medium">Booking date:</span>
           <DatePicker onChange={onDateChange} disabledDate={disabledDate} className='w-[287px]' />
         </p>
         <p className="my-[30px] text-body dark:text-white60">
-          <span className="mr-[30px] text-dark dark:text-white87 font-medium">Tourist:</span>
+          <span className="mr-[30px] text-secondary dark:text-white87 font-medium">Tourist:</span>
 
           <Button
             className="w-[38px] h-[38px] bg-section dark:bg-white10 mr-[15px] p-x-3 text-sm text-body dark:text-white60 font-semibold border-none rounded-[10px]"
@@ -241,7 +229,7 @@ const DetailsRight = React.memo(({ product }) => {
           </Button>
 
           <Button
-            onClick={() => dispatch(updateWishList(parseInt(id, 10)))}
+            onClick={() => handleFavorite(id)}
             className={` inline-flex items-center justify-center bg-white dark:bg-white10 w-[40px] h-[40px] ltr:mr-[10px] rtl:ml-[10px] border-none rounded-full shadow-[0_5px_10px_rgba(160,160,260,0.13)] dark:shadow-[0_5px_30px_rgba(1,4,19,.60)] ${false ? 'text-danger' : 'text-body dark:text-white60'
               } `}
             size="default"
@@ -249,12 +237,24 @@ const DetailsRight = React.memo(({ product }) => {
             type="white"
             shape="circle"
           >
-            {false ? (
+            {isFavorite ? (
               <ReactSVG src={require(`@/static/img/icon/heart-fill.svg`).default} />
             ) : (
               <UilHeart className="w-[14px] h-[14px]" />
             )}
           </Button>
+          {/* <button
+          onClick={() => handleFavorite(id)}
+          className={` inline-flex items-center justify-center absolute min-3xl:ltr:right-5 min-3xl:rtl:left-5 ltr:right-0 rtl:left-0  min-3xl:top-[15px] top-0 bg-white dark:bg-white10 w-[40px] h-[40px] rounded-full shadow-[0_5px_10px_rgba(160,160,260,0.13)] ${
+            true ? 'text-danger' : 'text-body dark:text-white60'
+          } `}
+        >
+          {isFavorite ? (
+            <ReactSVG src={require(`@/static/img/icon/heart-fill.svg`).default} />
+          ) : (
+            <UilHeart className="w-[18px] h-[18px]" />
+          )}
+          </button> */}
           <Button
             size="default"
             raised
@@ -313,7 +313,7 @@ const DetailsRight = React.memo(({ product }) => {
           <span className="ltr:mr-[10px] rtl:ml-[10px] text-dark dark:text-white87 font-medium min-w-[66px] inline-block">
             Category:
           </span>
-          <span className="text-body dark:text-white60">{category.name}</span>
+          <span className="text-body dark:text-white60">{category?.name || "None"}</span>
         </li>
         <li>
           <p className="mb-1 text-body dark:text-white60">

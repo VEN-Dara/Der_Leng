@@ -5,7 +5,7 @@ import { lazy } from "react"
 import { Carousel } from "flowbite-react"
 
 // ==================================> Local
-const Products = lazy(() => import('../product/Products'))
+const Products = lazy(() => import('../tour_package/Products'))
 
 
 function Home() {

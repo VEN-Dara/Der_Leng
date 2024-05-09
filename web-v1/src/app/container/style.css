@@ -1,0 +1,6 @@
+img.ant-image-preview-img { display: inline-block; }
+.ant-upload-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}

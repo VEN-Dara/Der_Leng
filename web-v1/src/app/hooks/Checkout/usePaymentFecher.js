@@ -1,4 +1,4 @@
-import ApiService from "../../config/dataService/apiService"
+import ApiService from "../../config/api/apiService"
 
 const api = new ApiService();
 

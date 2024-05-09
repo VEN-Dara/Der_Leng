@@ -79,9 +79,9 @@
 
 .submit-btn{
     margin: 10px 0;
-    width: 50%;
+    width: 50% !important;
     align-self: center;
-    background: #32325d;
+    background-color: #32325d !important;
     padding: 10px 14px;
     color: white;
     border-radius: 5px;

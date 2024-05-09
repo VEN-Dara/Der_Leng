@@ -9,6 +9,8 @@ import Heading from '../../../../components/heading/heading';
 import { Button } from '../../../../components/buttons/buttons';
 import UilCamera from '@iconscout/react-unicons/icons/uil-camera';
 import UseFetcher from '../../../hooks/useFetcher';
+import UilShop from '@iconscout/react-unicons/icons/uil-shop';
+import { isTourGuideOrAbove } from '../../../service/permission';
 
 const FILE_ENDPOINT = process.env.REACT_APP_FILE_ENDPOINT
 
@@ -44,6 +46,19 @@ function UserCards({ user }) {
   return (
     <div className="relative">
       <div className="bg-white dark:bg-white10 px-[25px] pt-[30px] pb-[18px] rounded-[10px] text-center flex flex-col items-center">
+        { isTourGuideOrAbove() && 
+          <Link to={`${path}/shop`}>
+            <Button
+              size="default"
+              raised
+              type="white"
+              shape="circle"
+              className="absolute top-5 right-4 inline-flex items-center justify-center bg-white hover:bg-primary hover:text-white border-normal dark:bg-white10 text-body dark:text-white60 w-[40px] h-[40px] ltr:mr-[10px] rtl:ml-[10px] rounded-full shadow-[0_5px_10px_rgba(160,160,260,0.13)] dark:shadow-[0_5px_30px_rgba(1,4,19,.60)]"
+            >
+              <UilShop className="w-[14px] h-[14px]" />
+            </Button>
+          </Link>
+        }
         <figure className="mb-[18px] h-[120px] w-[120px] relative overflow-hidden rounded-full">
           <img
             className="max-w-full max-h-full w-full h-full rounded-full inline-block object-cover"

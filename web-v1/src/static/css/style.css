@@ -48,6 +48,9 @@ hr{
   @apply bg-pink text-dark;
 }
 
+/* Preview Image */
+/* img.ant-image-preview-img { display: inline-block; } */
+
 .ant-layout{
   @apply bg-normalBG dark:bg-[#010413];
 }

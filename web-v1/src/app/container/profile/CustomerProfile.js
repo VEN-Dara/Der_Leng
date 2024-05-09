@@ -9,6 +9,9 @@ import UseFetcher from '../../hooks/useFetcher';
 import defaultProfile from '@/app/static/img/default_img/derleng-default-profile.png'
 import defaultCover from '@/app/static/img/default_img/default_profile_cover.png'
 import EditProfile from './overview/EditProfile';
+import Shop from './overview/Shop';
+import { isTourGuideOrAbove } from "../../service/permission.js"
+import NotFound from '../pages/404.js';
 
 const UserCards = lazy(() => import('./overview/UserCard'));
 const CoverSection = lazy(() => import('./overview/CoverSection'));
@@ -45,6 +48,8 @@ function CustomerProfile() {
   useEffect(() => {
     useFetcher.retrieve(setState, apiUrl);
   }, [])
+
+  console.log(isTourGuideOrAbove())
 
   return (
     <>
@@ -130,36 +135,6 @@ function CustomerProfile() {
                 </Suspense>
               </div>
 
-              {/* <div className="p-0 bg-white dark:bg-white10 rounded-10 py-[15px] m-10 flex justify-center gap-[25px]">
-                <div className='flex flex-col items-center'>
-                  <Button
-                    className="group text-[13px] border-normal font-semibold text-theme-gray dark:text-white87 btn-outlined h-[40px] dark:border-white10 rounded-[6px] flex items-center justify-center gap-[5px] leading-[22px] hover:text-white hover:bg-primary transition duration-300 dark:bg-transparent"
-                    size="default"
-                  >
-                    <UilDollarSign className="w-4 h-4" />
-                  </Button>
-                  <span className="font-medium text-center"> Favorite </span>
-                </div>
-                <div className='flex flex-col items-center'>
-                  <Button
-                    className="group text-[13px] border-normal font-semibold text-theme-gray dark:text-white87 btn-outlined h-[40px] dark:border-white10 rounded-[6px] flex items-center justify-center gap-[5px] leading-[22px] hover:text-white hover:bg-primary transition duration-300 dark:bg-transparent"
-                    size="default"
-                  >
-                    <UilDollarSign className="w-4 h-4" />
-                  </Button>
-                  <span className="font-medium text-center"> Billing </span>
-                </div>
-                <div className='flex flex-col items-center'>
-                  <Button
-                    className="group text-[13px] border-normal font-semibold text-theme-gray dark:text-white87 btn-outlined h-[40px] dark:border-white10 rounded-[6px] flex items-center justify-center gap-[5px] leading-[22px] hover:text-white hover:bg-primary transition duration-300 dark:bg-transparent"
-                    size="default"
-                  >
-                    <UilDollarSign className="w-4 h-4" />
-                  </Button>
-                  <span className="font-medium text-center"> Cart </span>
-                </div>
-              </div> */}
-
               <Suspense
                 fallback={
                   <div className="bg-white dark:bg-white10 p-[25px] rounded-[10px]">
@@ -168,12 +143,11 @@ function CustomerProfile() {
                 }
               >
                 <Routes>
-                  <Route index element={<FavoriteProductList/>}/>
+                  { isTourGuideOrAbove() ? <Route index element={<Shop/>}/> : <Route index element={<FavoriteProductList/>}/>}
+                  { isTourGuideOrAbove() && <Route path="shop" element={<Shop/>}/>}
                   <Route path="favorite" element={<FavoriteProductList/>}/>
                   <Route path="setting/*" element={<EditProfile/>}/>
-                  <Route path="overview" element={<Overview />} />
-                  <Route path="timeline" element={<Timeline />} />
-                  <Route path="activity" element={<Activity />} />
+                  <Route path="*" element={<NotFound/>}/>
                 </Routes>
               </Suspense>
             </>

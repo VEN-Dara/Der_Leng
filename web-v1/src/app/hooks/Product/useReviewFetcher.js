@@ -1,5 +1,5 @@
 import { Rate, message, notification } from "antd";
-import ApiService from "../../config/dataService/apiService"
+import ApiService from "../../config/api/apiService"
 
 const client = new ApiService();
 

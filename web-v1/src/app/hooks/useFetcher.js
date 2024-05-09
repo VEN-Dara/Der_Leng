@@ -1,5 +1,5 @@
 import { Rate, message, notification } from "antd";
-import ApiService from "../config/dataService/apiService"
+import ApiService from "../config/api/apiService"
 
 const client = new ApiService();
 
@@ -73,7 +73,7 @@ class UseFetcher {
         }
     }
 
-    put = async (url, setState, data, onSuccess, onFail) => {
+    put = async (url, setState, data, onSuccess= () => {}, onFail) => {
         try {
             const response = await client.put(url, data);
             if (response && response.data) {
@@ -87,6 +87,7 @@ class UseFetcher {
                 onSuccess();
             }
         } catch (error) {
+            console.log(error.response)
             if(error.response.status >= 400 && error.response.status <= 499) {
                 message.error("Provided data is valided - Bad Request.")
             }
