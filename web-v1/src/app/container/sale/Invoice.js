@@ -3,9 +3,9 @@ import UilMessage from '@iconscout/react-unicons/icons/uil-message';
 import UilPrint from '@iconscout/react-unicons/icons/uil-print';
 import { Col, Row, Table } from 'antd';
 import { useSelector } from 'react-redux';
-import { Button } from '../../../components/buttons/buttons';
-import Heading from '../../../components/heading/heading';
-import { PageHeader } from '../../../components/page-headers/page-headers';
+import { Button } from '../../../resource/components/buttons/buttons';
+import Heading from '../../../resource/components/heading/heading';
+import { PageHeader } from '../../../resource/components/page-headers/page-headers';
 import { GlobalUtilityStyle, PaginationStyle } from '../styled';
 
 function Invoice() {
@@ -141,9 +141,9 @@ function Invoice() {
                   <Col sm={12} xs={24}>
                     <figure className="sm:flex sm:items-center sm:justify-center">
                       {mainContent === 'lightMode' ? (
-                        <img src={require('@/static/img/logo_dark.svg').default} alt="" />
+                        <img src={require('@/resource/static/img/logo_dark.svg').default} alt="" />
                       ) : (
-                        <img src={require('@/static/img/logo_white.svg').default} alt="" />
+                        <img src={require('@/resource/static/img/logo_white.svg').default} alt="" />
                       )}
                     </figure>
                   </Col>
@@ -168,9 +168,9 @@ function Invoice() {
                 <div className="max-w-[310px] mx-auto text-center border dark:border-white10 rounded-[10px]">
                   <div className="bg-white dark:bg-white10 p-[25px] rounded-[10px]">
                     {mainContent === 'lightMode' ? (
-                      <img style={{ width: '100%' }} src={require('@/static/img/barcode.png')} alt="barcode" />
+                      <img style={{ width: '100%' }} src={require('@/resource/static/img/barcode.png')} alt="barcode" />
                     ) : (
-                      <img style={{ width: '100%' }} src={require('@/static/img/bar-dark.png')} alt="barcode" />
+                      <img style={{ width: '100%' }} src={require('@/resource/static/img/bar-dark.png')} alt="barcode" />
                     )}
                     <p className="mb-0 text-theme-gray dark:text-white60">8364297359912267</p>
                   </div>

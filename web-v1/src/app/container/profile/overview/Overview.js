@@ -9,8 +9,8 @@ import UilFileAlt from '@iconscout/react-unicons/icons/uil-file-alt';
 import UilFile from '@iconscout/react-unicons/icons/uil-file';
 import { NavLink } from 'react-router-dom';
 import { GlobalUtilityStyle } from '../../styled';
-import { Cards } from '../../../../components/cards/frame/cards-frame';
-import DashboardChart from '../../../../components/charts/DashboardChart';
+import { Cards } from '../../../../resource/components/cards/frame/cards-frame';
+import DashboardChart from '../../../../resource/components/charts/DashboardChart';
 
 const moreContent = (
   <div className="block bg-white dark:bg-[#1b1e2b] shadow-regular dark:shadow-[0_5px_30px_rgba(1,4,19,.60)] rounded-4">

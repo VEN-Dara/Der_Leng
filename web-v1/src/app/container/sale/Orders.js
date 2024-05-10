@@ -8,11 +8,11 @@ import UilTrashAlt from '@iconscout/react-unicons/icons/uil-trash-alt';
 import { Link } from 'react-router-dom';
 
 // =============================================> Local
-import { PageHeader } from '../../../components/page-headers/page-headers';
+import { PageHeader } from '../../../resource/components/page-headers/page-headers';
 import { GlobalUtilityStyle, PaginationStyle } from '../styled';
-import { AutoComplete } from '../../../components/autoComplete/autoComplete';
-import { Button } from '../../../components/buttons/buttons';
-import { orderFilter } from '../../../redux/orders/actionCreator';
+import { AutoComplete } from '../../../resource/components/autoComplete/autoComplete';
+import { Button } from '../../../resource/components/buttons/buttons';
+import { orderFilter } from '../../../resource/redux/orders/actionCreator';
 
 function Orders() {
   const PageRoutes = [

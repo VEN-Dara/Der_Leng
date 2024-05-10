@@ -7,9 +7,10 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 // ====================================> Local <====================================
-import Heading from '../../../../components/heading/heading';
-import { Button } from '../../../../components/buttons/buttons';
-import { cartGetData } from '../../../../redux/cart/actionCreator';
+import Heading from '../../../../resource/components/heading/heading';
+import { Button } from '../../../../resource/components/buttons/buttons';
+import { cartGetData } from '../../../../resource/redux/cart/actionCreator';
+
 
 function Ordersummary({ subtotal, checkout, discount }) {
   const dispatch = useDispatch();

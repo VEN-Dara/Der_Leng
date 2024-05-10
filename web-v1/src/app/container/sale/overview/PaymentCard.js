@@ -1,8 +1,8 @@
 import { Radio } from 'antd'
 
-import masterImage from '../../../../static/img/creditCard/master.png';
-import visaImage from '../../../../static/img/creditCard/visa.png';
-import unionpayImage from '../../../../static/img/creditCard/unionpay.png';
+import masterImage from '../../../static/img/creditCard/master.png';
+import visaImage from '../../../static/img/creditCard/visa.png';
+import unionpayImage from '../../../static/img/creditCard/unionpay.png';
 
 const cardImages = {
     mastercard: masterImage,

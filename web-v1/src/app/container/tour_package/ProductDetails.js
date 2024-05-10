@@ -4,7 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 
 
 // =============================================> Local
-import { PageHeader } from '@/components/page-headers/page-headers';
+import { PageHeader } from '@/resource/components/page-headers/page-headers';
 import PackageSchedule from './overview/PackageShedule';
 import { getPackageById } from '../../hooks/Product/usePackageFetcher';
 import NotFound from '../pages/404';

@@ -23,7 +23,7 @@ const ProductCardsList = React.memo(({ product }) => {
           <Col md={6} xs={24}>
             <figure className="ltr:mr-[15px] rtl:ml-[15px] mb-0">
               {/* <img className="w-full rounded-10" src={require(`../../../../${img}`)} alt="" /> */}
-              <img className="w-full rounded-10" src={ thumbnail ? `${FILE_ENDPOINT}${thumbnail}` : require(`../../../../../src/static/img/default_img/travel-cambodia.png`)} alt={`img${id}`} />
+              <img className="w-full rounded-10" src={ thumbnail ? `${FILE_ENDPOINT}${thumbnail}` : require(`../../../../../../src/resource/static/img/default_img/travel-cambodia.png`)} alt={`img${id}`} />
             </figure>
           </Col>
           <Col md={12} xs={24}>

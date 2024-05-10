@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Row, Col, Form, Input, Button, message, Radio, Spin } from 'antd';
 import { GlobalUtilityStyle } from '../../styled';
-import Heading from '../../../../components/heading/heading';
+import Heading from '../../../../resource/components/heading/heading';
 import UseFetcher from '../../../hooks/useFetcher';
 import WrappedCheckoutForm from '../../sale/overview/CheckoutForm';
 import PaymentCard from '../../sale/overview/PaymentCard';
 import UilTrashAlt from '@iconscout/react-unicons/icons/uil-trash-alt';
-import { deletePaymentMedthod, getPaymentMethod } from '../../../../hooks/Checkout/usePaymentFecher';
+import { deletePaymentMedthod, getPaymentMethod } from '../../../../resource/hooks/Checkout/usePaymentFecher';
 
 function EditPaymentMethod() {
 
@@ -92,7 +92,7 @@ function EditPaymentMethod() {
                     className="ltr:[&>span.ant-radio]:mr-[15px] rtl:[&>span.ant-radio]:ml-[15px] [&>span:not(.ant-radio)]:flex [&>span:not(.ant-radio)]:items-center [&>span:not(.ant-radio)]:justify-between [&>span:not(.ant-radio)]:w-full [&>span:not(.ant-radio)]:h-[60px] [&>span:not(.ant-radio)]:px-[25px] [&>span:not(.ant-radio)]:text-body dark:[&>span:not(.ant-radio)]:text-white60 [&>span:not(.ant-radio)]:text-[15px] [&>span:not(.ant-radio)]:font-medium [&>span:not(.ant-radio)]:border [&>span:not(.ant-radio)]:border-regular dark:[&>span:not(.ant-radio)]:border-white10 [&>span:not(.ant-radio)]:rounded-[10px]"
                   >
                     Pay With PayPal (upcoming)
-                    <img className="xs:hidden h-20" src={require('@/static/img/PayPalLogo.png')} alt="paypal" />
+                    <img className="xs:hidden h-20" src={require('@/resource/static/img/PayPalLogo.png')} alt="paypal" />
                   </Radio>
                 </div>
                 <div className="">

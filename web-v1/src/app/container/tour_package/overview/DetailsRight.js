@@ -13,9 +13,9 @@ import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 
 // =============================================> Local <====================================
-import Heading from '@/components/heading/heading';
-import { updateWishList } from '@/redux/product/actionCreator';
-import { Button } from '@/components/buttons/buttons';
+import Heading from '@/resource/components/heading/heading';
+import { updateWishList } from '@/resource/redux/product/actionCreator';
+import { Button } from '@/resource/components/buttons/buttons';
 import { postCart } from '../../../hooks/Product/useCartFetcher';
 import UseFetcher from '../../../hooks/useFetcher';
 
@@ -84,7 +84,7 @@ const DetailsRight = React.memo(({ product }) => {
   const openSuccessCartNotification = () => {
     notification.open({
       message: 'Package added to cart',
-      icon: <ReactSVG src={require('@/static/img/icon/shopping-cart.svg').default} className='text-green-400 mt-[1px]' width="12px"/>,
+      icon: <ReactSVG src={require('@/resource/static/img/icon/shopping-cart.svg').default} className='text-green-400 mt-[1px]' width="12px"/>,
 
     });
   };
@@ -238,7 +238,7 @@ const DetailsRight = React.memo(({ product }) => {
             shape="circle"
           >
             {isFavorite ? (
-              <ReactSVG src={require(`@/static/img/icon/heart-fill.svg`).default} />
+              <ReactSVG src={require(`@/resource/static/img/icon/heart-fill.svg`).default} />
             ) : (
               <UilHeart className="w-[14px] h-[14px]" />
             )}
@@ -250,7 +250,7 @@ const DetailsRight = React.memo(({ product }) => {
           } `}
         >
           {isFavorite ? (
-            <ReactSVG src={require(`@/static/img/icon/heart-fill.svg`).default} />
+            <ReactSVG src={require(`@/resource/static/img/icon/heart-fill.svg`).default} />
           ) : (
             <UilHeart className="w-[18px] h-[18px]" />
           )}

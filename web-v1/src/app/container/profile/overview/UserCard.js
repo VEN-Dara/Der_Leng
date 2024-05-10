@@ -5,12 +5,12 @@ import UilUserPlus from '@iconscout/react-unicons/icons/uil-user-plus';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Col, Row, Upload, message } from 'antd';
-import Heading from '../../../../components/heading/heading';
-import { Button } from '../../../../components/buttons/buttons';
+import Heading from '../../../../resource/components/heading/heading';
+import { Button } from '../../../../resource/components/buttons/buttons';
 import UilCamera from '@iconscout/react-unicons/icons/uil-camera';
 import UseFetcher from '../../../hooks/useFetcher';
 import UilShop from '@iconscout/react-unicons/icons/uil-shop';
-import { isTourGuideOrAbove } from '../../../service/permission';
+import { isTourGuideOrAbove } from '../../../utility/permission';
 
 const FILE_ENDPOINT = process.env.REACT_APP_FILE_ENDPOINT
 

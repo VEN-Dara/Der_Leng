@@ -51,8 +51,8 @@ import { NavLink } from 'react-router-dom';
 import UilEllipsisV from '@iconscout/react-unicons/icons/uil-ellipsis-v';
 import propTypes from 'prop-types';
 import { NavTitle } from './Style';
-import versions from '../../demoData/changelog.json';
-import { changeDirectionMode, changeLayoutMode, changeMenuMode } from '../../redux/themeLayout/actionCreator';
+import versions from '../../resource/demoData/changelog.json';
+import { changeDirectionMode, changeLayoutMode, changeMenuMode } from '../../resource/redux/themeLayout/actionCreator';
 
 function MenuItems({ toggleCollapsed }) {
   const { t } = useTranslation();

@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-import-module-exports
-import { theme } from './src/config/theme/themeVariables';
+import { theme } from './src/resource/config/theme/themeVariables';
 
 const CracoLessPlugin = require('craco-less');
 

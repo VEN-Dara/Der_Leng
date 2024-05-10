@@ -9,9 +9,9 @@ import PropTypes from 'prop-types';
 import { ReactSVG } from 'react-svg';
 
 // ====================================> Local <====================================
-import Heading from '../../../../components/heading/heading';
-import { Button } from '../../../../components/buttons/buttons';
-import { updateWishList } from '@/redux/product/actionCreator';
+import Heading from '../../../../resource/components/heading/heading';
+import { Button } from '../../../../resource/components/buttons/buttons';
+import { updateWishList } from '@/resource/redux/product/actionCreator';
 import UseFetcher from '../../../hooks/useFetcher';
 
 function ProductCards({ product }) {
@@ -54,7 +54,7 @@ function ProductCards({ product }) {
   return (
     <div className="relative bg-white dark:bg-white10 mb-[30px] rounded-[10px] shadow-[0_5px_20px_rgba(173,181,217,0,1)]">
       <figure className="mb-0 ">
-        <img className="w-full rounded-t-[10px]" src={ thumbnail ? `${FILE_ENDPOINT}${thumbnail}` : require(`@/static/img/default_img/travel-cambodia.png`)} alt={`img${id}`} />
+        <img className="w-full rounded-t-[10px]" src={ thumbnail ? `${FILE_ENDPOINT}${thumbnail}` : require(`@/resource/static/img/default_img/travel-cambodia.png`)} alt={`img${id}`} />
       </figure>
       <figcaption className="pt-5 px-5 pb-[26px]">
         <button
@@ -64,7 +64,7 @@ function ProductCards({ product }) {
           } `}
         >
           {isFavorite ? (
-            <ReactSVG src={require(`@/static/img/icon/heart-fill.svg`).default} />
+            <ReactSVG src={require(`@/resource/static/img/icon/heart-fill.svg`).default} />
           ) : (
             <UilHeart className="w-[14px] h-[14px]" />
           )}

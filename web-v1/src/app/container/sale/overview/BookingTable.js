@@ -5,9 +5,9 @@ import UilPlus from '@iconscout/react-unicons/icons/uil-plus';
 import UilMinus from '@iconscout/react-unicons/icons/uil-minus';
 
 // ====================================> Local <====================================
-import Heading from '../../../../components/heading/heading';
-import { Button } from '../../../../components/buttons/buttons';
-import { formatDate } from '../../../../service/date';
+import Heading from '../../../../resource/components/heading/heading';
+import { Button } from '../../../../resource/components/buttons/buttons';
+import { formatDate } from '../../../utility/date';
 import { postReview } from '../../../hooks/Product/useReviewFetcher';
 import { Link } from 'react-router-dom';
 
@@ -97,7 +97,7 @@ function BookingTable({ dataProp, setRefreshData }) {
               <img
                 className="max-w-[80px] min-h-[80px] ltr:mr-[25px] rtl:ml-[25px] rounded-[10px]"
                 style={{ width: 80 }}
-                src={productData.thumbnail ? `${FILE_ENDPOINT}/${productData.thumbnail}` : require(`@/static/img/default_img/travel-cambodia.png`)}
+                src={productData.thumbnail ? `${FILE_ENDPOINT}/${productData.thumbnail}` : require(`@/resource/static/img/default_img/travel-cambodia.png`)}
                 alt=""
               />
               <figcaption>

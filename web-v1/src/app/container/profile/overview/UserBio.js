@@ -4,8 +4,7 @@ import UilGlobe from '@iconscout/react-unicons/icons/uil-globe';
 import UilEnvelope from '@iconscout/react-unicons/icons/uil-envelope';
 import FontAwesome from 'react-fontawesome';
 import { UserBioBox } from './Style';
-import { Button } from '../../../../components/buttons/buttons';
-import socialMediaLinks from '../../../../demoData/socialMediaLinks.json';
+import { Button } from '../../../../resource/components/buttons/buttons';
 
 function UserBio({user}) {
   const {email, phone} = user;

@@ -16,13 +16,13 @@ import Search from './Search';
 import Message from './Message';
 import Notification from './Notification';
 import Settings from './settings';
-import { Popover } from '../../../../components/popup/popup';
-import Heading from '../../../../components/heading/heading';
-import { Dropdown } from '../../../../components/dropdown/dropdown';
-import { logOut } from '../../../../redux/authentication/actionCreator';
+import { Popover } from '../../../../resource/components/popup/popup';
+import Heading from '../../../../resource/components/heading/heading';
+import { Dropdown } from '../../../../resource/components/dropdown/dropdown';
+import { logOut } from '../../../../resource/redux/authentication/actionCreator';
 import CartBox from './Cart';
 import PaymentBox from './Payment';
-import { changeLayoutMode } from '../../../../redux/themeLayout/actionCreator';
+import { changeLayoutMode } from '../../../../resource/redux/themeLayout/actionCreator';
 import { useSelector } from 'react-redux';
 
 const FILE_ENDPOINT = process.env.REACT_APP_FILE_ENDPOINT

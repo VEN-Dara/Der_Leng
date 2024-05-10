@@ -17,9 +17,9 @@ import PropTypes from 'prop-types';
 import { LightBox } from 'react-lightbox-pack';
 import 'react-lightbox-pack/dist/index.css';
 import { AllPosts, BackShadowEmoji, Title } from './style';
-import { Cards } from '../../../../../components/cards/frame/cards-frame';
-import { Button } from '../../../../../components/buttons/buttons';
-import { likeUpdate, commentUpdate, postDelete } from '../../../../../redux/profile/actionCreator';
+import { Cards } from '../../../../../resource/components/cards/frame/cards-frame';
+import { Button } from '../../../../../resource/components/buttons/buttons';
+import { likeUpdate, commentUpdate, postDelete } from '../../../../../resource/redux/profile/actionCreator';
 
 function ExampleComment({ children, replay }) {
   return (
@@ -169,23 +169,23 @@ function Posts({ postId, from, time, img, like, comment, content, author }) {
   const dataImages = [
     {
       id: 1,
-      image: require('../../../../../static/img/profile/post/506.png'),
+      image: require('../../../../../resource/static/img/profile/post/506.png'),
     },
     {
       id: 2,
-      image: require('../../../../../static/img/profile/post/907.png'),
+      image: require('../../../../../resource/static/img/profile/post/907.png'),
     },
     {
       id: 3,
-      image: require('../../../../../static/img/profile/post/brightland_3744.png'),
+      image: require('../../../../../resource/static/img/profile/post/brightland_3744.png'),
     },
     {
       id: 4,
-      image: require('../../../../../static/img/profile/post/70.png'),
+      image: require('../../../../../resource/static/img/profile/post/70.png'),
     },
     {
       id: 5,
-      image: require('../../../../../static/img/profile/post/165.png'),
+      image: require('../../../../../resource/static/img/profile/post/165.png'),
     },
   ];
 
@@ -327,7 +327,7 @@ function Posts({ postId, from, time, img, like, comment, content, author }) {
               <div className="relative flex items-center sm:flex-wrap flex-1 sm:flex-[0_0_100%] gap-[10px]">
                 <img
                   className="max-w-[36px] rounded-full"
-                  src={require('../../../../../static/img/chat-author/t2.jpg')}
+                  src={require('@/resource/static/img/chat-author/t2.jpg')}
                   alt=""
                 />
                 <Input.TextArea

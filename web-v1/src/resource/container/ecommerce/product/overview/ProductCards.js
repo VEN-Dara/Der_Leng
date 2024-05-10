@@ -19,7 +19,7 @@ function ProductCards({ product }) {
   return (
     <div className="relative bg-white dark:bg-white10 mb-[30px] rounded-[10px] shadow-[0_5px_20px_rgba(173,181,217,0,1)]">
       <figure className="mb-0 ">
-        <img className="w-full rounded-t-[10px]" src={ thumbnail ? `${FILE_ENDPOINT}${thumbnail}` : require(`../../../../../src/static/img/default_img/travel-cambodia.png`)} alt={`img${id}`} />
+        <img className="w-full rounded-t-[10px]" src={ thumbnail ? `${FILE_ENDPOINT}${thumbnail}` : require(`../../../../../../src/resource/static/img/default_img/travel-cambodia.png`)} alt={`img${id}`} />
       </figure>
       <figcaption className="pt-5 px-5 pb-[26px]">
         <Link

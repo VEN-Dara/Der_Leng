@@ -6,10 +6,10 @@ import UilDollarAlt from '@iconscout/react-unicons/icons/uil-dollar-alt';
 import UilPercentage from '@iconscout/react-unicons/icons/uil-percentage';
 
 // =============================================> Local
-import { PageHeader } from '@/components/page-headers/page-headers';
+import { PageHeader } from '@/resource/components/page-headers/page-headers';
 import { GlobalUtilityStyle } from '../styled';
-import { Button } from '@/components/buttons/buttons';
-import Heading from '@/components/heading/heading';
+import { Button } from '@/resource/components/buttons/buttons';
+import Heading from '@/resource/components/heading/heading';
 
 const { Option } = Select;
 const { Dragger } = Upload;
@@ -37,8 +37,8 @@ function AddProduct() {
       uid: '1',
       name: '1.png',
       status: 'done',
-      url: require('@/static/img/products/1.png'),
-      thumbUrl: require('@/static/img/products/1.png'),
+      url: require('@/resource/static/img/products/1.png'),
+      thumbUrl: require('@/resource/static/img/products/1.png'),
     },
   ];
 

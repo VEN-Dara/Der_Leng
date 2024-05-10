@@ -8,7 +8,7 @@ import UilEllipsisH from '@iconscout/react-unicons/icons/uil-ellipsis-h';
 import UilCommentAlt from '@iconscout/react-unicons/icons/uil-comment-alt';
 import { Link } from 'react-router-dom';
 import { ActivityContents } from './Style';
-import { Dropdown } from '../../../../components/dropdown/dropdown';
+import { Dropdown } from '../../../../resource/components/dropdown/dropdown';
 
 function ActivityContent() {
   return (
@@ -23,7 +23,7 @@ function ActivityContent() {
               <div className="flex items-center gap-[20px]">
                 <img
                   className="rounded-full max-w-[40px]"
-                  src={require('../../../../static/img/chat-author/t1.jpg')}
+                  src={require('@/resource/static/img/chat-author/t1.jpg')}
                   alt=""
                 />
                 <p className="mb-0 text-[14px] text-theme-gray dark:text-white60">
@@ -64,7 +64,7 @@ function ActivityContent() {
               <div className="flex items-center gap-[20px]">
                 <img
                   className="rounded-full max-w-[40px]"
-                  src={require('../../../../static/img/chat-author/t2.jpg')}
+                  src={require('@/resource/static/img/chat-author/t2.jpg')}
                   alt=""
                 />
                 <p className="mb-0 text-[14px] text-theme-gray dark:text-white60">
@@ -105,7 +105,7 @@ function ActivityContent() {
               <div className="flex items-center gap-[20px]">
                 <img
                   className="rounded-full max-w-[40px]"
-                  src={require('../../../../static/img/chat-author/t3.jpg')}
+                  src={require('@/resource/static/img/chat-author/t3.jpg')}
                   alt=""
                 />
                 <p className="mb-0 text-[14px] text-theme-gray dark:text-white60">
@@ -146,7 +146,7 @@ function ActivityContent() {
               <div className="flex items-center gap-[20px]">
                 <img
                   className="rounded-full max-w-[40px]"
-                  src={require('../../../../static/img/chat-author/t4.jpg')}
+                  src={require('@/resource/static/img/chat-author/t4.jpg')}
                   alt=""
                 />
                 <p className="mb-0 text-[14px] text-theme-gray dark:text-white60">
@@ -187,7 +187,7 @@ function ActivityContent() {
               <div className="flex items-center gap-[20px]">
                 <img
                   className="rounded-full max-w-[40px]"
-                  src={require('../../../../static/img/chat-author/t5.png')}
+                  src={require('@/resource/static/img/chat-author/t5.png')}
                   alt=""
                 />
                 <p className="mb-0 text-[14px] text-theme-gray dark:text-white60">
@@ -228,7 +228,7 @@ function ActivityContent() {
               <div className="flex items-center gap-[20px]">
                 <img
                   className="rounded-full max-w-[40px]"
-                  src={require('../../../../static/img/chat-author/t1.jpg')}
+                  src={require('@/resource/static/img/chat-author/t1.jpg')}
                   alt=""
                 />
                 <p className="mb-0 text-[14px] text-theme-gray dark:text-white60">
@@ -269,7 +269,7 @@ function ActivityContent() {
               <div className="flex items-center gap-[20px]">
                 <img
                   className="rounded-full max-w-[40px]"
-                  src={require('../../../../static/img/chat-author/t6.png')}
+                  src={require('@/resource/static/img/chat-author/t6.png')}
                   alt=""
                 />
                 <p className="mb-0 text-[14px] text-theme-gray dark:text-white60">
@@ -310,7 +310,7 @@ function ActivityContent() {
               <div className="flex items-center gap-[20px]">
                 <img
                   className="rounded-full max-w-[40px]"
-                  src={require('../../../../static/img/chat-author/t7.png')}
+                  src={require('@/resource/static/img/chat-author/t7.png')}
                   alt=""
                 />
                 <p className="mb-0 text-[14px] text-theme-gray dark:text-white60">
@@ -351,7 +351,7 @@ function ActivityContent() {
               <div className="flex items-center gap-[20px]">
                 <img
                   className="rounded-full max-w-[40px]"
-                  src={require('../../../../static/img/chat-author/t8.png')}
+                  src={require('@/resource/static/img/chat-author/t8.png')}
                   alt=""
                 />
                 <p className="mb-0 text-[14px] text-theme-gray dark:text-white60">
@@ -392,7 +392,7 @@ function ActivityContent() {
               <div className="flex items-center gap-[20px]">
                 <img
                   className="rounded-full max-w-[40px]"
-                  src={require('../../../../static/img/chat-author/t1.jpg')}
+                  src={require('@/resource/static/img/chat-author/t1.jpg')}
                   alt=""
                 />
                 <p className="mb-0 text-[14px] text-theme-gray dark:text-white60">

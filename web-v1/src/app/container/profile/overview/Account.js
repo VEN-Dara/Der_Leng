@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Row, Col, Form, Input } from 'antd';
-import { Button } from '../../../../components/buttons/buttons';
-import Heading from '../../../../components/heading/heading';
+import { Button } from '../../../../resource/components/buttons/buttons';
+import Heading from '../../../../resource/components/heading/heading';
 import { GlobalUtilityStyle } from '../../styled';
 
 function Account() {

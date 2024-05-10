@@ -2,9 +2,9 @@ import React, { lazy, Suspense, useEffect, useState } from 'react';
 import { Row, Col, Skeleton } from 'antd';
 import { Route, Routes } from 'react-router-dom';
 import { WizardWrapper } from '../styled';
-import { PageHeader } from '../../../components/page-headers/page-headers';
-import { getCart } from '../../../hooks/Product/useCartFetcher';
-import { Cards } from '../../../components/cards/frame/cards-frame';
+import { PageHeader } from '../../../resource/components/page-headers/page-headers';
+import { getCart } from '../../hooks/Product/useCartFetcher';
+import { Cards } from '../../../resource/components/cards/frame/cards-frame';
 
 const Checkout = lazy(() => import('./overview/CheckoutWizard'));
 const Ordersummary = lazy(() => import('./overview/Ordersummary'));

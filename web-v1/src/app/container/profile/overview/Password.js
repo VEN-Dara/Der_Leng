@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Row, Col, Form, Input, Button, message } from 'antd';
 import { GlobalUtilityStyle } from '../../styled';
-import Heading from '../../../../components/heading/heading';
+import Heading from '../../../../resource/components/heading/heading';
 import UseFetcher from '../../../hooks/useFetcher';
 
 function Password() {

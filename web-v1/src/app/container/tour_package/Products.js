@@ -6,8 +6,8 @@ import UilApps from '@iconscout/react-unicons/icons/uil-apps';
 import UilListUl from '@iconscout/react-unicons/icons/uil-list-ul';
 
 // ==============================> Local <==============================
-import { PageHeader } from '@/components/page-headers/page-headers';
-// import { AutoComplete } from '../../../components/autoComplete/autoComplete';
+import { PageHeader } from '@/resource/components/page-headers/page-headers';
+// import { AutoComplete } from '../../../resource/components/autoComplete/autoComplete';
 // import { sorting } from '../../../redux/product/actionCreator';
 import { usePackageFetcher } from '../../hooks/Product/usePackageFetcher';
 

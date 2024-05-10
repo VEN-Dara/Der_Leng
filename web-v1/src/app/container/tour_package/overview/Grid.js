@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 // ====================================> Local <====================================
 import ProductCards from './ProductCards';
-import NoResult from '../../../../container/pages/NoResult';
+import NoResult from '../../../../resource/container/pages/NoResult';
 
 function Grid({state}) {
   const {packages, isLoader, isLoadMore} = state;

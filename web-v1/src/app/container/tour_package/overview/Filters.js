@@ -6,15 +6,15 @@ import { useDispatch } from 'react-redux';
 
 // ====================================> Local <====================================
 import { GlobalUtilityStyle } from '../../styled';
-import Heading from '@/components/heading/heading';
-import { Slider } from '@/components/slider/slider';
-import { CheckboxGroup } from '@/components/checkbox/checkbox';
+import Heading from '@/resource/components/heading/heading';
+import { Slider } from '@/resource/components/slider/slider';
+import { CheckboxGroup } from '@/resource/components/checkbox/checkbox';
 import {
   filterByPriceRange,
   filterByRating,
   filterByBrand,
   filterByCategory,
-} from '@/redux/product/actionCreator';
+} from '@/resource/redux/product/actionCreator';
 
 const Filters = React.memo(() => {
   const [state, setState] = useState({

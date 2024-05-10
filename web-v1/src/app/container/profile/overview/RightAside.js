@@ -6,8 +6,8 @@ import { Link } from 'react-router-dom';
 import { Col, Row } from 'antd';
 import ModalVideo from 'react-modal-video';
 import { RightAsideWrapper } from './Style';
-import { Button } from '../../../../components/buttons/buttons';
-import { profileFriendsChangeStatus } from '../../../../redux/profile/actionCreator';
+import { Button } from '../../../../resource/components/buttons/buttons';
+import { profileFriendsChangeStatus } from '../../../../resource/redux/profile/actionCreator';
 import './video-modal.css';
 
 function RightAside() {

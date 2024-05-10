@@ -1,9 +1,9 @@
 import React from 'react';
 import { Row, Col } from 'antd';
 import propTypes from 'prop-types';
-import OverviewCard from '../../../../components/cards/OverviewCard';
+import OverviewCard from '../../../../resource/components/cards/OverviewCard';
 
-import OverviewData from '../../../../demoData/overviewData.json';
+import OverviewData from '../../../../resource/demoData/overviewData.json';
 
 const OverviewDataList = React.memo(({ column }) => {
   const OverviewDataSorted = OverviewData.slice(0, 4);

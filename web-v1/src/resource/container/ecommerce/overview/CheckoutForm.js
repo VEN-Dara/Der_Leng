@@ -2,7 +2,7 @@ import { CardElement, Elements, useElements, useStripe } from "@stripe/react-str
 import { loadStripe } from "@stripe/stripe-js/pure";
 import { Form, Input, notification, Spin } from 'antd'
 import React, { useState } from "react";
-import { DataService } from "../../../config/dataService/dataService";
+import { DataService } from "../../../../resource/config/dataService/dataService";
 import './CheckoutFormStyle.css'
 import ApiService from "../../../config/dataService/apiService";
 

@@ -5,8 +5,8 @@ import List from "../../tour_package/overview/List";
 
 import React, { Suspense } from 'react';
 import { Row, Col } from 'antd';
-import { Cards } from '../../../../components/cards/frame/cards-frame';
-import { Button } from "../../../../components/buttons/buttons";
+import { Cards } from '../../../../resource/components/cards/frame/cards-frame';
+import { Button } from "../../../../resource/components/buttons/buttons";
 import OverviewDataList from "./OverviewDatalist";
 import { Link } from "react-router-dom";
 

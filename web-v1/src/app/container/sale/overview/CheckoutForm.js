@@ -3,7 +3,7 @@ import { loadStripe } from "@stripe/stripe-js/pure";
 import { Form, Input, notification, Spin } from 'antd'
 import React, { useState } from "react";
 import './CheckoutFormStyle.css'
-import ApiService from "../../../../config/dataService/apiService";
+import ApiService from "../../../config/api/apiService";
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
 

@@ -3,9 +3,9 @@ import { Row, Col, DatePicker } from 'antd';
 import moment from 'moment';
 
 // =============================================> Local <====================================
-import { PageHeader } from '@/components/page-headers/page-headers';
+import { PageHeader } from '@/resource/components/page-headers/page-headers';
 import { DatePickerWrapper, GlobalUtilityStyle } from '../../styled';
-import { DateRangePickerOne, CustomDateRange } from '@/components/datePicker/datePicker';
+import { DateRangePickerOne, CustomDateRange } from '@/resource/components/datePicker/datePicker';
 
 const { MonthPicker, RangePicker, WeekPicker } = DatePicker;
 const dateFormat = 'YYYY/MM/DD';

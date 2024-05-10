@@ -5,8 +5,8 @@ import UilEllipsisH from '@iconscout/react-unicons/icons/uil-ellipsis-h';
 import { Input } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
 import { BackShadow, CreatePost } from './style';
-import { Button } from '../../../../../components/buttons/buttons';
-import { submitPost } from '../../../../../redux/profile/actionCreator';
+import { Button } from '../../../../../resource/components/buttons/buttons';
+import { submitPost } from '../../../../../resource/redux/profile/actionCreator';
 
 function Post() {
   const dispatch = useDispatch();
@@ -73,7 +73,7 @@ function Post() {
           <div onClick={() => setDrawer(true)} className="relative flex postBody">
             <img
               className="max-w-[46px] max-h-[46px] min-w-[46px] h-[46px] rounded-full absolute top-[5px] z-[22] ltr:left-0 rtl:right-0 object-cover"
-              src={require('../../../../../static/img/chat-author/t4.jpg')}
+              src={require('@/resource/static/img/chat-author/t4.jpg')}
               alt=""
             />
             <Input.TextArea
@@ -89,7 +89,7 @@ function Post() {
           >
             <div className="flex items-center gap-[16px]">
               <Button className="flex items-center h-[30px] px-[14.5px] text-[12px] rounded-[16px] font-medium text-theme-gray dark:text-white60 bg-normalBG dark:bg-normalBGdark border-none outline-none gap-[6px] leading-[18px]">
-                <img className="w-[14] h-[14px]" src={require('../../../../../static/img/icon/image.png')} alt="" />
+                <img className="w-[14] h-[14px]" src={require('../../../../static/img/icon/image.png')} alt="" />
                 Photo/Video
               </Button>
               <Button

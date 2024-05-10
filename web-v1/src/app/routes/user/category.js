@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { DataService } from "../../../config/dataService/dataService"
+import { DataService } from "../../config/dataService/dataService"
 import { useParams } from "react-router-dom"
 import Home from "../../container/pages/Home"
 import NotFound from "../../container/pages/404"

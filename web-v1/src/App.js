@@ -3,13 +3,13 @@ import { Provider, useSelector } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
 import { BrowserRouter as Router, Navigate, Route, Routes } from 'react-router-dom';
 import { ConfigProvider } from 'antd';
-import store from './redux/store';
+import store from './resource/redux/store';
 import user from './app/routes/user';
 // import Auth from './routes/auth';
 import Auth from './app/routes/auth';
-import './static/css/style.css';
-import config from './config/config';
-import ProtectedRoute from './components/utilities/protectedRoute';
+import './resource/static/css/style.css';
+import config from './resource/config/config';
+import ProtectedRoute from './resource/components/utilities/protectedRoute';
 import 'antd/dist/antd.less';
 
 const NotFound = lazy(() => import('./app/container/pages/404'));

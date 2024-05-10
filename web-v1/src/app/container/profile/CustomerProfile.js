@@ -1,8 +1,8 @@
 import React, { lazy, Suspense, useEffect, useState } from 'react';
 import { Row, Col, Skeleton } from 'antd';
 import { NavLink, Route, Routes } from 'react-router-dom';
-import { PageHeader } from '../../../components/page-headers/page-headers';
-import { Button } from '../../../components/buttons/buttons';
+import { PageHeader } from '../../../resource/components/page-headers/page-headers';
+import { Button } from '../../../resource/components/buttons/buttons';
 import UilDollarSign from '@iconscout/react-unicons/icons/uil-dollar-sign';
 import FavoriteProductList from './overview/FavoriteProductList';
 import UseFetcher from '../../hooks/useFetcher';
@@ -10,7 +10,7 @@ import defaultProfile from '@/app/static/img/default_img/derleng-default-profile
 import defaultCover from '@/app/static/img/default_img/default_profile_cover.png'
 import EditProfile from './overview/EditProfile';
 import Shop from './overview/Shop';
-import { isTourGuideOrAbove } from "../../service/permission.js"
+import { isTourGuideOrAbove } from "../../utility/permission.js"
 import NotFound from '../pages/404.js';
 
 const UserCards = lazy(() => import('./overview/UserCard'));

@@ -9,18 +9,17 @@ import UilTrashAlt from '@iconscout/react-unicons/icons/uil-trash-alt';
 import { useDispatch, useSelector } from 'react-redux';
 
 // ====================================> Local <====================================
-import { Steps } from '../../../../components/steps/steps';
-import Heading from '../../../../components/heading/heading';
-import { Cards } from '../../../../components/cards/frame/cards-frame';
-import { Button } from '../../../../components/buttons/buttons';
+import { Steps } from '../../../../resource/components/steps/steps';
+import Heading from '../../../../resource/components/heading/heading';
+import { Cards } from '../../../../resource/components/cards/frame/cards-frame';
+import { Button } from '../../../../resource/components/buttons/buttons';
 import { GlobalUtilityStyle } from '../../styled';
-import { formatDate } from '../../../../service/date';
+import { formatDate } from '../../../utility/date';
 import WrappedCheckoutForm from './CheckoutForm';
 import PaymentCard from './PaymentCard';
-import { deletePaymentMedthod, getPaymentMethod } from '../../../../hooks/Checkout/usePaymentFecher';
-import { putCart } from '../../../../hooks/Product/useCartFetcher';
+import { deletePaymentMedthod, getPaymentMethod } from '../../../../resource/hooks/Checkout/usePaymentFecher';
+import { putCart } from '../../../hooks/Product/useCartFetcher';
 import CheckOutModal from './CheckoutModal';
-import { postBooking } from '../../../../hooks/Checkout/useBookingFetcher';
 
 const FILE_ENDPOINT = process.env.REACT_APP_FILE_ENDPOINT
 
@@ -165,7 +164,7 @@ function CheckOut({ dataProp, setRefreshCartData }) {
               <img
                 className="max-w-[80px] min-h-[80px] ltr:mr-[25px] rtl:ml-[25px] rounded-[10px]"
                 style={{ width: 80 }}
-                src={productData.thumbnail ? `${FILE_ENDPOINT}/${productData.thumbnail}` : require(`@/static/img/default_img/travel-cambodia.png`)}
+                src={productData.thumbnail ? `${FILE_ENDPOINT}/${productData.thumbnail}` : require(`@/resource/static/img/default_img/travel-cambodia.png`)}
                 alt=""
               />
               <figcaption>
@@ -330,7 +329,7 @@ function CheckOut({ dataProp, setRefreshCartData }) {
                           className="ltr:[&>span.ant-radio]:mr-[15px] rtl:[&>span.ant-radio]:ml-[15px] [&>span:not(.ant-radio)]:flex [&>span:not(.ant-radio)]:items-center [&>span:not(.ant-radio)]:justify-between [&>span:not(.ant-radio)]:w-full [&>span:not(.ant-radio)]:h-[60px] [&>span:not(.ant-radio)]:px-[25px] [&>span:not(.ant-radio)]:text-body dark:[&>span:not(.ant-radio)]:text-white60 [&>span:not(.ant-radio)]:text-[15px] [&>span:not(.ant-radio)]:font-medium [&>span:not(.ant-radio)]:border [&>span:not(.ant-radio)]:border-regular dark:[&>span:not(.ant-radio)]:border-white10 [&>span:not(.ant-radio)]:rounded-[10px]"
                         >
                           Pay With PayPal (upcoming)
-                          <img className="xs:hidden h-20" src={require('@/static/img/PayPalLogo.png')} alt="paypal" />
+                          <img className="xs:hidden h-20" src={require('@/resource/static/img/PayPalLogo.png')} alt="paypal" />
                         </Radio>
                       </div>
                       <div className="">

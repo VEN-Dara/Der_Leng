@@ -9,6 +9,20 @@ module.exports = {
     './src/layout/**/*.{html,js}',
     './src/redux/**/*.{html,js}',
     './src/routes/**/*.{html,js}',
+
+    // ==============> resource <=============
+    './src/resource/components/**/*.{html,js}',
+    './src/resource/container/**/*.{html,js}',
+    './src/resource/layout/**/*.{html,js}',
+    './src/resource/redux/**/*.{html,js}',
+    './src/resource/routes/**/*.{html,js}',
+
+    // ==============> app <=============
+    './src/app/components/**/*.{html,js}',
+    './src/app/container/**/*.{html,js}',
+    './src/app/layout/**/*.{html,js}',
+    './src/app/redux/**/*.{html,js}',
+    './src/app/routes/**/*.{html,js}',
     'node_modules/flowbite-react/lib/esm/**/*.js',
 
   ],

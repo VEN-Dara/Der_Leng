@@ -9,9 +9,9 @@ import PropTypes from 'prop-types';
 import { ReactSVG } from 'react-svg';
 
 // ====================================> Local <====================================
-import Heading from '../../../../components/heading/heading';
-import { Button } from '../../../../components/buttons/buttons';
-import { updateWishList } from '../../../../redux/product/actionCreator';
+import Heading from '../../../../resource/components/heading/heading';
+import { Button } from '../../../../resource/components/buttons/buttons';
+import { updateWishList } from '../../../../resource/redux/product/actionCreator';
 import UseFetcher from '../../../hooks/useFetcher';
 
 const ProductCardsList = React.memo(({ product }) => {
@@ -57,8 +57,7 @@ const ProductCardsList = React.memo(({ product }) => {
         <Row gutter={15}>
           <Col md={6} xs={24}>
             <figure className="ltr:mr-[15px] rtl:ml-[15px] mb-0">
-              {/* <img className="w-full rounded-10" src={require(`../../../../${img}`)} alt="" /> */}
-              <img className="w-full rounded-10" src={ thumbnail ? `${FILE_ENDPOINT}${thumbnail}` : require(`../../../../static/img/default_img/travel-cambodia.png`)} alt={`img${id}`} />
+              <img className="w-full rounded-10" src={ thumbnail ? `${FILE_ENDPOINT}${thumbnail}` : require(`@/app/static/img/default_img/travel-cambodia.png`)} alt={`img${id}`} />
             </figure>
           </Col>
           <Col md={12} xs={24}>
@@ -91,7 +90,7 @@ const ProductCardsList = React.memo(({ product }) => {
                 } `}
               >
                 {isFavorite ? (
-                  <ReactSVG src={require(`@/static/img/icon/heart-fill.svg`).default} />
+                  <ReactSVG src={require(`@/resource/static/img/icon/heart-fill.svg`).default} />
                 ) : (
                   <UilHeart className="w-[14px] h-[14px]" />
                 )}

@@ -3,7 +3,7 @@ import { Row, Col, Skeleton } from 'antd';
 import { Route, Routes } from 'react-router-dom';
 
 // =========================================> Local Import
-import { PageHeader } from '../../../components/page-headers/page-headers';
+import { PageHeader } from '../../../resource/components/page-headers/page-headers';
 import { getCart } from '../../hooks/Product/useCartFetcher';
 
 const CartTable = lazy(() => import('../sale/overview/CartTable'));

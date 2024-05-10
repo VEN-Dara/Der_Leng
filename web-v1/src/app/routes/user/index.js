@@ -7,15 +7,14 @@ import withUserLayout from '../../layout/withUserLayout.js';
 import Category from './category.js';
 import ResultSearch from './resultSearch.js';
 import CustomerProfile from '../../container/profile/CustomerProfile.js';
-const Myprofile = lazy(() => import('../../../container/profile/myProfile/Index'));
-const Chat = lazy(() => import('../../../container/chat/ChatApp'));
+const Myprofile = lazy(() => import('../../../resource/container/profile/myProfile/Index'));
+const Chat = lazy(() => import('../../../resource/container/chat/ChatApp'));
 const NotFound = lazy(() => import('../../container/pages/404'));
 const Home = lazy(() => import('../../container/pages/Home'));
 const Cart = lazy(() => import('../../container/pages/Cart'));
 const BookingPage = lazy(() => import('../../container/pages/Booking.js'))
 const ProductDetails = lazy(() => import('../../container/tour_package/ProductDetails.js'))
-const CheckoutPage = lazy(() => import('../../../container/ecommerce/Checkout.js'))
-// const EditProduct = lazy(() => import('../../../container/ecommerce/tour_package/EditProduct.js'))
+const CheckoutPage = lazy(() => import('../../../resource/container/ecommerce/Checkout.js'))
 import CreatePackage from '../../container/tour_package/CreatePackage.js';
 
 
@@ -39,7 +38,6 @@ const User = React.memo(() => {
         <Route index path="/category/:category" element={<Category/>} />
         <Route exact path="/new" element={<CreatePackage/>} />
         <Route index path="tour-service/:id" element={<ProductDetails />} />
-        {/* <Route exact path="edit-tour-service/*" element={<EditProduct />} /> */}
         <Route path="profile/myProfile/*" element={<CustomerProfile/>} />
         <Route path='/cart' element={<Cart/>}/>
         <Route path='/checkout' element={<CheckoutPage/>}/>

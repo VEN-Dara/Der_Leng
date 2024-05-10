@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Row, Col, Form, Input, Select, Skeleton, message } from 'antd';
-import { Button } from '../../../../components/buttons/buttons';
-import Heading from '../../../../components/heading/heading';
-import { Tag } from '../../../../components/tags/tags';
+import { Button } from '../../../../resource/components/buttons/buttons';
+import Heading from '../../../../resource/components/heading/heading';
+import { Tag } from '../../../../resource/components/tags/tags';
 import { GlobalUtilityStyle } from '../../styled';
-import { isUsernameExist } from '../../../../redux/authentication/actionCreator';
+import { isUsernameExist } from '../../../../resource/redux/authentication/actionCreator';
 import UseFetcher from '../../../hooks/useFetcher';
 
 const { Option } = Select;

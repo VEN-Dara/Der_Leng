@@ -6,10 +6,10 @@ import UilTrashAlt from '@iconscout/react-unicons/icons/uil-trash-alt';
 
 // ====================================> Local <====================================
 import { GlobalUtilityStyle } from '../../styled';
-import Heading from '../../../../components/heading/heading';
-import { Button } from '../../../../components/buttons/buttons';
-import { deleteCart, putCart } from '../../../../hooks/Product/useCartFetcher';
-import { formatDate } from '../../../../service/date';
+import Heading from '../../../../resource/components/heading/heading';
+import { Button } from '../../../../resource/components/buttons/buttons';
+import { deleteCart, putCart } from '../../../hooks/Product/useCartFetcher';
+import { formatDate } from '../../../utility/date';
 
 const FILE_ENDPOINT = process.env.REACT_APP_FILE_ENDPOINT
 
@@ -57,7 +57,7 @@ function CartTable({dataProp, setRefreshData}) {
               <img
                 className="max-w-[80px] min-h-[80px] ltr:mr-[25px] rtl:ml-[25px] rounded-[10px]"
                 style={{ width: 80 }}
-                src={ productData.thumbnail ? `${FILE_ENDPOINT}/${productData.thumbnail}` : require(`@/static/img/default_img/travel-cambodia.png`)}
+                src={ productData.thumbnail ? `${FILE_ENDPOINT}/${productData.thumbnail}` : require(`@/resource/static/img/default_img/travel-cambodia.png`)}
                 alt=""
               />
               <figcaption>
