@@ -1,9 +1,7 @@
 import { Spin } from 'antd';
 import React, { lazy, Suspense, useEffect } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
-// import withUserLayout from '../../../layout/withUserLayout';
 import withUserLayout from '../../layout/withUserLayout.js';
-// import with
 import Category from './category.js';
 import ResultSearch from './resultSearch.js';
 import CustomerProfile from '../../container/profile/CustomerProfile.js';
@@ -16,9 +14,10 @@ const BookingPage = lazy(() => import('../../container/pages/Booking.js'))
 const ProductDetails = lazy(() => import('../../container/tour_package/ProductDetails.js'))
 const CheckoutPage = lazy(() => import('../../../resource/container/ecommerce/Checkout.js'))
 import CreatePackage from '../../container/tour_package/CreatePackage.js';
+import withTourGuideLayout from '../../layout/tour_guide/withTourGuideLayout.js';
 
 
-const User = React.memo(() => {
+const TourGuide = React.memo(() => {
   const { pathname } = useLocation();
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -33,16 +32,27 @@ const User = React.memo(() => {
       className="bg-green-500"
     >
       <Routes>
+        {/* :: =============== >> list package */}
         <Route index path="/" element={<Home />} />
         <Route index path="/results" element={<ResultSearch/>} />
         <Route index path="/category/:category" element={<Category/>} />
+
+        {/* :: =============== >> Product */}
         <Route exact path="/new" element={<CreatePackage/>} />
         <Route index path="tour-service/:id" element={<ProductDetails />} />
+
+        {/* :: =============== >> Profile */}
         <Route path="profile/myProfile/*" element={<CustomerProfile/>} />
+
+        {/* :: =============== >> Sale */}
         <Route path='/cart' element={<Cart/>}/>
         <Route path='/checkout' element={<CheckoutPage/>}/>
         <Route path='booking/*' element={<BookingPage/>}/>
+
+        {/* :: =============== >> Chat and Nitifocation */}
         <Route path="chat/*" element={<Chat />} />
+
+        {/* :: =============== >> Not found */}
         <Route path="*" element={<NotFound />} />
         <Route path="/404" element={<NotFound />} />
       </Routes>
@@ -50,4 +60,4 @@ const User = React.memo(() => {
   );
 });
 
-export default withUserLayout(User);
+export default withTourGuideLayout(TourGuide);

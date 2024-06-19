@@ -3,10 +3,11 @@ import { Provider, useSelector } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
 import { BrowserRouter as Router, Navigate, Route, Routes } from 'react-router-dom';
 import { ConfigProvider } from 'antd';
-import store from './resource/redux/store';
-import user from './app/routes/user';
-// import Auth from './routes/auth';
-import Auth from './app/routes/auth';
+// import store from './resource/redux/store';   // resource store
+import store from './app/redux/store';   // local store
+import Customer from './app/routes/customer';
+import TourGuide from './app/routes/tour_guide';
+import Auth from './app/routes/auth/auth';
 import './resource/static/css/style.css';
 import config from './resource/config/config';
 import ProtectedRoute from './resource/components/utilities/protectedRoute';
@@ -47,7 +48,8 @@ function ProviderConfig() {
             </Routes>
           ) : (
             <Routes>
-              <Route path="/*" element={<ProtectedRoute path="/*" Component={user} />} />
+              <Route path="/tour_guide/*" element={<ProtectedRoute path="/*" Component={TourGuide} />} />
+              <Route path="/*" element={<ProtectedRoute path="/*" Component={Customer} />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           )}

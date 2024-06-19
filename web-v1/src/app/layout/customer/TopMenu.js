@@ -24,9 +24,9 @@ import { NavLink, Link } from 'react-router-dom';
 //   UilMap,
 // } from '@iconscout/react-unicons';
 import { TopMenuStyle } from './Style';
-import { DataService } from '../config/dataService/dataService';
+import { DataService } from '../../config/dataService/dataService';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeMenuMode } from '../redux/themeLayout/actionCreator';
+import { changeMenuMode } from '../../redux/themeLayout/actionCreator';
 
 function TopMenu() {
   const [categories, setCategories] = useState(null)
@@ -51,13 +51,13 @@ function TopMenu() {
       }
     };
     window.addEventListener('load', active && activeDefault);
-
+    
     // :: Add layout mode ::
     const setNavbarTopMenu = () => {
-      if(topMenu) {
+      if(!topMenu) {
         const html = document.querySelector('html');
-        html.classList.remove('hexadash-topmenu');
-        dispatch(changeMenuMode(false));
+        html.classList.add('hexadash-topmenu');
+        dispatch(changeMenuMode(true));
       }
     };
     setNavbarTopMenu();
