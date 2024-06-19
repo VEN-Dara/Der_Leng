@@ -7,13 +7,39 @@
             "name": "Phunm Penh",
             "description": "Embark on an unforgettable journey through the heart of Cambodia's capital city, Phnom Penh. Our tour service offers you a unique opportunity to immerse yourself in the rich history, vibrant culture, and captivating beauty of this bustling metropolis.\n\nExperience the Majesty of the Royal Palace:\nStep into the opulent world of Cambodian royalty as you explore the magnificent Royal Palace. Marvel at the intricate architecture, gilded spires, and ornate decorations that adorn this historic landmark, once home to the kings of Cambodia.",
             "category": "91d2ad1e-b8ad-4772-a5f1-c066156f799e",
+            "charge_type": "dc4a63bc-56c6-4385-abeb-963c40150b60",
+            "max_people": 5,
+            "num_days": 1,
+            "max_daily_bookings": 1,
             "percentage_discount": "20.00",
-            "tour_place_coordinate": "{\"lng\": 11.5564, \"lat\": 104.9282}",
+            "location_url": "https://maps.app.goo.gl/2hoYZCqNFnW7yBh68",
             "address": "PhnumPenh City",
-            "video_url": "https://www.youtube.com/watch?v=2J5uRcaiZcE&list=RD2J5uRcaiZcE&start_radio=1&ab_channel=14FAM",
             "commission": "8123e37e-d617-42e6-a3dd-929c0091cb21",
             "is_close": false,
             "created_at": "2024-05-03T03:48:40.680Z",
+            "favorites": [
+                "35e74bc7-c3d3-4e7d-be44-8c2ac13ca096"
+            ]
+        }
+    },
+    {
+        "model": "tour_package.package",
+        "pk": "212f765a-bd07-43d0-a767-7094881b4fca",
+        "fields": {
+            "user": "33be413a-dd3e-477a-ac7a-e8280c33ebbf",
+            "name": "Phunm Penh",
+            "description": "Embark on an unforgettable journey through the heart of Cambodia's capital city, Phnom Penh. Our tour service offers you a unique opportunity to immerse yourself in the rich history, vibrant culture, and captivating beauty of this bustling metropolis.\n\nExperience the Majesty of the Royal Palace:\nStep into the opulent world of Cambodian royalty as you explore the magnificent Royal Palace. Marvel at the intricate architecture, gilded spires, and ornate decorations that adorn this historic landmark, once home to the kings of Cambodia.",
+            "category": "c49ed9cb-0933-4ed3-b359-ce08006b2de2",
+            "charge_type": "f2a1aaee-19e4-401b-8ea0-0a03ad7a6fe8",
+            "max_people": 10,
+            "num_days": 2,
+            "max_daily_bookings": 3,
+            "percentage_discount": "20.00",
+            "location_url": "https://maps.app.goo.gl/2hoYZCqNFnW7yBh68",
+            "address": "Riverside, PhnumPenh City, Cambodia",
+            "commission": "8123e37e-d617-42e6-a3dd-929c0091cb21",
+            "is_close": false,
+            "created_at": "2024-06-18T17:27:38.126Z",
             "favorites": []
         }
     },
@@ -25,14 +51,19 @@
             "name": "Phunm Penh",
             "description": "Embark on an unforgettable journey through the heart of Cambodia's capital city, Phnom Penh. Our tour service offers you a unique opportunity to immerse yourself in the rich history, vibrant culture, and captivating beauty of this bustling metropolis.\n\nExperience the Majesty of the Royal Palace:\nStep into the opulent world of Cambodian royalty as you explore the magnificent Royal Palace. Marvel at the intricate architecture, gilded spires, and ornate decorations that adorn this historic landmark, once home to the kings of Cambodia.",
             "category": "91d2ad1e-b8ad-4772-a5f1-c066156f799e",
+            "charge_type": "dc4a63bc-56c6-4385-abeb-963c40150b60",
+            "max_people": 5,
+            "num_days": 1,
+            "max_daily_bookings": 1,
             "percentage_discount": "20.00",
-            "tour_place_coordinate": "{\"lng\": 11.5564, \"lat\": 104.9282}",
+            "location_url": "https://maps.app.goo.gl/2hoYZCqNFnW7yBh68",
             "address": "PhnumPenh City",
-            "video_url": "https://www.youtube.com/watch?v=2J5uRcaiZcE&list=RD2J5uRcaiZcE&start_radio=1&ab_channel=14FAM",
             "commission": "8123e37e-d617-42e6-a3dd-929c0091cb21",
             "is_close": false,
             "created_at": "2024-05-03T03:58:48.851Z",
-            "favorites": []
+            "favorites": [
+                "35e74bc7-c3d3-4e7d-be44-8c2ac13ca096"
+            ]
         }
     },
     {

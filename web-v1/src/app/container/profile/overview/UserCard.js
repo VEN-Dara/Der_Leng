@@ -10,7 +10,7 @@ import { Button } from '../../../../resource/components/buttons/buttons';
 import UilCamera from '@iconscout/react-unicons/icons/uil-camera';
 import UseFetcher from '../../../hooks/useFetcher';
 import UilShop from '@iconscout/react-unicons/icons/uil-shop';
-import { isTourGuideOrAbove } from '../../../utility/permission';
+import { isTourGuideOrAbove } from '../../../utility/function/permission';
 
 const FILE_ENDPOINT = process.env.REACT_APP_FILE_ENDPOINT
 

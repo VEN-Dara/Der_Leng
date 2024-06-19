@@ -10,7 +10,7 @@ import defaultProfile from '@/app/static/img/default_img/derleng-default-profile
 import defaultCover from '@/app/static/img/default_img/default_profile_cover.png'
 import EditProfile from './overview/EditProfile';
 import Shop from './overview/Shop';
-import { isTourGuideOrAbove } from "../../utility/permission.js"
+import { isTourGuideOrAbove } from "../../utility/function/permission.js"
 import NotFound from '../pages/404.js';
 
 const UserCards = lazy(() => import('./overview/UserCard'));

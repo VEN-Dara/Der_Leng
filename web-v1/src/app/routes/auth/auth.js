@@ -1,10 +1,10 @@
 import React, { lazy, useEffect } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
-import AuthLayout from '../../resource/container/profile/authentication/Index';
+import AuthLayout from '../../container/authentication/AuthLayout';
 
-const Login = lazy(() => import('../../resource/container/profile/authentication/overview/SignIn'));
-const SignUp = lazy(() => import('../../resource/container/profile/authentication/overview/Signup'));
-const ForgotPass = lazy(() => import('../../resource/container/profile/authentication/overview/ForgotPassword'));
+const Login = lazy(() => import('../../container/authentication/overview/SignIn'));
+const SignUp = lazy(() => import('../../container/authentication/overview/Signup'));
+const ForgotPass = lazy(() => import('../../container/authentication/overview/ForgotPassword'));
 
 const AuthRoot = () => {
   const navigate = useNavigate();

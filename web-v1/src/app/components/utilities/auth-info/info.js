@@ -55,22 +55,31 @@ const AuthInfo = React.memo(() => {
 
   const darkmodeActivated = () => {
     document.body.classList.add('dark');
-    document.body.classList.add('dark');
+    localStorage.setItem('theme', 'darkMode')
   };
-
+  
   const darkmodeDiactivated = () => {
     document.body.classList.remove('dark');
-    document.body.classList.remove('dark');
+    localStorage.setItem('theme', 'lightMode')
   };
   const changeLayout = (mode) => {
     dispatch(changeLayoutMode(mode));
   };
 
   useEffect(() => {
+    // :: Set user info ::
     const user_info = localStorage.getItem("user")
     if(user_info) {
       setUser(JSON.parse(user_info))
     }
+
+    // :: Set theme mode ::
+    // const themeData = localStorage.getItem('theme')
+    // if(themeData === 'darkMode') {
+    //   document.body.classList.add('dark');
+    // } else {
+    //   document.body.classList.remove('dark');
+    // }
   }, [])
 
   const userContent = (

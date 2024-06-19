@@ -42,3 +42,8 @@ backup_path = os.path.join(backup_dir, latest_backup_name)
 call_command("dumpdata", "--indent", "2", "authentication", "tour_package", "oauth2_provider", "-o", backup_path)
 
 print(f"Data dumped to {backup_path}")
+
+# ============================>> Command for backup support Xutf8
+# python -Xutf8 ./manage.py dumpdata authentication tour_package payment oauth2_provider > backup_text.json
+
+

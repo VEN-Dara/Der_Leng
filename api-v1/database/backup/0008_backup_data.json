@@ -1,0 +1,179 @@
+[
+{
+  "model": "authentication.user_role",
+  "pk": "525c7407-dc9e-4220-9a89-9ad6ae00e7f5",
+  "fields": {
+    "name": "admin",
+    "description": "He's everything"
+  }
+},
+{
+  "model": "authentication.user_role",
+  "pk": "c0249bc4-80bc-4080-aeff-1a285ac0f3af",
+  "fields": {
+    "name": "staff",
+    "description": "employee"
+  }
+},
+{
+  "model": "authentication.user_role",
+  "pk": "d5bc5492-f2ed-4300-9b98-d19332f8c2c3",
+  "fields": {
+    "name": "tour_guide",
+    "description": "can sell"
+  }
+},
+{
+  "model": "authentication.user_role",
+  "pk": "e2ead997-e584-4cfd-93f3-646d98e7c411",
+  "fields": {
+    "name": "customer",
+    "description": ""
+  }
+},
+{
+  "model": "authentication.user",
+  "pk": "0bb13a1d-e5f2-4c68-a5c4-0ee708168954",
+  "fields": {
+    "password": "pbkdf2_sha256$720000$casYuNhVcGSs6GMIHiC1RR$kLcwWvf67j6BPW9uLkd7z9NSruPKqmVPZsVzn/S1zYk=",
+    "last_login": "2024-02-04T08:51:20.371Z",
+    "is_superuser": false,
+    "username": "staff",
+    "first_name": "Ms",
+    "last_name": "Staff",
+    "email": "staff@123.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2024-01-25T16:20:09Z",
+    "fullname": "Ms Staff",
+    "role": "c0249bc4-80bc-4080-aeff-1a285ac0f3af",
+    "phone": "0963180249",
+    "profileImage": "",
+    "coverImage": "",
+    "registration_method": "email",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "authentication.user",
+  "pk": "33be413a-dd3e-477a-ac7a-e8280c33ebbf",
+  "fields": {
+    "password": "pbkdf2_sha256$720000$nrhq0zhWj2M88nFjtofzhu$02jMLpzeNi4SOjSOY1OgQKDCxTKTqgN5eXKD47ogLM8=",
+    "last_login": "2024-06-18T17:27:31.726Z",
+    "is_superuser": false,
+    "username": "tourguide",
+    "first_name": "Mr",
+    "last_name": "Tourguide",
+    "email": "tourguide@123.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-01-25T16:19:24Z",
+    "fullname": "Mr Tourguide",
+    "role": "d5bc5492-f2ed-4300-9b98-d19332f8c2c3",
+    "phone": "0963180249",
+    "profileImage": "images/profile_images/407093.jpg",
+    "coverImage": "",
+    "registration_method": "email",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "authentication.user",
+  "pk": "35e74bc7-c3d3-4e7d-be44-8c2ac13ca096",
+  "fields": {
+    "password": "pbkdf2_sha256$720000$R3yijzvR6P9MGSDjFEw4Yi$JCZSPh5rwSmRYwyogeLAu90AiatOWaos7dDJpI3axbU=",
+    "last_login": "2024-06-18T11:23:04.140Z",
+    "is_superuser": false,
+    "username": "customer",
+    "first_name": "MR",
+    "last_name": "Customer",
+    "email": "customer@123.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-01-26T16:04:04.026Z",
+    "fullname": "Mr Customer",
+    "role": "e2ead997-e584-4cfd-93f3-646d98e7c411",
+    "phone": "0123456789",
+    "profileImage": "images/profile_images/download.jpg",
+    "coverImage": "images/profile_images/703094.jpg",
+    "registration_method": "email",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "authentication.user",
+  "pk": "38a42599-1550-4a4a-9de9-a7caf8068433",
+  "fields": {
+    "password": "pbkdf2_sha256$720000$3OUSLpRudvSa8vvc9pEDf1$10QRin+N+yHWG4SG8DwafYqSDiEn59EBRNV/4iVB8bM=",
+    "last_login": "2024-06-18T17:25:29.783Z",
+    "is_superuser": true,
+    "username": "derleng",
+    "first_name": "",
+    "last_name": "",
+    "email": "derleng@123.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2024-01-25T15:51:38Z",
+    "fullname": "Mr Derleng",
+    "role": "525c7407-dc9e-4220-9a89-9ad6ae00e7f5",
+    "phone": "0963180249",
+    "profileImage": "",
+    "coverImage": "",
+    "registration_method": "email",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "authentication.user",
+  "pk": "6f83cff4-0f98-4dfa-8b27-32474e329cd9",
+  "fields": {
+    "password": "!59cBfvw3OXUXwgwIJDXWD6g8fQMfxmvo7P7BkpK7",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "vendara.389",
+    "first_name": "Ven",
+    "last_name": "Dara",
+    "email": "vendara.389@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-06-18T07:24:40.671Z",
+    "fullname": "Ven Dara",
+    "role": "e2ead997-e584-4cfd-93f3-646d98e7c411",
+    "phone": "",
+    "profileImage": "",
+    "coverImage": "",
+    "registration_method": "email",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "tour_package.packagecategory",
+  "pk": "15b9fc8c-637c-48fc-b60a-69091d2dc3f8",
+  "fields": {
+    "name": "????Temple"
+  }
+},
+{
+  "model": "tour_package.packagecategory",
+  "pk": "6d8c7924-36b9-4d12-aa81-488b35efa5aa",
+  "fields": {
+    "name": "????Sea"
+  }
+},
+{
+  "model": "tour_package.packagecategory",
+  "pk": "75646237-76cd-41bf-82e4-c2eb435a73b7",
+  "fields": {
+    "name": "????Artventure"
+  }
+},
+{
+  "model": "tour_package.packagecategory",
+  "pk": "91d2ad1e-b8ad-4772-a5f1-c066156f799e",
+  "fields": {
+    "name": 

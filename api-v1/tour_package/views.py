@@ -26,7 +26,7 @@ class PackageViewSet(viewsets.ModelViewSet, PackageMixin):
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     filterset_fields = '__all__'
     ordering_fields = ['created_at', 'avg_rating', 'amount_rating']
-    search_fields = ["name", "description", "package_service__detail", "package_schedule__destination", "address"]
+    search_fields = ["name", "description", "packageservice__detail", "packageschedule__destination", "address"]
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -58,19 +58,9 @@ class PackageViewSet(viewsets.ModelViewSet, PackageMixin):
             package_serializer.is_valid(raise_exception=True)
             package_instance = package_serializer.save()
 
-            thumbnail = request_data.get("thumbnail", '')
-            if not thumbnail:
-                raise ValidationError({"thumbnail": "Thumbnail image is required."})
-            self.assign_cover_image(package_instance, thumbnail, "thumbnail")
-            
-            cover = request_data.get("cover", '')
-            if not cover:
-                raise ValidationError({"cover": "Cover image is required."})
-            self.assign_cover_image(package_instance, cover, "cover")
-
             images = request_data.getlist("images")
-            if not images or len(images) > 6:
-                raise ValidationError({"images": "package's images is required at least one and at most six."})
+            if not images or len(images) > 10:
+                raise ValidationError({"images": "package's images is required at least one and at most ten."})
             
             self.assign_image(package_instance=package_instance, images=images)
 
@@ -105,14 +95,6 @@ class PackageViewSet(viewsets.ModelViewSet, PackageMixin):
             package_serializer = BasicPackageSerializer(instance=package_instance, data=request_data, partial=True)
             package_serializer.is_valid(raise_exception=True)
             package_instance = package_serializer.save()
-
-            thumbnail = request_data.get("thumbnail", '')
-            if thumbnail:
-                self.assign_cover_image(package_instance, thumbnail, "thumbnail")
-
-            cover = request_data.get("cover", '')
-            if cover:
-                self.assign_cover_image(package_instance, cover, "cover")
 
             images = request_data.getlist("images")
             if images:
