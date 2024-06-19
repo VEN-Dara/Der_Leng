@@ -28,6 +28,19 @@ class PackageCommission(models.Model):
 
     class Meta:
         db_table = 'tour_package_package_commission'
+
+class PackageChargeType(models.Model):
+    id = models.UUIDField(
+        primary_key = True,
+        default = uuid.uuid4,
+        editable = False)
+    name = models.CharField(max_length=30)
+
+    def __str__(self) -> str:
+        return f'{self.name}'
+    
+    class Meta:
+        db_table = 'tour_package_package_charge_type'
     
 class Package (models.Model):
     id = models.UUIDField(
@@ -38,10 +51,13 @@ class Package (models.Model):
     name = models.CharField(max_length=30)
     description = models.TextField()
     category = models.ForeignKey(PackageCategory, on_delete=models.SET_NULL, null=True, default=None)
+    charge_type = models.ForeignKey(PackageChargeType, on_delete=models.SET_NULL, null=True, default=None)
+    max_people = models.IntegerField()
+    num_days = models.IntegerField(default=1)
+    max_daily_bookings = models.IntegerField(default=1)
     percentage_discount = models.DecimalField(max_digits=5, decimal_places=2, default=0.00)
-    tour_place_coordinate = models.CharField(max_length=100)
+    location_url = models.CharField(max_length=255)
     address = models.CharField(max_length=100)
-    video_url = models.CharField(max_length=255, null=True, blank=True)
     favorites = models.ManyToManyField(User, blank=True, related_name="package_favorites")
     commission = models.ForeignKey(PackageCommission, on_delete=models.SET_NULL, null=True, default=None)
     is_close = models.BooleanField(default=False)

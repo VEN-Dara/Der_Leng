@@ -20,21 +20,24 @@ django.setup()
 print("[...............................   Seeding database    ...............................]" )
 
 print("..........::>> Auth <<::..........")
-print("..........::>> Seed: ./database/seeding/user_role_seeding.json")
-call_command("loaddata", "./database/seeding/user_role_seeding.json")
+print("..........::>> Seed: ./database/seeding/1-data-setup/user_role_seeding.json")
+call_command("loaddata", "./database/seeding/1-data-setup/user_role_seeding.json")
 
-print("..........::>> Seed: ./database/seeding/user_seeding.json")
-call_command("loaddata", "./database/seeding/user_seeding.json")
+print("..........::>> Seed: ./database/seeding/2-user/user_seeding.json")
+call_command("loaddata", "./database/seeding/2-user/user_seeding.json")
 
-print("..........::>> Seed: ./database/seeding/oauth2_application_seeding.json")
-call_command("loaddata", "./database/seeding/oauth2_application_seeding.json")
+print("..........::>> Seed: ./database/seeding/1-data-setup/oauth2_application_seeding.json")
+call_command("loaddata", "./database/seeding/1-data-setup/oauth2_application_seeding.json")
 
 print("\n..........::>> Tour_package <<::..........")
-print("..........::>> Seed: ./database/seeding/package_category_seeding.json")
-call_command("loaddata", "./database/seeding/package_category_seeding.json")
+print("..........::>> Seed: ./database/seeding/1-data-setup/package_category_seeding.json")
+call_command("loaddata", "./database/seeding/1-data-setup/package_category_seeding.json")
 
-print("..........::>> Seed: ./database/seeding/package_commission_seeding.json")
-call_command("loaddata", "./database/seeding/package_commission_seeding.json")
+print("..........::>> Seed: ./database/seeding/1-data-setup/package_charge_type_seeding.json")
+call_command("loaddata", "./database/seeding/1-data-setup/package_charge_type_seeding.json")
 
-print("..........::>> Seed: ./database/seeding/package_seeding.json")
-call_command("loaddata", "./database/seeding/package_seeding.json")
+print("..........::>> Seed: ./database/seeding/1-data-setup/package_commission_seeding.json")
+call_command("loaddata", "./database/seeding/1-data-setup/package_commission_seeding.json")
+
+print("..........::>> Seed: ./database/seeding/3-package/package_seeding.json")
+call_command("loaddata", "./database/seeding/3-package/package_seeding.json")

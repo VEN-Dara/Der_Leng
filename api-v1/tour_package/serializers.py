@@ -1,9 +1,11 @@
-from django.db.models import Avg
+from django.db.models import Q, Avg
+from django.utils import timezone
 from rest_framework import serializers
 
+from booking.models import Cart
 from core.settings.base import MEDIA_URL
 from authentication.serializers import UserSerializer
-from tour_package.models import Package, PackageCategory, PackageImage, PackageSchedule, PackageService, PackageUnavailableDate
+from tour_package.models import Package, PackageCategory, PackageChargeType, PackageImage, PackageSchedule, PackageService, PackageUnavailableDate
         
 class PackageScheduleSerializer(serializers.ModelSerializer):
     class Meta:
@@ -35,6 +37,11 @@ class PackageCategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = PackageCategory
         fields = '__all__'
+        
+class PackageChargeTypeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PackageChargeType
+        fields = '__all__'
 
 # =======================> Package Serializer <=======================
         
@@ -56,7 +63,7 @@ class SmallPackageSerializer(serializers.ModelSerializer):
 class MediumPackageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Package
-        fields = ('id', 'name', 'address', 'percentage_discount','description')
+        fields = ('id', 'name', 'address', 'max_people', 'percentage_discount','description')
 
     def to_representation(self, instance):
         data = super().to_representation(instance)
@@ -83,6 +90,7 @@ class PackageSerializer(serializers.ModelSerializer):
     package_image = PackageImageSerializer(source='packageimage_set', many=True, read_only=True)
     user = UserSerializer(read_only=True)
     category = PackageCategorySerializer(read_only=True)
+    charge_type = PackageChargeTypeSerializer(read_only=True)
     class Meta:
         model = Package
         exclude = ('favorites',)
@@ -93,6 +101,7 @@ class PackageSerializer(serializers.ModelSerializer):
         data['avg_rating'] = instance.review_set.all().aggregate(Avg("rating", default=0))['rating__avg']
         data['amount_rating'] = instance.review_set.count()
         data['favorite'] = False
+        data['is_available'] = is_package_available_today(instance)
 
         # Access user information from the request object
         request = self.context.get('request')
@@ -101,12 +110,23 @@ class PackageSerializer(serializers.ModelSerializer):
             
         return data
 
+
 # =======================> Package Serializers Mixin <======================= 
         
 def get_thumbnail_image(instance):
-    thumbnail = instance.packageimage_set.filter(type='thumbnail').first()
+    thumbnail = instance.packageimage_set.first()
     thumbnail_image = None
     if thumbnail:
         thumbnail_image = MEDIA_URL + str(thumbnail.image)
     
     return thumbnail_image
+
+# Find package is availble during max_daily_bookings
+def is_package_available_today(instance):
+    max_daily_bookings = instance.max_daily_bookings
+    num_days = instance.num_days
+    cutoff_date = timezone.now() - timezone.timedelta(days=num_days)
+    num_bookings = Cart.objects.filter(Q(booking_date__gt = cutoff_date) & Q(service__package__id = instance.id)).count()
+    if(max_daily_bookings>num_bookings) :
+        return True
+    return False

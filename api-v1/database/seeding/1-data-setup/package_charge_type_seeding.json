@@ -1,0 +1,16 @@
+[
+    {
+        "model": "tour_package.packagechargetype",
+        "pk": "f2a1aaee-19e4-401b-8ea0-0a03ad7a6fe8",
+        "fields": {
+            "name": "per person"
+        }
+    },
+    {
+        "model": "tour_package.packagechargetype",
+        "pk": "dc4a63bc-56c6-4385-abeb-963c40150b60",
+        "fields": {
+            "name": "flat rate"
+        }
+    }
+]

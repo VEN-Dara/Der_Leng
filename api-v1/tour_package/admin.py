@@ -1,8 +1,12 @@
 from django.contrib import admin
-from .models import PackageCategory, PackageCommission, Package, PackageImage, PackageSchedule, PackageService, PackageUnavailableDate
+from .models import PackageCategory, PackageChargeType, PackageCommission, Package, PackageImage, PackageSchedule, PackageService, PackageUnavailableDate
 
 @admin.register(PackageCategory)
 class PackageCategoryAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name')
+
+@admin.register(PackageChargeType)
+class PackageChargeTypeAdmin(admin.ModelAdmin):
     list_display = ('id', 'name')
 
 @admin.register(PackageCommission)
@@ -11,7 +15,7 @@ class PackageCommissionAdmin(admin.ModelAdmin):
 
 @admin.register(Package)
 class PackageAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'user', 'category', 'is_close', 'created_at')
+    list_display = ('id', 'name', 'user', 'category', 'charge_type', 'location_url', 'is_close', 'created_at')
     list_filter = ('is_close', 'created_at')
     search_fields = ('name', 'user__username', 'category__name')
 
