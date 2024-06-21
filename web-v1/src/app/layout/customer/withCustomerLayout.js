@@ -9,8 +9,8 @@ import { connect, useDispatch } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
 import { FooterStyle, LayoutContainer, SmallScreenAuthInfo, TopMenuSearch } from './Style';
 import TopMenu from './TopMenu';
-import Search from '../../components/utilities/auth-info/Search';
-import AuthInfo from '../../components/utilities/auth-info/info';
+import Search from './auth-info/Search';
+import AuthInfo from './auth-info/AuthInfo';
 import derlengLogo from '../../static/img/logo/derleng-logo.svg'
 
 const { theme } = require('../../config/theme/themeVariables');

@@ -1,9 +1,11 @@
+// =============================================================> Core library
 import React, { useEffect, lazy, Suspense, useState } from 'react';
-import { Row, Col, Skeleton, Spin, List, Comment } from 'antd';
 import { Link, useParams } from 'react-router-dom';
 
+// =============================================================> Core Third Party
+import { Row, Col, Skeleton, Spin, List, Comment } from 'antd';
 
-// =============================================> Local
+// =============================================================> Local
 import { PageHeader } from '@/resource/components/page-headers/page-headers';
 import PackageSchedule from './overview/PackageShedule';
 import { getPackageById } from '../../hooks/Product/usePackageFetcher';

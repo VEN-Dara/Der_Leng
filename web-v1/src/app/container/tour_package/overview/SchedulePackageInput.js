@@ -28,7 +28,7 @@ function SchedulePackageInput() {
                     {(fields, { add, remove }) => (
                         <>
                             {fields.map(({ key, name, ...restField }) => (
-                                <div key={key} className="flex items-center gap-4">
+                                <div key={key} className="flex items-center gap-4 sm:flex-wrap">
                                     <Form.Item
                                         {...restField}
                                         name={[name, 'destination']}

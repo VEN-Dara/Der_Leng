@@ -12,6 +12,8 @@ import './resource/static/css/style.css';
 import config from './resource/config/config';
 import ProtectedRoute from './resource/components/utilities/protectedRoute';
 import 'antd/dist/antd.less';
+import AuthorizeProtectedRoute from './app/components/utilities/authorizeProtectedRoute';
+import { isTourGuideOrAbove } from './app/utility/function/permission';
 
 const NotFound = lazy(() => import('./app/container/pages/404'));
 
@@ -48,7 +50,7 @@ function ProviderConfig() {
             </Routes>
           ) : (
             <Routes>
-              <Route path="/tour_guide/*" element={<ProtectedRoute path="/*" Component={TourGuide} />} />
+              <Route path="/tour-guide/*" element={<AuthorizeProtectedRoute path="/*" Component={TourGuide} isAuthorized={isTourGuideOrAbove()} />} />
               <Route path="/*" element={<ProtectedRoute path="/*" Component={Customer} />} />
               <Route path="*" element={<NotFound />} />
             </Routes>

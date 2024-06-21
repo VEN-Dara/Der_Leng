@@ -12,7 +12,7 @@ function NotFound() {
   useEffect(() => {
     setTimeout(() => {
       setState({ isLoading: false });
-    }, 1500);
+    }, 1000);
   }, []);
   return (
     <main className="min-h-[715px] lg:min-h-[580px]">

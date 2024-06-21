@@ -1,20 +1,25 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/prop-types */
+// ======================================================================>> Core libray
+import { Component } from 'react';
+import { connect } from 'react-redux';
+import { Link, NavLink } from 'react-router-dom';
+
+// ======================================================================>> Third Party
 import UilEllipsisV from '@iconscout/react-unicons/icons/uil-ellipsis-v';
 import { Button, Col, Layout, Row } from 'antd';
 import propTypes from 'prop-types';
-import { Component } from 'react';
 import { Scrollbars } from '@pezhmanparsaee/react-custom-scrollbars';
-import { connect } from 'react-redux';
-import { Link, NavLink } from 'react-router-dom';
+
+// ======================================================================>> Local
 import { ThemeProvider } from 'styled-components';
-import MenueItems from './MenueItems';
 import CustomizerWrap from './overview/Customizer';
 import { FooterStyle, LayoutContainer, SmallScreenAuthInfo, TopMenuSearch } from './Style';
+import MenueItems from './MenueItems';
 import TopMenu from './TopMenu';
-import Search from '../../components/utilities/auth-info/Search';
-import AuthInfo from '../../components/utilities/auth-info/info';
+import Search from './auth-info/Search';
+import AuthInfo from './auth-info/AuthInfo';
 import { ReactComponent as MySVG } from '../../static/img/icon/left-bar.svg';
 
 const { theme } = require('../../config/theme/themeVariables');
@@ -142,7 +147,7 @@ const withTourGuideLayout = (WrappedComponent) => {
               <div className="flex flex-row items-center flex-1 h-full">
                 <div className=" rtl:ssm:pr-[15px] ltr:pr-5 rtl:pl-5 ltr:ssm:pl-[15px] ltr:ssm:pr-[15px] rtl:ssm::pl:[15px] ltr:pl-[30px] rtl:pr-[30px] xs:ltr:pl-[20px] xs:rtl:pr-[20px] min-w-[280px] ssm:min-w-[220px] xs:min-w-[170px] h-full grid align-middle dark:bg-[#323541]">
                   <div className="flex items-center justify-between">
-                    <Link to="/admin">
+                    <Link to="/tour-guide">
                       <img
                         className="w-full max-w-[120px] xs:max-w-[100px]"
                         src={

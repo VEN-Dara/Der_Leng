@@ -1,7 +1,6 @@
 import { Spin } from 'antd';
 import React, { lazy, Suspense, useEffect } from 'react';
-import { Route, Routes, useLocation } from 'react-router-dom';
-import withUserLayout from '../../layout/withUserLayout.js';
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import Category from './category.js';
 import ResultSearch from './resultSearch.js';
 import CustomerProfile from '../../container/profile/CustomerProfile.js';
@@ -15,6 +14,12 @@ const ProductDetails = lazy(() => import('../../container/tour_package/ProductDe
 const CheckoutPage = lazy(() => import('../../../resource/container/ecommerce/Checkout.js'))
 import CreatePackage from '../../container/tour_package/CreatePackage.js';
 import withTourGuideLayout from '../../layout/tour_guide/withTourGuideLayout.js';
+import Dashboard from '../../container/tour_guide/Dashboard.js';
+import TourPackage from '../../container/tour_guide/TourPackage.js';
+import Review from '../../container/tour_guide/Review.js';
+import Setting from '../../container/tour_guide/Setting.js';
+import AcceptBooking from '../../container/tour_guide/AcceptBooking.js';
+import SaleHistory from '../../container/tour_guide/SaleHistory.js';
 
 
 const TourGuide = React.memo(() => {
@@ -33,15 +38,22 @@ const TourGuide = React.memo(() => {
     >
       <Routes>
         {/* :: =============== >> list package */}
-        <Route index path="/" element={<Home />} />
-        <Route index path="/results" element={<ResultSearch/>} />
-        <Route index path="/category/:category" element={<Category/>} />
+        <Route index path="/" element={<Navigate to='/tour-guide/dashboard' />} />
+        <Route index path="/dashboard" element={<Dashboard />} />
 
         {/* :: =============== >> Product */}
+        <Route exact path="/tour-package" element={<TourPackage/>} />
         <Route exact path="/new" element={<CreatePackage/>} />
         <Route index path="tour-service/:id" element={<ProductDetails />} />
+        
+        {/* :: =============== >> Sale */}
+        <Route exact path='/accept-booking' element={<AcceptBooking />} />
+        <Route exact path='/history-sale' element={<SaleHistory />} />
 
-        {/* :: =============== >> Profile */}
+        {/* :: =============== >> Review */}
+        <Route exact path='/my-review' element={<Review />} />
+
+        {/* :: =============== >> Profile and Setting */}
         <Route path="profile/myProfile/*" element={<CustomerProfile/>} />
 
         {/* :: =============== >> Sale */}
