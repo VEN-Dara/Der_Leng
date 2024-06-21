@@ -37,7 +37,6 @@ const Customer = React.memo(() => {
         <Route index path="/category/:category" element={<Category/>} />
 
         {/* :: =============== >> Product */}
-        <Route exact path="/new" element={<CreatePackage/>} />
         <Route index path="tour-service/:id" element={<ProductDetails />} />
 
         {/* :: =============== >> Profile */}
