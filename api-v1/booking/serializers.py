@@ -34,6 +34,7 @@ class MediumCartSerializer(serializers.ModelSerializer):
 
         return data
 
+# =======================> BookingDetails <======================= 
 class BookingDetailsSerializer(serializers.ModelSerializer):
     class Meta:
         model = BookingDetails

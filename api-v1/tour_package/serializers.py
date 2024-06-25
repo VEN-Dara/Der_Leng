@@ -63,7 +63,7 @@ class SmallPackageSerializer(serializers.ModelSerializer):
 class MediumPackageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Package
-        fields = ('id', 'name', 'address', 'max_people', 'percentage_discount','description')
+        fields = ('id', 'name', 'address', 'max_people', 'percentage_discount','description', 'is_close')
 
     def to_representation(self, instance):
         data = super().to_representation(instance)

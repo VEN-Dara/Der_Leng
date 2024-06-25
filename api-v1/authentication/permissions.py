@@ -58,5 +58,15 @@ class ReadOnly(BasePermission):
     def has_permission(self, request, view):
         return bool(request.method in SAFE_METHODS)
     
-
+class IsAdminOrStaff(BasePermission, UserRolePermission):
+    def has_permission(self, request, view):
+        return self.is_admin(user=request.user) or self.is_staff(user=request.user)
+    
+class IsStaffOrTourGuide(BasePermission, UserRolePermission):
+    def has_permission(self, request, view):
+        return self.is_staff(user=request.user) or self.is_tour_guide(user=request.user)
+    
+class IsAdminOrStaffOrTourGuide(BasePermission, UserRolePermission):
+    def has_permission(self, request, view):
+        return self.is_admin(user=request.user) or self.is_staff(user=request.user) or self.is_tour_guide(user=request.user)
     

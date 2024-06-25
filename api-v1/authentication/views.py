@@ -13,6 +13,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 
 from rest_framework_simplejwt.tokens import AccessToken, RefreshToken
 
+from authentication.models import TourGuideRegistration
 from core.settings.rest_framework import SIMPLE_JWT
 from .validations import user_validation, is_valid_email, is_valid_username, validate_user_update
 from .serializers import *
@@ -196,4 +197,3 @@ class UserViewSet(viewsets.ModelViewSet):
 
         except ObjectDoesNotExist as error:
             return Response({"error": str(error)}, status=status.HTTP_404_NOT_FOUND)
-

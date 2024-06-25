@@ -44,10 +44,10 @@ INSTALLED_APPS = [
 
     # ======> local app <======
     'authentication',
-    'derleng',
     'tour_package',
     'payment',
     'booking',
+    'tour_guide',
     
     # ======> package app <======
     'rest_framework',

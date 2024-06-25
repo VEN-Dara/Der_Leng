@@ -10,12 +10,12 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "core.settings")
 # Set up Django
 django.setup()
 
-# print("[...............................   Flushing database   ...............................]")
-# call_command("flush", "--noinput")     # No verify
-# # call_command("flush")
+print("[...............................   Flushing database   ...............................]")
+call_command("flush", "--noinput")     # No verify
+# call_command("flush")
  
-# print("[...............................   Migrating database  ...............................] ")
-# call_command("migrate")
+print("[...............................   Migrating database  ...............................] ")
+call_command("migrate")
 
 print("[...............................   Seeding database    ...............................]" )
 

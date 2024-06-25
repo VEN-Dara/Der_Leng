@@ -26,7 +26,7 @@ urlpatterns = [
     path('api/', include('tour_package.urls')),
     path('api/', include('booking.urls')),
     path('api/', include('payment.urls')),
-    # path('api/', include('derleng.urls')),
+    path('api/', include('tour_guide.urls')),
     path('social_auth2/', include('drf_social_oauth2.urls', namespace='drf'))
 ]
 

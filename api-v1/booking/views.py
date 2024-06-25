@@ -2,6 +2,7 @@
 from decimal import Decimal
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import transaction
+from django.utils import timezone
 
 #=========================================> Python
 import json
@@ -13,7 +14,8 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import status, viewsets
 from rest_framework.decorators import api_view, permission_classes
-from authentication.permissions import IsAdminOrStaffOrReadOnly, IsAdminOrStaffOrTourGuideOrReadOnly, UserRolePermission
+from authentication.models import User
+from authentication.permissions import IsAdmin, IsAdminOrStaffOrReadOnly, IsAdminOrStaffOrTourGuide, IsAdminOrStaffOrTourGuideOrReadOnly, IsStaff, IsTour_Guide, UserRolePermission
 from booking.tasks import cancel_payment_task
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.permissions import IsAuthenticated , IsAuthenticatedOrReadOnly
@@ -26,6 +28,7 @@ from payment.models import PaymentMethod
 from payment.mixins import create_payment_intent, create_transfer
 from booking.serializers import *
 from payment.serializers import CustomerPaymentSerializer, SellerTransactionSerializer
+from tour_package.models import Package, PackageService
 
 class BookingPackageAPIView(APIView, BookingMixin):
     permission_classes = [IsAuthenticated]
@@ -274,4 +277,3 @@ class ReviewAPIView(APIView):
             return Response({'error': 'Review not found'}, status=status.HTTP_404_NOT_FOUND)
         except Exception as error:
             return Response({'error': str(error)}, status=status.HTTP_400_BAD_REQUEST)
-        
