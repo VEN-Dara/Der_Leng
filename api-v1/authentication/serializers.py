@@ -3,7 +3,7 @@ from django.db.models import Q
 
 from authentication.validations import is_valid_password
 
-from .models import User, User_role
+from .models import TourGuideRegistration, User, User_role
 
 class User_roleSerializer(serializers.ModelSerializer):
     class Meta:
