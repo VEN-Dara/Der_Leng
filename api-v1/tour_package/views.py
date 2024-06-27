@@ -1,6 +1,7 @@
 from django.db.models import Avg, Count
 from django.forms import ValidationError
 from rest_framework import viewsets, filters, status
+from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
@@ -59,7 +60,7 @@ class PackageViewSet(viewsets.ModelViewSet, PackageMixin):
             package_instance = package_serializer.save()
 
             images = request_data.getlist("images")
-            if not images or len(images) > 10:
+            if not images or len(images):
                 raise ValidationError({"images": "package's images is required at least one and at most ten."})
             
             self.assign_image(package_instance=package_instance, images=images)
@@ -89,6 +90,8 @@ class PackageViewSet(viewsets.ModelViewSet, PackageMixin):
     def update(self, request, *args, **kwargs):
         try:
             request_data = request.data.copy()
+            print("============================================")
+            print(request_data)
             package_instance = self.get_object()
             request_data['user'] = request.user.id
 
@@ -186,3 +189,22 @@ class FavoritePackageAPIView(APIView):
             return Response({"message" : "Package removed from favorites list successfully."}, status=status.HTTP_200_OK)
         except Exception as error:
             return Response(error,  status=status.HTTP_400_BAD_REQUEST)
+        
+@api_view(['GET'])
+def get_create_package_setup(request):
+    try:
+        # :: Get category ::
+        categories = PackageCategory.objects.all()
+        category_data = PackageCategorySerializer(categories, many=True).data
+
+        # :: Get charge type ::
+        charge_types = PackageChargeType.objects.all()
+        charge_types_data = PackageChargeTypeSerializer(charge_types, many=True).data
+
+        response = {
+            "categories": category_data,
+            "charge_types": charge_types_data
+        }
+        return Response(response, status=status.HTTP_200_OK)
+    except Exception as error:
+        return Response( {'error' : str(error)} , status=status.HTTP_400_BAD_REQUEST)

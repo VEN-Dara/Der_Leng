@@ -1,5 +1,5 @@
 import React, { useEffect, useState, lazy } from 'react';
-import { Provider, useSelector } from 'react-redux';
+import { Provider, useDispatch, useSelector } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
 import { BrowserRouter as Router, Navigate, Route, Routes } from 'react-router-dom';
 import { ConfigProvider } from 'antd';
@@ -14,21 +14,25 @@ import ProtectedRoute from './resource/components/utilities/protectedRoute';
 import 'antd/dist/antd.less';
 import AuthorizeProtectedRoute from './app/components/utilities/authorizeProtectedRoute';
 import { isTourGuideOrAbove } from './app/utility/function/permission';
+import { refreshToken } from './app/redux/authentication/actionCreator';
+import { fetchUser } from './app/redux/user-info/actionCreators';
 
 const NotFound = lazy(() => import('./app/container/pages/404'));
 
 const { theme } = config;
 
 function ProviderConfig() {
-  const { rtl, isLoggedIn, topMenu, mainContent } = useSelector((state) => {
+  const { rtl, isLoggedIn, topMenu, mainContent, userFetchStatus, user } = useSelector((state) => {
     return {
       rtl: state.ChangeLayoutMode.rtlData,
       topMenu: state.ChangeLayoutMode.topMenu,
       mainContent: state.ChangeLayoutMode.mode,
       isLoggedIn: state.auth.login,
+      userFetchStatus: state.userReducer.status,
+      user: state.userReducer.user,
     };
   });
-
+  const dispatch = useDispatch();
   const [path, setPath] = useState(window.location.pathname);
 
   useEffect(() => {
@@ -36,8 +40,18 @@ function ProviderConfig() {
     if (!unmounted) {
       setPath(window.location.pathname);
     }
-    // eslint-disable-next-line no-return-assign
-    return () => (unmounted = true);
+
+    // :: Fetch auth info ::
+    if(userFetchStatus === 'idle') {
+      dispatch(fetchUser());
+    }
+
+    // :: Refresh Token every 15 minutes ::
+    const interval = setInterval(refreshToken, 15 * 60 * 1000);
+    return () => {
+      unmounted = true;
+      clearInterval(interval);
+    };
   }, [setPath]);
 
   return (
@@ -55,11 +69,11 @@ function ProviderConfig() {
               <Route path="*" element={<NotFound />} />
             </Routes>
           )}
-          {isLoggedIn && (path === process.env.PUBLIC_URL || path === `${process.env.PUBLIC_URL}/`) && (
+          {/* {isLoggedIn && (path === process.env.PUBLIC_URL || path === `${process.env.PUBLIC_URL}/`) && (
             <Routes>
               <Route path="/" element={<Navigate to="/" />} />
             </Routes>
-          )}
+          )} */}
         </Router>
       </ThemeProvider>
     </ConfigProvider>

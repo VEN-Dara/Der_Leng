@@ -4,6 +4,7 @@ import { combineReducers } from 'redux';
 // import { readNotificationReducer } from './notification/reducers';
 import authReducer from './authentication/reducers';
 import ChangeLayoutMode from './themeLayout/reducers';
+import userReducer from './user-info/reducers'
 // import { teamReducer } from './team/reducers';
 // import { userReducer, userGroupReducer } from './users/reducers';
 // import { sellersReducer } from './sellers/reducers';
@@ -29,6 +30,9 @@ import ChangeLayoutMode from './themeLayout/reducers';
 // import dataTable from './data-filter/reducers';
 
 const rootReducers = combineReducers({
+  auth: authReducer,
+  ChangeLayoutMode,
+  userReducer,
   // themeUsers: themeUsersReducer,
   // headerSearchData: headerSearchReducer,
   // message: readMessageReducer,
@@ -38,7 +42,6 @@ const rootReducers = combineReducers({
   // users: userReducer,
   // userGroup: userGroupReducer,
   // team: teamReducer,
-  auth: authReducer,
   // gallery: galleryReducer,
   // email: emailReducer,
   // emailSingle: SingleEmailReducer,
@@ -50,7 +53,6 @@ const rootReducers = combineReducers({
   // groupChat: groupChatReducer,
   // projects: projectReducer,
   // project: SingleProjectReducer,
-  ChangeLayoutMode,
   // cart: cartData,
   // Todo,
   // Note,

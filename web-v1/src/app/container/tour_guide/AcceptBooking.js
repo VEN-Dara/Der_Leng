@@ -1,10 +1,9 @@
-import React, { Suspense } from 'react';
-import { Row, Col, Skeleton, Button } from 'antd';
+import React, { useEffect, useState } from 'react';
+import { Row, Col, Skeleton, Empty } from 'antd';
 import { PageHeader } from '../../../resource/components/page-headers/page-headers';
-import { Cards } from '../../../resource/components/cards/frame/cards-frame';
 import { GlobalUtilityStyle } from '../styled';
-import Heading from '../../../resource/components/heading/heading';
 import AcceptBookingCard from './overview/AcceptBookingCard';
+import ApiService from '../../config/api/apiService';
 
 // @Todo console warning from button
 
@@ -19,6 +18,32 @@ function AcceptBooking() {
       breadcrumbName: 'រងចាំទទួលព្រម',
     },
   ];
+
+  const api = new ApiService();
+  const [state, setState] = useState({
+    data: [],
+    isLoading: false
+  })
+
+  const fetchBooking = async () => {
+    setState(preState => ({ ...preState, isLoading: true }))
+    try {
+      const response = await api.get('/tour-guide/accept_booking/new');
+      setState(preState => ({
+        ...preState,
+        data: response.data
+      }))
+    } catch (error) {
+      console.error(error)
+    } finally {
+      setState(preState => ({ ...preState, isLoading: false }))
+    }
+  }
+
+  useEffect(() => {
+    fetchBooking();
+  }, [])
+
   return (
     <>
       <GlobalUtilityStyle>
@@ -30,7 +55,21 @@ function AcceptBooking() {
         <main className="min-h-[715px] lg:min-h-[580px] px-8 xl:px-[15px] pb-[30px] bg-transparent">
           <Row gutter={15}>
             <Col xs={24}>
-              <AcceptBookingCard/>
+              {
+                state.isLoading ? (
+                  <div className="bg-white dark:bg-white10 p-[25px] rounded-[10px]">
+                    <Skeleton active paragraph={{ rows: 10 }} />
+                  </div>
+                ) : state.data.length > 0 ? (
+                  state.data.map((booking) => (
+                    <AcceptBookingCard key={booking.id} data={booking}/>
+                  ))
+                ) : (
+                  <div className="bg-white dark:bg-white10 p-[25px] rounded-[10px]">
+                    <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
+                  </div>
+                )
+              }
             </Col>
           </Row>
         </main>

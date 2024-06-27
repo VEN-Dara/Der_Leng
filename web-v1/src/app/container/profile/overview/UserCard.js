@@ -62,7 +62,7 @@ function UserCards({ user }) {
         <figure className="mb-[18px] h-[120px] w-[120px] relative overflow-hidden rounded-full">
           <img
             className="max-w-full max-h-full w-full h-full rounded-full inline-block object-cover"
-            src={state.data ? FILE_ENDPOINT + state.data.coverImage : img}
+            src={state.data ? FILE_ENDPOINT + state.data.profileImage : img}
             alt=""
           />
           <Upload

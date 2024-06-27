@@ -56,7 +56,7 @@ class Package (models.Model):
     num_days = models.IntegerField(default=1)
     max_daily_bookings = models.IntegerField(default=1)
     percentage_discount = models.DecimalField(max_digits=5, decimal_places=2, default=0.00)
-    location_url = models.CharField(max_length=255)
+    location_url = models.URLField(max_length=2000)
     address = models.CharField(max_length=100)
     favorites = models.ManyToManyField(User, blank=True, related_name="package_favorites")
     commission = models.ForeignKey(PackageCommission, on_delete=models.SET_NULL, null=True, default=None)

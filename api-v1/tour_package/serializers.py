@@ -69,7 +69,7 @@ class MediumPackageSerializer(serializers.ModelSerializer):
         data = super().to_representation(instance)
 
         data['thumbnail'] = get_thumbnail_image(instance)
-        data['description'] = ' '.join(instance.description.split()[:40])
+        data['description'] = ' '.join(instance.description.split()[:36])
         data['user'] = {"id": instance.user.id, "fullname": instance.user.fullname}
         data['default_price'] = instance.packageservice_set.first().price / 100   #Update from cent to dollar
         data['schedule_place'] = instance.packageschedule_set.first().destination

@@ -147,7 +147,7 @@ module.exports = {
         10: '10px',
       },
       fontFamily: {
-        Jost: ['Jost', 'sans-serif'],
+        Jost: ['Kantumruy Pro', 'sans-serif'],
         Awesome: ['FontAwesome'],
       },
       fontSize: {

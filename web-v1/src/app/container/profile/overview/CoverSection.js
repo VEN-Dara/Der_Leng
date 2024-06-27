@@ -30,6 +30,7 @@ function CoverSection({img}) {
   }
 
   const OnUploadSuccess = () => {
+    message.destroy();
     message.success("Cover image updated successfully! Looking great!🥰")
   }
 

@@ -23,7 +23,7 @@ const ProductCardsList = React.memo(({ product }) => {
     {
       isLoading: false,
       data: null,
-      message: null, 
+      message: null,
       success: false
     }
   )
@@ -31,23 +31,23 @@ const ProductCardsList = React.memo(({ product }) => {
   const [isFavorite, setIsFavorite] = useState(favorite)
 
   const handleFavorite = (package_id) => {
-    if(isFavorite) {
+    if (isFavorite) {
       setIsFavorite(false)
       removeFromFavorite(package_id);
       return
     }
-    
+
     setIsFavorite(true)
     addToFavorite(package_id);
   }
-  
+
   const addToFavorite = (package_id) => {
-    const data = {package: package_id};
+    const data = { package: package_id };
     useFetcher.post(apiUrl, setStateFavorite, data);
   }
 
   const removeFromFavorite = (package_id) => {
-    const data = {package: package_id};
+    const data = { package: package_id };
     useFetcher.put(apiUrl, setStateFavorite, data);
   }
 
@@ -57,12 +57,12 @@ const ProductCardsList = React.memo(({ product }) => {
         <Row gutter={15}>
           <Col md={6} xs={24}>
             <figure className="ltr:mr-[15px] rtl:ml-[15px] mb-0">
-              <img className="w-full rounded-10" src={ thumbnail ? `${FILE_ENDPOINT}${thumbnail}` : require(`@/app/static/img/default_img/travel-cambodia.png`)} alt={`img${id}`} />
+              <img className="w-full h-[200px] object-cover rounded-10" src={thumbnail ? `${FILE_ENDPOINT}${thumbnail}` : require(`@/app/static/img/default_img/travel-cambodia.png`)} alt={`img${id}`} />
             </figure>
           </Col>
           <Col md={12} xs={24}>
             <div className="product-single-description">
-              <Heading className="mt-[25px] mb-4 text-lg font-semibold" as="h5">
+              <Heading className="mt-4 mb-3 text-lg font-semibold" as="h5">
                 <NavLink
                   to={`/tour-service/${id}`}
                   className="text-dark hover:text-primary dark:text-white87 hover:dark:text-primary"
@@ -70,13 +70,15 @@ const ProductCardsList = React.memo(({ product }) => {
                   {name}
                 </NavLink>
               </Heading>
-              <p className="text-body dark:text-white60 text-[15px]">{description || 'Angkor Wat is a Hindu-Buddhist temple complex in Cambodia, located on a site measuring 162.6 hectares.'}</p>
+              <div className='overflow-hidden max-h-[112px]'>
+                <p className="text-body dark:text-white60 text-[15px] overflow-hidden line-clamp-4">{description}</p>
+              </div>
               <div className='flex'>
                 <p
-                  className="font-kantumruy-pro flex items-center h-[28px] px-2 bg-success text-white dark:text-white87 text-xs font-semibold border-primary"
-                > 
+                  className="font-kantumruy-pro flex items-center h-[28px] px-2 bg-success text-white dark:text-white87 text-xs font-semibold border-primary overflow-hidden"
+                >
                   <FontAwesome name="map" className="w-[14px] h-[14px] ltr:mr-1.5 rtl:ml-1.5" />
-                  {address}
+                  <span className='max-w-[95%] overflow-hidden text-ellipsis whitespace-nowrap'>{address}</span>
                 </p>
               </div>
             </div>
@@ -85,9 +87,8 @@ const ProductCardsList = React.memo(({ product }) => {
             <div className="mt-[25px]">
               <button
                 onClick={() => handleFavorite(id)}
-                className={` inline-flex items-center justify-center absolute min-3xl:ltr:right-5 min-3xl:rtl:left-5 ltr:right-0 rtl:left-0  min-3xl:top-[15px] top-0 bg-white dark:bg-white10 w-[34px] h-[34px] rounded-full shadow-[0_5px_10px_rgba(160,160,260,0.13)] ${
-                  isFavorite ? 'text-danger' : 'text-body dark:text-white60'
-                } `}
+                className={` inline-flex items-center justify-center absolute min-3xl:ltr:right-5 min-3xl:rtl:left-5 ltr:right-0 rtl:left-0  min-3xl:top-[15px] top-0 bg-white dark:bg-white10 w-[34px] h-[34px] rounded-full shadow-[0_5px_10px_rgba(160,160,260,0.13)] ${isFavorite ? 'text-danger' : 'text-body dark:text-white60'
+                  } `}
               >
                 {isFavorite ? (
                   <ReactSVG src={require(`@/resource/static/img/icon/heart-fill.svg`).default} />
@@ -96,7 +97,7 @@ const ProductCardsList = React.memo(({ product }) => {
                 )}
               </button>
               <p className="flex items-center mb-[5px] flex-wrap gap-y-[5px] text-4xl">
-                <span className="font-semibold text-primary">${(100-percentage_discount) * default_price / 100}</span>
+                <span className="font-semibold text-primary">${(100 - percentage_discount) * default_price / 100}</span>
                 {parseFloat(percentage_discount) !== 0 && (
                   <>
                     <del className="mx-[5px] text-light dark:text-white60 text-sm"> ${default_price} </del>
@@ -114,7 +115,7 @@ const ProductCardsList = React.memo(({ product }) => {
                 {Number(avg_rating).toFixed(1)}
                 <span className="ltr:ml-1.5 rtl:mr-1.5 text-light dark:text-white60 font-normal"> {amount_rating} Reviews</span>
               </div>
-              
+
               {/* ====================================> Buy and Add to Cart Btn <=============================== */}
               {/* <div className="flex items-start flex-col mt-5 -mx-[5px] -mb-[5px]">
                 <Button
