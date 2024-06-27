@@ -20,6 +20,7 @@ import Review from '../../container/tour_guide/Review.js';
 import Setting from '../../container/tour_guide/Setting.js';
 import AcceptBooking from '../../container/tour_guide/AcceptBooking.js';
 import SaleHistory from '../../container/tour_guide/SaleHistory.js';
+import PackageView from '../../container/tour_guide/tour-package/PackageView.js';
 
 
 const TourGuide = React.memo(() => {
@@ -44,7 +45,7 @@ const TourGuide = React.memo(() => {
         {/* :: =============== >> Product */}
         <Route exact path="/tour-package" element={<TourPackage/>} />
         <Route exact path="/new" element={<CreatePackage/>} />
-        <Route index path="tour-service/:id" element={<ProductDetails />} />
+        <Route index path="/tour-package/:id" element={<PackageView/>} />
         
         {/* :: =============== >> Sale */}
         <Route exact path='/accept-booking' element={<AcceptBooking />} />

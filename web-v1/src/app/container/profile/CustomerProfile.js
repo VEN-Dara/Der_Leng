@@ -12,6 +12,7 @@ import EditProfile from './overview/EditProfile';
 import Shop from './overview/Shop';
 import { isTourGuideOrAbove } from "../../utility/function/permission.js"
 import NotFound from '../pages/404.js';
+import { useSelector } from 'react-redux';
 
 const UserCards = lazy(() => import('./overview/UserCard'));
 const CoverSection = lazy(() => import('./overview/CoverSection'));
@@ -34,22 +35,7 @@ function CustomerProfile() {
     },
   ];
   const path = '.'
-  const useFetcher = new UseFetcher();
-  const [state, setState] = useState({
-    isLoading: false,
-    data: null,
-    next: null,
-    page: 1,
-    message: null,
-    success: false
-  })
-  const apiUrl = '/auth/user'
-
-  useEffect(() => {
-    useFetcher.retrieve(setState, apiUrl);
-  }, [])
-
-  console.log(isTourGuideOrAbove())
+  const data = useSelector((state) => state.userReducer.user)
 
   return (
     <>
@@ -68,9 +54,9 @@ function CustomerProfile() {
                 </div>
               }
             > 
-              { state.data &&
+              { data &&
               <UserCards
-                user={{ name: state.data.fullname, designation: state.data.role.name, img: state.data.profileImage ? `${FILE_ENDPOINT}${state.data.profileImage}` : defaultProfile }}
+                user={{ name: data.fullname, designation: data.role.name, img: data.profileImage ? `${FILE_ENDPOINT}${data.profileImage}` : defaultProfile }}
               />
               }
             </Suspense>
@@ -82,8 +68,8 @@ function CustomerProfile() {
                   </div>
                 }
               >
-                { state.data && 
-                <UserBio user={{email:state.data.email, phone:state.data.phone}} />
+                { data && 
+                <UserBio user={{email:data.email, phone:data.phone}} />
                 }
               </Suspense>
             </div>
@@ -99,8 +85,8 @@ function CustomerProfile() {
                     </div>
                   }
                 > 
-                  { state.data && 
-                  <CoverSection img={state.data.coverImage ? `${FILE_ENDPOINT}${state.data.coverImage}` : defaultCover} />
+                  { data && 
+                  <CoverSection img={data.coverImage ? `${FILE_ENDPOINT}${data.coverImage}` : defaultCover} />
                   }
 
                   {/* ===========================================> Nav Profile <=========================================== */}

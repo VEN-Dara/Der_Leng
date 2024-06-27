@@ -3,15 +3,16 @@ import { Row, Col } from 'antd';
 import propTypes from 'prop-types';
 import OverviewCard from './OverviewCard';
 
-const OverviewDataList = React.memo(({ column }) => {
+const OverviewDataList = React.memo(({ column, data }) => {
+  const { total_package = null, total_booking = null, monthly_income = null, total_income = null } = data || {};
   const OverviewDataSorted = [
       {
         "id": 1,
         "type": "primary",
         "icon": "briefcase.svg",
         "label": "កញ្ចប់ទេសចរណ៍សរុប",
-        "total": "100",
-        "suffix": "+",
+        "total": total_package,
+        "suffix": "",
         "prefix": "",
         "status": "growth",
         "statusRate": "25.36",
@@ -24,7 +25,7 @@ const OverviewDataList = React.memo(({ column }) => {
         "type": "info",
         "icon": "shopping-cart.svg",
         "label": "ការកក់សរុប",
-        "total": "30825",
+        "total": total_booking,
         "suffix": "",
         "prefix": "",
         "status": "growth",
@@ -39,7 +40,7 @@ const OverviewDataList = React.memo(({ column }) => {
         "type": "secondary",
         "icon": "dollar-circle.svg",
         "label": "ចំណូលខែនេះ",
-        "total": "30825",
+        "total": monthly_income,
         "suffix": "",
         "prefix": "$",
         "status": "down",
@@ -54,7 +55,7 @@ const OverviewDataList = React.memo(({ column }) => {
         "type": "warning",
         "icon": "dollar-circle.svg",
         "label": "ចំណូលសរុប",
-        "total": "30825",
+        "total": total_income,
         "suffix": "",
         "prefix": "$",
         "status": "growth",

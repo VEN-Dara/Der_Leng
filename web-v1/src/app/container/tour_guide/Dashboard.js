@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import { Row, Col, Skeleton } from 'antd';
 import { PageHeader } from '../../../resource/components/page-headers/page-headers';
 import { Cards } from '../../../resource/components/cards/frame/cards-frame';
@@ -6,6 +6,8 @@ import { Button } from '../../../resource/components/buttons/buttons';
 import { GlobalUtilityStyle } from '../styled';
 import Heading from '../../../resource/components/heading/heading';
 import OverviewDataList from './overview/OverviewDatalist';
+import ApiService from '../../config/api/apiService';
+import { DataService } from '../../config/dataService/dataService';
 
 // @Todo console warning from button
 
@@ -20,6 +22,34 @@ function Dashboard() {
       breadcrumbName: 'ផ្ទាំងព័ត៍មាន',
     },
   ];
+  const [state, setState] = useState({
+    data: null,
+    isLoading: true,
+    error: null
+  })
+
+  const fetchDashboard = async () => {
+    try {
+      const response = await DataService.get('/tour-guide/dashboard')
+      setState(preState => ({
+        ...preState,
+        data: response.data,
+        isLoading: false,
+      }))
+
+    } catch (error) {
+      setState(preState => ({
+        ...preState,
+        isLoading: false,
+        error: error
+      }))
+    }      
+  }
+
+  useEffect(() => {
+    fetchDashboard();
+  }, [])
+
   return (
     <>
       <GlobalUtilityStyle>
@@ -41,28 +71,10 @@ function Dashboard() {
                                 </Cards>
                             }
                         >
-                            <OverviewDataList />
+                            <OverviewDataList data={state.data} />
                         </Suspense>
                     </Col>
                     </Row>
-                {/* <Cards headless size="large" className="mb-[25px] ant-card-body-p-25">
-                  <Heading className="text-dark dark:text-white87 font-semibold text-[20px] leading-[24px] mb-[15px]">
-                    Theme Colors
-                  </Heading>
-                  <Row gutter={25}>
-                    <Col xxl={12} xs={24}>
-                        <Suspense
-                            fallback={
-                                <Cards headless className="mb-[25px]">
-                                    <Skeleton active />
-                                </Cards>
-                            }
-                        >
-                            <OverviewDataList />
-                        </Suspense>
-                    </Col>
-                    </Row>
-                </Cards> */}
               </div>
             </Col>
           </Row>

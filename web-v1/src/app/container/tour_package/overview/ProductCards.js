@@ -98,10 +98,10 @@ function ProductCards({ product }) {
         </p>
         <div className='flex'>
           <p
-            className="font-kantumruy-pro flex items-center h-[28px] px-2 bg-success text-white dark:text-white87 text-xs font-semibold border-primary"
+            className="font-kantumruy-pro flex items-center h-[28px] px-2 bg-success text-white dark:text-white87 text-xs font-semibold border-primary overflow-hidden"
           > 
             <FontAwesome name="map" className="w-[14px] h-[14px] ltr:mr-1.5 rtl:ml-1.5" />
-            {address}
+            <span className='max-w-[95%] overflow-hidden text-ellipsis whitespace-nowrap'>{address}</span>
           </p>
         </div>
 

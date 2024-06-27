@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useCallback } from 'react';
 import { Row, Col, Skeleton } from 'antd';
 import { PageHeader } from '../../../resource/components/page-headers/page-headers';
 import { Cards } from '../../../resource/components/cards/frame/cards-frame';
@@ -9,9 +9,12 @@ import UseFetcher from '../../hooks/useFetcher';
 import List from "./overview/List";
 import { Button } from "../../../resource/components/buttons/buttons";
 import { Link } from "react-router-dom";
+import { DataService } from '../../config/dataService/dataService';
+import ApiService from '../../config/api/apiService';
+import useScrollFetcher from '../../hooks/api-fetcher/useScrollFetcher';
 
 // @Todo console warning from button
-
+const api = new ApiService()
 function TourPackage() {
   const PageRoutes = [
     {
@@ -23,19 +26,10 @@ function TourPackage() {
       breadcrumbName: 'កញ្ចប់ទេសចរណ៍',
     },
   ];
-  const apiUrl = "/packages"
-  const [state, setState] = useState({
-    isLoading: false,
-    data: [],
-    next: null,
-    page: 1,
-  })
-  const user = JSON.parse(localStorage.getItem("user")) || { id: null, username: null };
-  const useFetcher = new UseFetcher();
+  const path = "/tour-guide/packages"
+  const { data= [], page= 1, pageSize= 1, isLoading= true, isLoadMore= false } = useScrollFetcher({path});
 
-  useEffect(() => {
-    useFetcher.get(setState, `${apiUrl}`)
-  }, [])
+
   return (
     <>
       <GlobalUtilityStyle>
@@ -47,21 +41,23 @@ function TourPackage() {
         <main className="min-h-[715px] lg:min-h-[580px] px-8 xl:px-[15px] pb-[30px] bg-transparent">
           <Row gutter={15}>
             <Col xs={24}>
-              {state.isLoading ?
+              {isLoading ?
                 <div className="bg-white dark:bg-white10 p-[25px] rounded-[10px]">
                   <Skeleton active paragraph={{ rows: 10 }} />
                 </div>
                 :
-                <div className="block bg-white dark:bg-[#1b1e2b] shadow-regular dark:shadow-[0_5px_30px_rgba(1,4,19,.60)] rounded-[10px] p-[25px] min-h-[715px] lg:min-h-[580px]">
-                  <div className="flex w-full justify-end border-regular dark:border-white10 border-b pb-5">
+                <>
+                <div className="block mb-4 bg-white dark:bg-[#1b1e2b] shadow-regular dark:shadow-[0_5px_30px_rgba(1,4,19,.60)] rounded-[10px] p-[25px]">
+                  <div className="flex w-full justify-end border-regular dark:border-white10">
                     <Link to='/tour-guide/new'>
                       <Button size="default" type="primary" className="text-sm font-semibold h-10 px-6 rounded-6 font-kantumruy-pro">
                         បង្កើតកញ្ចប់ 📦
                       </Button>
                     </Link>
                   </div>
-                  <List state={{ packages: state.data, isLoader: state.isLoading, isLoadMore: false }} />
                 </div>
+                  <List state={{ packages: data, current: page, pageSize: 1, isLoader: isLoading, isLoadMore }} />
+                </>
               }
             </Col>
           </Row>

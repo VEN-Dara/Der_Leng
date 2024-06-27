@@ -28,7 +28,7 @@ class PackageViewSet(viewsets.ModelViewSet):
     search_fields = ["name", "description", "packageservice__detail", "packageschedule__destination", "address"]
 
     def get_queryset(self):
-        queryset = super().get_queryset().filter(user=self.request.user)
+        queryset = super().get_queryset().filter(Q(user=self.request.user) & Q(is_close=False)).order_by('-created_at')
 
         category_name = self.request.query_params.get('category_name')
         if category_name:
@@ -48,7 +48,7 @@ def get_dashboard(request):
         user: User = request.user
 
         # get total package
-        package_number: int = Package.objects.filter(user=user).count()
+        package_number: int = Package.objects.filter(Q(user=user) & Q(is_close=False)).count()
         total_booking: int = BookingDetails.objects.filter(cart__service__package__user=user).count()
 
         # ======================>> monthly_income <<=========================

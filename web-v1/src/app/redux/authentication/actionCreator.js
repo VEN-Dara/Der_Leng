@@ -1,6 +1,11 @@
 import Cookies from 'js-cookie';
 import actions from './actions';
 import axios from 'axios';
+import { DataService } from '../../config/dataService/dataService';
+import { getItem } from '../../utility/function/localStorageControl';
+import { useDispatch } from 'react-redux';
+import { useNavigation } from 'react-router-dom';
+import { FETCH_USER_SUCCESS } from '../user-info/actions';
 
 const { loginBegin, loginSuccess, loginErr, logoutBegin, logoutSuccess, logoutErr } = actions;
 
@@ -14,10 +19,15 @@ const login = (values, callback) => {
       const response = await axios.post(`${API_ENDPOINT}/auth/users/login` , values ,{headers: {'Content-Type': 'application/json'}});
       if (response.status === 200) {
         Cookies.set('access_token', response.data.access_token);
+        Cookies.set('refresh_token', response.data.refresh_token);
         Cookies.set('logedIn', true);
 
         // =============> Save User Info to Local Storage <=============
         localStorage.setItem("user", JSON.stringify(response.data.user))
+        dispatch({
+          type: FETCH_USER_SUCCESS,
+          payload: response.data.user
+        });
 
         dispatch(loginSuccess(true));
         callback();
@@ -33,9 +43,7 @@ const register = (values) => {
   return async (dispatch) => {
     dispatch(loginBegin());
     try {
-      console.log(values)
       const response = await axios.post(`${API_ENDPOINT}/auth/users/register`, values, {headers: {'Content-Type': 'application/json'}});
-      console.log(response)
       dispatch(loginSuccess(false));
       return response
     } catch (err) {
@@ -60,6 +68,18 @@ const logOut = (callback) => {
   };
 };
 
+const refreshToken = async () => {
+  try {
+    const refresh = getItem('refresh_token')
+    const response = await DataService.post('/auth/refresh_token', {refresh})
+    if (response.status === 200) {
+      Cookies.set('access_token', response.data.access);
+      Cookies.set('logedIn', true);
+    }
+  } catch (error) {
+  }
+}
+
 const isUsernameExist = async (values) => {
     try {
       const response = await axios.get(`${API_ENDPOINT}/auth/users/?username=${values}`); 
@@ -69,4 +89,4 @@ const isUsernameExist = async (values) => {
     }
   };
 
-export { login, logOut, register, isUsernameExist };
+export { login, logOut, register, refreshToken, isUsernameExist };

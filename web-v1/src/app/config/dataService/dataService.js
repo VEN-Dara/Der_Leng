@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { getItem } from '@/resource/utility/localStorageControl';
+import Cookies from 'js-cookie';
 
 const API_ENDPOINT = `${process.env.REACT_APP_API_ENDPOINT}/api`;
 
@@ -84,7 +85,10 @@ client.interceptors.response.use(
     const { response } = error;
     const originalRequest = error.config;
     if (response) {
-      if (response.status === 500) {
+      if (response && response.status === 401) {
+        Cookies.remove('logedIn');
+
+      } else if (response.status === 500) {
         // do something here
       } else {
         return originalRequest;

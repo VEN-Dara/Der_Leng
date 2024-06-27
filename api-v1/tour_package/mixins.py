@@ -25,13 +25,12 @@ class PackageMixin:
         package_image_serializer.save()
         
     def assign_image(self, package_instance, images):
-
         package_image_number = PackageImage.objects.filter(package=package_instance).count()
         package_image_number_can_input = 6 - package_image_number
         if package_image_number_can_input == 0:
             raise ValidationError({f"images": "package's images already existed at maximum number for one package."})
-        if package_image_number_can_input < 0:
-            raise ValidationError({f"images": "package's images can input only {package_image_number_can_input} more."})
+        # if package_image_number_can_input < 0:
+        #     raise ValidationError({f"images": "package's images can input only {package_image_number_can_input} more."})
 
         for image in images:
             image_data = {}

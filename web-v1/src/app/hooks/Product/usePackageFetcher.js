@@ -65,9 +65,7 @@ const usePackageFetcher = () => {
 
     useEffect(() => {
 
-        console.log(`Start Scroll ${state.current < state.pageSize}`)
         if (state.current < state.pageSize) {
-            console.log("Start Scroll")
             window.addEventListener('scroll', handleScroll);
         }
 

@@ -51,4 +51,4 @@ class TourGuideRegistration(models.Model):
     cv = models.FileField(upload_to='files/guide_register_info/', max_length=1000)
     phone = models.CharField(max_length=20)
     address = models.CharField(max_length=255)
-    google_map_url = models.CharField(max_length=255)
+    location_url = models.URLField(max_length=2000)

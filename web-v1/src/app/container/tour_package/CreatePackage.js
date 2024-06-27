@@ -1,12 +1,16 @@
 import UploadPackageImage from "./overview/UploadPackageImage"
 import '../style.css';
-import { Button, Col, Form, Input, Row, Select } from "antd";
+import { Button, Col, Form, Input, InputNumber, Row, Select, Spin, message } from "antd";
 import ServicePackageInput from "./overview/ServicePackageInput";
 import SchedulePackageInput from "./overview/SchedulePackageInput";
 import { GlobalUtilityStyle } from "../styled";
 import { Cards } from "../../../resource/components/cards/frame/cards-frame";
 import { PageHeader } from '../../../resource/components/page-headers/page-headers';
 import AdminBgLight from '../../../resource/static/img/admin-bg-light.png';
+import ApiService from '../../config/api/apiService'
+import { useEffect, useState } from "react";
+import formatTime from "../../utility/format-function/time";
+import { useNavigate } from "react-router-dom";
 
 function CreatePackage() {
     const PageRoutes = [
@@ -24,9 +28,14 @@ function CreatePackage() {
         },
     ];
     const [form] = Form.useForm();
-    const handleSubmit = (value) => {
-        console.log(value)
-    }
+    const api = new ApiService();
+    const navigate = useNavigate();
+    const [setupData, setSetupData] = useState({
+        categories: [],
+        charge_types: []
+    })
+    const [createLoading, setCreateLoading] = useState(false)
+    const [images, setImages] = useState([])
 
     // :: Validate package service ::
     const validateService = (_, value) => {
@@ -35,6 +44,107 @@ function CreatePackage() {
         }
         return Promise.resolve();
     };
+
+    const validateGoogleMapsUrl = (_, value) => {
+        if (!value || /^(https:\/\/(www.google.com\/maps\/|maps.app.goo.gl\/)).*$/.test(value)) {
+            return Promise.resolve();
+        }
+        return Promise.reject(new Error('សូមបញ្ចូល Google Maps URL ដែលត្រឹមត្រូវ.'));
+    };
+    
+    const fetchCreatePackageSetup = async () => {
+        try {
+            const response = await api.get('packages/create/setup');
+            setSetupData(prevState => ({
+                ...prevState,
+                categories: response.data.categories,
+                charge_types: response.data.charge_types
+            }))
+        } catch (error) {
+            
+        }
+    }
+
+    const createPackage = async (data) => {
+        try {
+            setCreateLoading(true);
+            message.open({
+                content: (
+                    <span className="font-kantumruy-pro" >
+                        📦🛸កញ្ចប់របស់អ្នកកំពុងបង្ហោះ✈️ ...
+                    </span>
+                ),
+                duration: 60, // duration in seconds
+                type: 'loading'
+            });
+            const response = await api.post('/packages/', data);
+            if(response && response.data) {
+                navigate(`/tour-service/${response.data.id}`)
+            }
+            // Load message success
+            message.destroy();
+            message.open({
+                content: (
+                    <span className="font-kantumruy-pro" >
+                        កញ្ចប់ទេសចរណ៍បង្កើតបានជោគជ័យ📦🥰
+                    </span>
+                ),
+                duration: 3, // duration in seconds
+                type: 'success'
+            });
+        } catch (error) {
+            console.log(error.response)
+            message.error("error")
+        } finally {
+            setCreateLoading(false)
+        }
+    }
+
+    const handleSubmit = async (value) => {
+        const formData = new FormData();
+
+        // disabled on loading
+        if(createLoading) {
+            return
+        }
+        console.log('start...')
+
+        // Validate image
+        if(images.length <= 0) {
+            message.warning('សូមបញ្ចូលរូបភាពកញ្ចប់ទេសចរណ៍របស់អ្នក​ 📷')
+            return
+        }
+
+        // :: form images list ::
+        images.forEach((file, index) => {
+            formData.append('images', file.originFileObj, file.name);
+        });
+
+        // :: form data from value ::
+        for(const key in value) {
+            if (key === 'services') {
+                formData.append(key, JSON.stringify(value[key]));
+
+            } else if (key === 'schedules') {
+                const scheduleData = value[key].map(sc => {
+                    return {
+                        destination: sc.destination,
+                        start_time: formatTime(sc.start_time),
+                        end_time: formatTime(sc.end_time),
+                    }
+                })
+                formData.append('schedules', JSON.stringify(scheduleData));
+
+            } else {
+                formData.append(key, value[key]);
+            }
+        }
+        await createPackage(formData);
+    }
+
+    useEffect(() => {
+        fetchCreatePackageSetup();
+    }, [])
     return (
         <>
             <GlobalUtilityStyle>
@@ -52,7 +162,7 @@ function CreatePackage() {
                             <Col xxl={12} md={24} xs={24} lg={18}>
                                 <Cards headless size="large" className="mb-[25px] ant-card-body-p-25">
                                     <p className="mt-4 font-kantumruy-pro text-base font-medium text-dark dark:text-white87">សូមបញ្ចូលរូបភាព</p>
-                                    <UploadPackageImage />
+                                    <UploadPackageImage setImages={setImages} />
                                     <Form name="login" form={form} onFinish={handleSubmit} layout="vertical">
                                         <Form.Item
                                             name='name'
@@ -87,6 +197,17 @@ function CreatePackage() {
                                             <Input placeholder="សូមបញ្ចូលអាសយដ្ឋាន" className="font-kantumruy-pro text-sm h-[45px]" />
                                         </Form.Item>
                                         <Form.Item
+                                            name='location_url'
+                                            label={<span className="font-kantumruy-pro">តំណភ្ជាប់ទីតាំង</span>}
+                                            rules={[
+                                                { required: true, message: 'សូមបញ្ចូលតំណភ្ជាប់ទីតាំង!', },
+                                                { validator: validateGoogleMapsUrl },
+                                            ]}
+                                            className="[&>div>div>label]:text-base [&>div>div>label]:text-dark dark:[&>div>div>label]:text-white60 [&>div>div>label]:font-medium"
+                                        >
+                                            <Input placeholder="សូមបញ្ចូលតំណភ្ជាប់ទីតាំង" className="font-kantumruy-pro text-sm h-[45px]" />
+                                        </Form.Item>
+                                        <Form.Item
                                             label={<span className="font-kantumruy-pro text-base font-medium text-dark dark:text-white87">ប្រភេទ</span>}
                                             name="category"
                                             rules={[
@@ -97,10 +218,77 @@ function CreatePackage() {
                                             ]}
                                         >
                                             <Select placeholder='សូមជ្រើសរើសប្រភេទ' className="font-kantumruy-pro text-sm h-[45px]">
-                                                <Option value="option1">Option 1</Option>
-                                                <Option value="option2">Option 2</Option>
-                                                <Option value="option3">Option 3</Option>
+                                                {
+                                                    setupData.categories.map(category => (
+                                                        <Option key={category.id} value={category.id}>{category.name}</Option>
+                                                    ))
+                                                }
                                             </Select>
+                                        </Form.Item>
+                                        <Form.Item
+                                            label={<span className="font-kantumruy-pro text-base font-medium text-dark dark:text-white87">តើអ្នកចង់គិតថ្លៃតាមវិធីមួយណា?</span>}
+                                            name="charge_type"
+                                            rules={[
+                                                {
+                                                    required: true,
+                                                    message: 'សូមជ្រើសរើសប្រភេទគិតថ្លៃ!',
+                                                },
+                                            ]}
+                                        >
+                                            <Select placeholder='សូមជ្រើសរើសប្រភេទគិតថ្លៃ' className="font-kantumruy-pro text-sm h-[45px]">
+                                                {
+                                                    setupData.charge_types.map(charge_type => (
+                                                        <Option key={charge_type.id} value={charge_type.id}>{charge_type.name}</Option>
+                                                    ))
+                                                }
+                                            </Select>
+                                        </Form.Item>
+                                        <Form.Item
+                                            name='max_people'
+                                            label={<span className="font-kantumruy-pro">តើកញ្ចប់អ្នក អាចដាក់មនុស្សច្រើនបំផុតប៉ុន្មានអ្នក?</span>}
+                                            rules={[
+                                                {
+                                                    required: true,
+                                                    message: 'សូមបញ្ចូលចំនួនមនុស្ស!',
+                                                },
+                                            ]}
+                                            className=" w-full [&>div>div>label]:text-base [&>div>div>label]:text-dark dark:[&>div>div>label]:text-white60 [&>div>div>label]:font-medium"
+                                        >
+                                            <InputNumber placeholder="សូមបញ្ចូលចំនួនមនុស្ស" className="font-kantumruy-pro text-sm h-[45px] w-full" />
+                                        </Form.Item>
+                                        <Form.Item
+                                            name='num_day'
+                                            label={<span className="font-kantumruy-pro">ចំនួនថ្ងៃ​តំណើរកំសាន្ត</span>}
+                                            rules={[
+                                                {
+                                                    required: true,
+                                                    message: 'សូមបញ្ចូលចំនួនថ្ងៃ!',
+                                                },
+                                            ]}
+                                            className="w-full [&>div>div>label]:text-base [&>div>div>label]:text-dark dark:[&>div>div>label]:text-white60 [&>div>div>label]:font-medium"
+                                        >
+                                            <InputNumber placeholder="សូមបញ្ចូលចំនួនថ្ងៃ" className="font-kantumruy-pro text-sm h-[45px] w-full" />
+                                        </Form.Item>
+                                        <Form.Item
+                                            name='max_daily_bookings'
+                                            label={<span className="font-kantumruy-pro">តើកញ្ចប់នេះ អាចទទួលកក់ប៉ុន្មានក្នុងថ្ងៃតែមួយ?</span>}
+                                            rules={[
+                                                {
+                                                    required: true,
+                                                    message: 'សូមបញ្ចូលចំនួនដង!',
+                                                },
+                                            ]}
+                                            className="w-full [&>div>div>label]:text-base [&>div>div>label]:text-dark dark:[&>div>div>label]:text-white60 [&>div>div>label]:font-medium"
+                                        >
+                                            <InputNumber placeholder="សូមបញ្ចូលចំនួនថ្ងៃ" className="font-kantumruy-pro text-sm h-[45px] w-full" />
+                                        </Form.Item>
+                                        <Form.Item
+                                            name='percentage_discount'
+                                            initialValue={0}
+                                            label={<span className="font-kantumruy-pro">ភាគរយបញ្ចុះតម្លៃ</span>}
+                                            className="w-full [&>div>div>label]:text-base [&>div>div>label]:text-dark dark:[&>div>div>label]:text-white60 [&>div>div>label]:font-medium"
+                                        >
+                                            <InputNumber placeholder="ភាគរយបញ្ចុះតម្លៃ" className="font-kantumruy-pro text-sm h-[45px] w-full" />
                                         </Form.Item>
                                         <hr />
                                         <Form.Item
@@ -128,8 +316,15 @@ function CreatePackage() {
                                                 htmlType="submit"
                                                 type="primary"
                                                 size="large"
+                                                // disabled={createLoading}
                                             >
-                                                {false ? 'សូមរងចាំ...' : 'បង្កើត'}
+                                                {createLoading ? (
+                                                    <>
+                                                        <Spin size="small" />
+                                                        <span className="text-primary ml-2">សូមរងចាំ...✈️</span>
+                                    
+                                                    </>
+                                                ) : 'បង្កើត'}
                                             </Button>
                                         </Form.Item>
                                     </Form>
