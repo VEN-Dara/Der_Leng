@@ -102,6 +102,8 @@ class PackageSerializer(serializers.ModelSerializer):
         data['amount_rating'] = instance.review_set.count()
         data['favorite'] = False
         data['is_available'] = is_package_available_today(instance)
+        data['package_service'] = PackageServiceSerializer(instance.packageservice_set.filter(is_close=False), many=True).data
+        data['package_schedule'] = PackageScheduleSerializer(instance.packageschedule_set.all().order_by("start_time"), many=True).data
 
         # Access user information from the request object
         request = self.context.get('request')

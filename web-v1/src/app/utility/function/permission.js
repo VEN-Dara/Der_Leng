@@ -11,4 +11,20 @@ function isTourGuideOrAbove() {
     return false
 }
 
-export { isTourGuideOrAbove }
+function isStaffOrAbove(role) {
+    if(role?.name === "staff" || role?.name === "admin") {
+        return true
+    }
+
+    return false
+}
+
+function isCustomer(role) {
+    if(role?.name === "customer") {
+        return true
+    }
+
+    return false
+}
+
+export { isTourGuideOrAbove, isStaffOrAbove, isCustomer }

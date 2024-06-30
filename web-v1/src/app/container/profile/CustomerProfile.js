@@ -1,6 +1,7 @@
 import React, { lazy, Suspense, useEffect, useState } from 'react';
 import { Row, Col, Skeleton } from 'antd';
-import { NavLink, Route, Routes } from 'react-router-dom';
+import { Link, NavLink, Route, Routes } from 'react-router-dom';
+import { PlusOutlined } from '@ant-design/icons';
 import { PageHeader } from '../../../resource/components/page-headers/page-headers';
 import { Button } from '../../../resource/components/buttons/buttons';
 import UilDollarSign from '@iconscout/react-unicons/icons/uil-dollar-sign';
@@ -10,7 +11,7 @@ import defaultProfile from '@/app/static/img/default_img/derleng-default-profile
 import defaultCover from '@/app/static/img/default_img/default_profile_cover.png'
 import EditProfile from './overview/EditProfile';
 import Shop from './overview/Shop';
-import { isTourGuideOrAbove } from "../../utility/function/permission.js"
+import { isCustomer, isTourGuideOrAbove } from "../../utility/function/permission.js"
 import NotFound from '../pages/404.js';
 import { useSelector } from 'react-redux';
 
@@ -26,12 +27,12 @@ const FILE_ENDPOINT = process.env.REACT_APP_FILE_ENDPOINT
 function CustomerProfile() {
   const PageRoutes = [
     {
-      path: '/',
-      breadcrumbName: 'Explore',
+      path: '',
+      breadcrumbName: 'ទំព័រដើម',
     },
     {
       path: '',
-      breadcrumbName: 'My Profile',
+      breadcrumbName: 'គណនី​របស់ខ្ញុំ',
     },
   ];
   const path = '.'
@@ -40,9 +41,28 @@ function CustomerProfile() {
   return (
     <>
       <PageHeader
-        className="flex flex-wrap items-center justify-between px-8 xl:px-[15px] pt-2 pb-6 sm:pb-[30px] bg-transparent sm:flex-col sm:justify-center"
-        title="My Profile"
-        routes={PageRoutes}
+        className={ isCustomer(data.role) ? "px-8" : 'flex flex-wrap items-center justify-between px-8 xl:px-[15px] pt-2 pb-6 sm:pb-[30px] bg-transparent sm:flex-col sm:justify-center'}
+        title="គណនី​របស់ខ្ញុំ"
+        routes={ isCustomer(data.role) ? null : PageRoutes}
+        ghost
+        buttons={[
+          <Link
+          to='/tour-guide-registration'
+          key="1"
+          className="page-header-actions"
+          >
+            { isCustomer(data.role) && 
+              <Button
+                className="bg-primary hover:bg-hbr-primary border-solid border-1 border-primary text-white dark:text-white87 text-[14px] font-semibold leading-[22px] inline-flex items-center justify-center rounded-[4px] px-[15px] h-[32px]"
+                // className="text-primary hover:text-hbr-primary bg-transparent border-none shadow-none text-base font-medium leading-[22px] inline-flex items-center justify-center rounded-[4px] px-[15px] h-[32px]"
+                size="small"
+                type="primary"
+              >
+                ចូលរួមជាមគ្គុទ្ទេសក៍ទេសចរណ៍ជាមួយពួកយើង📦
+              </Button>
+            }
+          </Link>,
+        ]}
       />
       <main className="min-h-[715px] lg:min-h-[580px] bg-transparent px-8 xl:px-[15px] pb-[50px] ssm:pb-[30px]">
         <Row gutter={25}>
@@ -129,8 +149,7 @@ function CustomerProfile() {
                 }
               >
                 <Routes>
-                  { isTourGuideOrAbove() ? <Route index element={<Shop/>}/> : <Route index element={<FavoriteProductList/>}/>}
-                  { isTourGuideOrAbove() && <Route path="shop" element={<Shop/>}/>}
+                  <Route index element={<FavoriteProductList/>}/>
                   <Route path="favorite" element={<FavoriteProductList/>}/>
                   <Route path="setting/*" element={<EditProfile/>}/>
                   <Route path="*" element={<NotFound/>}/>

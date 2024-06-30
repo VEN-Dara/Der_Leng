@@ -28,7 +28,3 @@ class AcceptBookingSerializer(serializers.ModelSerializer):
         }
         return data
     
-class TourGuideRegistrationSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = TourGuideRegistration
-        fields = '__all__'

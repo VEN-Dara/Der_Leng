@@ -7,7 +7,7 @@ import UilMinus from '@iconscout/react-unicons/icons/uil-minus';
 // ====================================> Local <====================================
 import Heading from '../../../../resource/components/heading/heading';
 import { Button } from '../../../../resource/components/buttons/buttons';
-import { formatDate } from '../../../utility/date';
+import { formatDate } from '../../../utility/format-function/date';
 import { postReview } from '../../../hooks/Product/useReviewFetcher';
 import { Link } from 'react-router-dom';
 

@@ -14,7 +14,7 @@ import Heading from '../../../../resource/components/heading/heading';
 import { Cards } from '../../../../resource/components/cards/frame/cards-frame';
 import { Button } from '../../../../resource/components/buttons/buttons';
 import { GlobalUtilityStyle } from '../../styled';
-import { formatDate } from '../../../utility/date';
+import { formatDate } from '../../../utility/format-function/date';
 import WrappedCheckoutForm from './CheckoutForm';
 import PaymentCard from './PaymentCard';
 import { deletePaymentMedthod, getPaymentMethod } from '../../../../resource/hooks/Checkout/usePaymentFecher';

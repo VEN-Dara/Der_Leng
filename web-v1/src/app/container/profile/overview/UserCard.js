@@ -46,7 +46,9 @@ function UserCards({ user }) {
   return (
     <div className="relative">
       <div className="bg-white dark:bg-white10 px-[25px] pt-[30px] pb-[18px] rounded-[10px] text-center flex flex-col items-center">
-        { isTourGuideOrAbove() && 
+
+        {/* ====================================>> Top right btn <<=================================== */}
+        {/* { isTourGuideOrAbove() && 
           <Link to={`${path}/shop`}>
             <Button
               size="default"
@@ -58,7 +60,7 @@ function UserCards({ user }) {
               <UilShop className="w-[14px] h-[14px]" />
             </Button>
           </Link>
-        }
+        } */}
         <figure className="mb-[18px] h-[120px] w-[120px] relative overflow-hidden rounded-full">
           <img
             className="max-w-full max-h-full w-full h-full rounded-full inline-block object-cover"

@@ -6,7 +6,9 @@ import {
   UilBox,
   UilCube,
   UilStar,
-  UilDollarSign
+  UilDollarSign,
+  UilUsersAlt,
+  UilAt,
 } from '@iconscout/react-unicons';
 import { Menu } from 'antd';
 import React from 'react';
@@ -41,7 +43,7 @@ function MenuItems({ toggleCollapsed }) {
 
   const dispatch = useDispatch();
 
-  const path = '/tour-guide';
+  const path = '/staff';
 
   const pathName = window.location.pathname;
   const pathArray = pathName.split(path);
@@ -100,37 +102,18 @@ function MenuItems({ toggleCollapsed }) {
       !topMenu &&  <UilCreateDashboard className='h-5 w-5' />,
     ),
     getItem(
-      <NavLink onClick={toggleCollapsed} to={`${path}/tour-package`} className='font-kantumruy-pro font-meduim text-sm'>
-        {t('កញ្ចប់ទេសចរណ៍')}
+      <NavLink onClick={toggleCollapsed} to={`${path}/guide-register`} className='font-kantumruy-pro font-meduim text-sm'>
+        {t('សំណើចុះឈ្មោះ')}
       </NavLink>,
-      'កញ្ចប់ទេសចរណ៍',
-      !topMenu &&  <UilBox className='h-5 w-5' />,
+      'សំណើចុះឈ្មោះ',
+      !topMenu &&  <UilAt className='h-5 w-5' />,
     ),
     getItem(
-      <p className='font-kantumruy-pro font-meduim text-sm m-0 p-0'>{t('កញ្ចប់បានកក់')}</p>,
-      'កញ្ចប់បានកក់' ,
-       !topMenu && <UilDollarSign className='h-5 w-5'/>, [
-      getItem(
-        <NavLink onClick={toggleCollapsed} to={`${path}/accept-booking`} className='font-kantumruy-pro font-normal text-sm'>
-          {t('រងចាំទទួលព្រម')}
-        </NavLink>,
-        'រងចាំទទួលព្រម',
-        null,
-      ),
-      getItem(
-        <NavLink onClick={toggleCollapsed} to={`${path}/history-sale`} className='font-kantumruy-pro font-normal text-sm'>
-          {t('បញ្ជីបានកក់')}
-        </NavLink>,
-        'បញ្ជីបានកក់',
-        null,
-      ),
-    ]),
-    getItem(
-      <NavLink onClick={toggleCollapsed} to={`${path}/my-review`} className='font-kantumruy-pro font-meduim text-sm'>
-        {t('ការវាយតម្លៃ')}
+      <NavLink onClick={toggleCollapsed} to={`${path}/tour-guide`} className='font-kantumruy-pro font-meduim text-sm'>
+        {t('បញ្ជីមគ្គុទ្ទេសក៍')}
       </NavLink>,
-      'ការវាយតម្លៃ',
-      !topMenu &&  <UilStar className='h-5 w-5' />,
+      'បញ្ជីមគ្គុទ្ទេសក៍',
+      !topMenu &&  <UilUsersAlt className='h-5 w-5' />,
     ),
     getItem(
       <NavLink onClick={toggleCollapsed} to={`${path}/profile/myProfile/setting/info`} className='font-kantumruy-pro font-meduim text-sm'>

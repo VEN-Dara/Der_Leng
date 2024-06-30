@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import { getReview } from "../../../hooks/Product/useReviewFetcher"
 import { Link, useParams } from "react-router-dom"
 import defaultProfile from "@/app/static/img/default_img/derleng-default-profile.png"
-import { formatDate } from '../../../utility/date'
+import { formatDate } from '../../../utility/format-function/date'
 
 const Review = () => {
 	const [state, setState] = useState({

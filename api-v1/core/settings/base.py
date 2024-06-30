@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'payment',
     'booking',
     'tour_guide',
+    'staff',
     
     # ======> package app <======
     'rest_framework',
@@ -127,6 +128,7 @@ DATABASES = {
         "PORT": os.getenv('DB_PORT'),
         'OPTIONS': {
             'charset': 'utf8mb4',
+            'sql_mode': 'traditional',
         },
     }
 }

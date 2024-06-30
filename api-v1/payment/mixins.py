@@ -95,3 +95,11 @@ def create_transfer(destination, amount, currency="usd"):
 
     return transfer
 
+def create_refund(payment_intent: str, amount_in_cent):
+    refund = stripe.Refund.create(
+    payment_intent=payment_intent,
+    amount=amount_in_cent
+    )
+
+    return refund
+

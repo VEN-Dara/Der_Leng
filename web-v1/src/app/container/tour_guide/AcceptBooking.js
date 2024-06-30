@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Row, Col, Skeleton, Empty } from 'antd';
+import { Row, Col, Skeleton, Empty, message } from 'antd';
 import { PageHeader } from '../../../resource/components/page-headers/page-headers';
 import { GlobalUtilityStyle } from '../styled';
 import AcceptBookingCard from './overview/AcceptBookingCard';
@@ -24,6 +24,10 @@ function AcceptBooking() {
     data: [],
     isLoading: false
   })
+  const [btnLoading, setBtnLoading] = useState({
+    acceptLoading: false,
+    rejectLoading: false
+  })
 
   const fetchBooking = async () => {
     setState(preState => ({ ...preState, isLoading: true }))
@@ -37,6 +41,42 @@ function AcceptBooking() {
       console.error(error)
     } finally {
       setState(preState => ({ ...preState, isLoading: false }))
+    }
+  }
+
+  const acceptBooking = async (id) => {
+    try {
+      setBtnLoading(prevLoading => ({...prevLoading, acceptLoading: true}));
+      const response = await api.put(`/tour-guide/accept_booking/${id}`);
+      setState(preState => ({
+        ...preState,
+        data: state.data.filter(booking => booking.id !== id)
+      }))
+      message.success('អ្នកបានទទួលព្រមការកក់📦✈️');
+      
+    } catch (error) {
+      console.error('Accept booking error', error);
+      
+    } finally {
+      setBtnLoading(prevLoading => ({...prevLoading, acceptLoading: true}));
+    }
+  }
+  
+  const rejectBooking = async (id) => {
+    try {
+      setBtnLoading(prevLoading => ({...prevLoading, rejectLoading: true}));
+      const response = await api.put(`/tour-guide/reject_booking/${id}`);
+      setState(preState => ({
+        ...preState,
+        data: state.data.filter(booking => booking.id !== id)
+      }))
+      message.success('ការកក់បានដកចេញ📦✈️');
+
+    } catch (error) {
+      console.error('reject booking error', error);
+
+    } finally {
+      setBtnLoading(prevLoading => ({...prevLoading, rejectLoading: true}));
     }
   }
 
@@ -61,8 +101,8 @@ function AcceptBooking() {
                     <Skeleton active paragraph={{ rows: 10 }} />
                   </div>
                 ) : state.data.length > 0 ? (
-                  state.data.map((booking) => (
-                    <AcceptBookingCard key={booking.id} data={booking}/>
+                  state.data.map((booking_details) => (
+                    <AcceptBookingCard key={booking_details.id} data={booking_details} btnLoading={btnLoading} handleAcceptBooking={acceptBooking} handleRejectBooking={rejectBooking}/>
                   ))
                 ) : (
                   <div className="bg-white dark:bg-white10 p-[25px] rounded-[10px]">

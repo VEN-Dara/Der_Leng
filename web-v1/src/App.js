@@ -7,13 +7,14 @@ import { ConfigProvider } from 'antd';
 import store from './app/redux/store';   // local store
 import Customer from './app/routes/customer';
 import TourGuide from './app/routes/tour_guide';
+import Staff from './app/routes/staff';
 import Auth from './app/routes/auth/auth';
 import './resource/static/css/style.css';
 import config from './resource/config/config';
 import ProtectedRoute from './resource/components/utilities/protectedRoute';
 import 'antd/dist/antd.less';
 import AuthorizeProtectedRoute from './app/components/utilities/authorizeProtectedRoute';
-import { isTourGuideOrAbove } from './app/utility/function/permission';
+import { isStaffOrAbove, isTourGuideOrAbove } from './app/utility/function/permission';
 import { refreshToken } from './app/redux/authentication/actionCreator';
 import { fetchUser } from './app/redux/user-info/actionCreators';
 
@@ -65,15 +66,16 @@ function ProviderConfig() {
           ) : (
             <Routes>
               <Route path="/tour-guide/*" element={<AuthorizeProtectedRoute path="/*" Component={TourGuide} isAuthorized={isTourGuideOrAbove()} />} />
+              <Route path="/staff/*" element={<AuthorizeProtectedRoute path="/*" Component={Staff} isAuthorized={isStaffOrAbove(user.role)} />} />
               <Route path="/*" element={<ProtectedRoute path="/*" Component={Customer} />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           )}
-          {/* {isLoggedIn && (path === process.env.PUBLIC_URL || path === `${process.env.PUBLIC_URL}/`) && (
+          {isLoggedIn && (path === process.env.PUBLIC_URL || path === `${process.env.PUBLIC_URL}/`) && (
             <Routes>
               <Route path="/" element={<Navigate to="/" />} />
             </Routes>
-          )} */}
+          )}
         </Router>
       </ThemeProvider>
     </ConfigProvider>

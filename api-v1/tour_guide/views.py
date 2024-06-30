@@ -13,7 +13,7 @@ from authentication.models import TourGuideRegistration, User
 from authentication.permissions import IsAdminOrStaffOrTourGuide, IsAdminOrStaffOrTourGuideOrReadOnly
 from booking.models import BookingDetails, Review
 from booking.serializers import BookingDetailsSerializer, ReviewSerializer
-from tour_guide.serializers import AcceptBookingSerializer, TourGuideRegistrationSerializer
+from tour_guide.serializers import AcceptBookingSerializer
 from tour_package.models import Package
 from tour_package.serializers import MediumPackageSerializer
 
@@ -61,7 +61,8 @@ def get_dashboard(request):
 
         booking_this_month = BookingDetails.objects.filter(
             created_at__gte=start_of_month,
-            created_at__lte=end_of_month
+            created_at__lte=end_of_month,
+            cart__service__package__user=user
             )
         
         for booking_detail in booking_this_month:
@@ -73,7 +74,7 @@ def get_dashboard(request):
 
         # ======================>> total_income <<=========================
         total_income: int = 0
-        booking_this_month = BookingDetails.objects.filter()
+        booking_this_month = BookingDetails.objects.filter(cart__service__package__user=user)
         
         for booking_detail in booking_this_month:
             # :: Find unit price after discount ::
@@ -118,24 +119,3 @@ def get_reviews(request):
         return paginator.get_paginated_response(serializers.data)
     except Exception as error:
         return Response( {'error' : str(error)} , status=status.HTTP_400_BAD_REQUEST)
-    
-class TourGuideRegistrationViewSet(viewsets.ModelViewSet):
-    queryset = TourGuideRegistration.objects.all()
-    serializer_class = TourGuideRegistrationSerializer
-
-    def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        
-        # Check if the cv field is a PDF file or an image
-        cv_file = request.FILES.get('cv')
-        if cv_file:
-            if not cv_file.name.endswith(('.pdf', '.jpg', '.jpeg', '.png')):
-                return Response(
-                    {'error': 'CV must be a PDF file or an image (jpg, jpeg, png).'},
-                    status=status.HTTP_400_BAD_REQUEST
-                )
-
-        self.perform_create(serializer)
-        headers = self.get_success_headers(serializer.data)
-        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
