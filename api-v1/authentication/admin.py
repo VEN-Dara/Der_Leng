@@ -13,3 +13,11 @@ class UserAdmin(admin.ModelAdmin):
 @admin.register(User_role)
 class UserAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'description')
+
+class TourGuideRegistrationAdmin(admin.ModelAdmin):
+    list_display = ('id', 'user', 'fullname_khmer', 'fullname_english', 'phone', 'address', 'location_url')
+    list_filter = ('fullname_khmer', 'fullname_english')
+    search_fields = ('user__username', 'fullname_khmer', 'fullname_english', 'phone', 'address')
+    ordering = ('-id',)
+
+admin.site.register(TourGuideRegistration, TourGuideRegistrationAdmin)

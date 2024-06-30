@@ -45,6 +45,7 @@ class CustomerPayment(models.Model):
             editable = False)
     customer = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
     booking = models.OneToOneField(Booking, on_delete=models.SET_NULL, null=True, blank=True)
+    payment_intent_id = models.CharField(max_length=255)
     amount = models.IntegerField()
     amount_received = models.IntegerField()
     currency = models.CharField(max_length = 3)

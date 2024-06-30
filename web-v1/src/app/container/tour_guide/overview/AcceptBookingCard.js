@@ -1,10 +1,12 @@
-import { Button } from "antd";
+import { Button, Spin } from "antd";
 import { Cards } from "../../../../resource/components/cards/frame/cards-frame";
 import DefaultPackageImage from '../../../static/img/default_img/travel-cambodia.png'
-import { formatDate } from "../../../utility/date";
+import { formatDate } from "../../../utility/format-function/date";
+import { Link } from "react-router-dom";
 
-function AcceptBookingCard({data}) {
+function AcceptBookingCard({data, handleAcceptBooking, handleRejectBooking, btnLoading}) {
     const FILE_ENDPOINT = process.env.REACT_APP_FILE_ENDPOINT;
+
     return (
         <Cards headless size="large" className="mb-[25px] ant-card-body-p-0 p-4">
             <div className='flex border-b border-gray-200 dark:border-white10 pb-2'>
@@ -13,7 +15,9 @@ function AcceptBookingCard({data}) {
                         <img src={ data.tour_package.thumbnail ? `${FILE_ENDPOINT}${data.tour_package.thumbnail}` : DefaultPackageImage} className='object-cover h-full w-full' />
                     </div>
                     <div className='flex flex-col justify-between'>
-                        <p className='p-0 m-0 font-kantumruy-pro font-medium text-sm'>{data.tour_package.name}</p>
+                        <Link to={`/tour-guide/tour-package/${data.tour_package.id}`}>
+                            <p className='p-0 m-0 font-kantumruy-pro text-primary font-medium text-sm'>{data.tour_package.name}</p>
+                        </Link>
                         <p className='p-0 m-0 font-kantumruy-pro font-normal text-sm'>ចំនួនអ្នកទេសចរ x{data.customer_amount}</p>
                         <p className='p-0 m-0 font-kantumruy-pro text-sm'> ថ្ងៃទី {formatDate(data.booking_date)}</p>
                     </div>
@@ -34,11 +38,15 @@ function AcceptBookingCard({data}) {
                     </div>
                 </div>
                 <div className='flex gap-2'>
-                    <Button className=" hover:bg-hbr-danger border-solid border-1 border-danger text-danger bg-transparent  hover:text-white text-[14px] font-meduim font-kantumruy-pro leading-[22px] inline-flex items-center justify-center rounded-[32px] px-4 h-[40px]">
-                        បដិសេដ
+                    <Button className="min-w-[70px] hover:bg-hbr-danger border-solid border-1 border-danger text-danger bg-transparent  hover:text-white text-[14px] font-meduim font-kantumruy-pro leading-[22px] inline-flex items-center justify-center rounded-[32px] px-4 h-[40px]"
+                        onClick={() => {handleRejectBooking(data.id)}}
+                        >
+                        {false ? <Spin size="small" ></Spin> : 'បដិសេដ'}
                     </Button>
-                    <Button className="bg-success-transparent hover:bg-hbr-success border-none text-success hover:text-white text-[14px] font-meduim font-kantumruy-pro leading-[22px] inline-flex items-center justify-center rounded-[32px] px-[16px] h-[40px]">
-                        ទទួលព្រម
+                    <Button className="min-w-[75px] bg-success-transparent hover:bg-hbr-success border-none text-success hover:text-white text-[14px] font-meduim font-kantumruy-pro leading-[22px] inline-flex items-center justify-center rounded-[32px] px-[16px] h-[40px]"
+                        onClick={() => {handleAcceptBooking(data.id)}}
+                    >
+                        {false ? <Spin size="small" ></Spin> : 'ទទួលព្រម'}
                     </Button>
                 </div>
             </div>

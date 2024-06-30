@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Row, Col, Skeleton, Empty } from 'antd';
 import { PageHeader } from '../../../resource/components/page-headers/page-headers';
 import { GlobalUtilityStyle } from '../styled';
-import AcceptBookingCard from './overview/AcceptBookingCard';
 import ApiService from '../../config/api/apiService';
+import HistoryBookingCard from './overview/HistoryBookingCard';
 
 // @Todo console warning from button
 
@@ -61,7 +61,7 @@ function AcceptBooking() {
                   </div>
                 ) : state.data.length > 0 ? (
                   state.data.map((booking) => (
-                    <AcceptBookingCard key={booking.id} data={booking}/>
+                    <HistoryBookingCard key={booking.id} data={booking}/>
                   ))
                 ) : (
                   <div className="bg-white dark:bg-white10 p-[25px] rounded-[10px]">

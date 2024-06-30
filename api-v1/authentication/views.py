@@ -17,7 +17,7 @@ from authentication.models import TourGuideRegistration
 from core.settings.rest_framework import SIMPLE_JWT
 from .validations import user_validation, is_valid_email, is_valid_username, validate_user_update
 from .serializers import *
-from .permissions import IsAdmin, IsAdminOrStaffOrReadOnly, IsStaff
+from .permissions import IsAdmin, IsAdminOrStaff, IsAdminOrStaffOrReadOnly, IsStaff
 
 from drf_social_oauth2.views import TokenView, ConvertTokenView
 from .mixins import get_jwt_by_token
@@ -163,8 +163,18 @@ class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
     permission_classes = [IsAdminOrStaffOrReadOnly]
     filter_backends = [DjangoFilterBackend, filters.SearchFilter]
-    filterset_fields = ['fullname', 'username', 'email']
+    filterset_fields = ['fullname', 'username', 'email', 'role__name']
     search_fields = ['fullname', 'username', 'email']
+
+    def get_serializer_class(self):
+        if self.action == 'list':
+            return FullUserSerializer
+        return super().get_serializer_class()
+    
+    def get_permissions(self):
+        if self.action == 'list':
+            return [IsAuthenticated(), IsAdminOrStaff()]
+        return super().get_permissions()
 
 
     def update(self, request, pk=None):

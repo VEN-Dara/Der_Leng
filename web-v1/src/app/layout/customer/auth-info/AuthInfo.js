@@ -25,7 +25,7 @@ import CartBox from './Cart';
 import PaymentBox from './Payment';
 import { changeLayoutMode } from '../../../../resource/redux/themeLayout/actionCreator';
 import { useSelector } from 'react-redux';
-import { isTourGuideOrAbove } from '../../../utility/function/permission';
+import { isTourGuideOrAbove, isStaffOrAbove } from '../../../utility/function/permission';
 
 const FILE_ENDPOINT = process.env.REACT_APP_FILE_ENDPOINT
 
@@ -91,7 +91,7 @@ const AuthInfo = React.memo(() => {
               to="/profile/myProfile"
               className="inline-flex items-center hover:bg-shadow-transparent text-light dark:text-white60 dark:hover:text-white hover:text-primary dark:hover:bg-white10 dark:rounded-4 hover:pl-6 w-full px-2.5 py-3 text-sm transition-all ease-in-out delay-150"
             >
-              <UilUser className="w-4 h-4 ltr:mr-3 rtl:ml-3" /> Profile
+              <UilUser className="w-4 h-4 ltr:mr-3 rtl:ml-3" /> គណនី​របស់ខ្ញុំ
             </Link>
           </li>
           {/* <li>
@@ -107,7 +107,7 @@ const AuthInfo = React.memo(() => {
               to="/booking"
               className="inline-flex items-center hover:bg-shadow-transparent text-light dark:text-white60 dark:hover:text-white hover:text-primary dark:hover:bg-white10 dark:rounded-4 hover:pl-6 w-full px-2.5 py-3 text-sm transition-all ease-in-out delay-150"
             >
-              <UilDollarSign className="w-4 h-4 ltr:mr-3 rtl:ml-3" /> Billing
+              <UilDollarSign className="w-4 h-4 ltr:mr-3 rtl:ml-3" /> កញ្ចប់បានកក់
             </Link>
           </li>
           <li>
@@ -115,7 +115,7 @@ const AuthInfo = React.memo(() => {
               to="#"
               className="inline-flex items-center hover:bg-shadow-transparent text-light dark:text-white60 dark:hover:text-white hover:text-primary dark:hover:bg-white10 dark:rounded-4 hover:pl-6 w-full px-2.5 py-3 text-sm transition-all ease-in-out delay-150"
             >
-              <UilBell className="w-4 h-4 ltr:mr-3 rtl:ml-3" /> Help
+              <UilBell className="w-4 h-4 ltr:mr-3 rtl:ml-3" /> ជំនួយ
             </Link>
           </li>
           <li className={layoutMode === 'lightMode' ? '' : 'hidden'}>
@@ -127,7 +127,7 @@ const AuthInfo = React.memo(() => {
               }}
               className=" border-none inline-flex items-center hover:bg-shadow-transparent text-light dark:text-white60 dark:hover:text-white hover:text-primary dark:hover:bg-white10 dark:rounded-4 hover:pl-6 w-full px-2.5 py-3 text-sm transition-all ease-in-out delay-150"
             >
-              <UilMoon className="w-4 h-4 ltr:mr-3 rtl:ml-3" /> Dark
+              <UilMoon className="w-4 h-4 ltr:mr-3 rtl:ml-3" /> ងងឹត
             </Link>
           </li>
           <li className={layoutMode !== 'lightMode' ? '' : 'hidden'}>
@@ -139,7 +139,7 @@ const AuthInfo = React.memo(() => {
               }}
               className=" border-none inline-flex items-center hover:bg-shadow-transparent text-light dark:text-white60 dark:hover:text-white hover:text-primary dark:hover:bg-white10 dark:rounded-4 hover:pl-6 w-full px-2.5 py-3 text-sm transition-all ease-in-out delay-150"
             >
-              <UilSun className="w-4 h-4 ltr:mr-3 rtl:ml-3" /> Light
+              <UilSun className="w-4 h-4 ltr:mr-3 rtl:ml-3" /> ពន្លឺ
             </Link>
           </li>
 
@@ -150,9 +150,20 @@ const AuthInfo = React.memo(() => {
               to="/tour-guide"
               className="inline-flex items-center hover:bg-shadow-transparent text-light dark:text-white60 dark:hover:text-white hover:text-primary dark:hover:bg-white10 dark:rounded-4 hover:pl-6 w-full px-2.5 py-3 text-sm transition-all ease-in-out delay-150"
             >
-              <UilExchange className="w-4 h-4 ltr:mr-3 rtl:ml-3" /> Switch: Tour Guide
+              <UilExchange className="w-4 h-4 ltr:mr-3 rtl:ml-3" /> ប្តូរជា៖ មគ្គុទ្ទេសក៍ទេសចរណ៍
             </Link>
           </li>
+          }
+          {
+            isStaffOrAbove(user.role) &&
+            <li>
+              <Link
+                to="/staff"
+                className="inline-flex items-center hover:bg-shadow-transparent text-light dark:text-white60 dark:hover:text-white hover:text-primary dark:hover:bg-white10 dark:rounded-4 hover:pl-6 w-full px-2.5 py-3 text-sm transition-all ease-in-out delay-150"
+              >
+                <UilExchange className="w-4 h-4 ltr:mr-3 rtl:ml-3" /> ប្តូរជា៖ បុគ្គលិក
+              </Link>
+            </li>
           }
         </ul>
         <Link
@@ -160,7 +171,7 @@ const AuthInfo = React.memo(() => {
           onClick={SignOut}
           className="flex items-center justify-center text-sm font-medium bg-[#f4f5f7] dark:bg-[#32333f] h-[50px] text-light hover:text-primary dark:hover:text-white60 dark:text-white87 mx-[-15px] mb-[-15px] rounded-b-6"
         >
-          <UilSignout className="w-4 h-4 ltr:mr-3 rtl:ml-3" /> Sign Out
+          <UilSignout className="w-4 h-4 ltr:mr-3 rtl:ml-3" /> ចាកចេញ
         </Link>
       </div>
     </div>

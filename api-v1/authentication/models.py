@@ -52,3 +52,5 @@ class TourGuideRegistration(models.Model):
     phone = models.CharField(max_length=20)
     address = models.CharField(max_length=255)
     location_url = models.URLField(max_length=2000)
+    is_reviewed = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)

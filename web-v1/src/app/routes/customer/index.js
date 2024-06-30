@@ -14,6 +14,7 @@ const BookingPage = lazy(() => import('../../container/pages/Booking.js'))
 const ProductDetails = lazy(() => import('../../container/tour_package/ProductDetails.js'))
 const CheckoutPage = lazy(() => import('../../../resource/container/ecommerce/Checkout.js'))
 import CreatePackage from '../../container/tour_package/CreatePackage.js';
+import TourGuideRegistration from '../../container/customer/TourGuideRegistration.js';
 
 
 const Customer = React.memo(() => {
@@ -49,6 +50,8 @@ const Customer = React.memo(() => {
 
         {/* :: =============== >> Chat and Nitifocation */}
         <Route path="chat/*" element={<Chat />} />
+
+        <Route path="/tour-guide-registration" element={<TourGuideRegistration/>} />
 
         {/* :: =============== >> Not found */}
         <Route path="*" element={<NotFound />} />

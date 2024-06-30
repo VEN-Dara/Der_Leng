@@ -87,7 +87,6 @@ function UpdatePackage({ id }) {
 
     const updatePackage = async (data) => {
         try {
-            console.log(data)
             setCreateLoading(true);
             message.open({
                 content: (
@@ -99,7 +98,7 @@ function UpdatePackage({ id }) {
                 type: 'loading'
             });
             const response = await api.put(`/packages/${id}/`, data);
-            if (response && response.data) {
+            if (response && response.data && !window.location.pathname.startsWith('/tour-guide/tour-package/')) {
                 navigate(`/tour-guide/tour-package/${response.data.id}`)
             }
             // Load message success

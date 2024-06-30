@@ -9,11 +9,13 @@ import json
 from django.forms import ValidationError
 
 #=========================================> DRF
+from django_filters.filters import Q
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import status, viewsets
 from rest_framework.decorators import api_view, permission_classes
+import stripe
 from authentication.models import User
 from authentication.permissions import IsAdmin, IsAdminOrStaffOrReadOnly, IsAdminOrStaffOrTourGuide, IsAdminOrStaffOrTourGuideOrReadOnly, IsStaff, IsTour_Guide, UserRolePermission
 from booking.tasks import cancel_payment_task
@@ -22,10 +24,10 @@ from rest_framework.permissions import IsAuthenticated , IsAuthenticatedOrReadOn
 from rest_framework.pagination import PageNumberPagination
 
 #=========================================> Local
-from booking.mixins import BookingMixin
+from booking.mixins import BookingMixin, calculate_charge_price
 from booking.models import Booking, BookingDetails, Cart
 from payment.models import PaymentMethod
-from payment.mixins import create_payment_intent, create_transfer
+from payment.mixins import create_payment_intent, create_refund, create_transfer
 from booking.serializers import *
 from payment.serializers import CustomerPaymentSerializer, SellerTransactionSerializer
 from tour_package.models import Package, PackageService
@@ -107,15 +109,9 @@ class BookingDetailsAPIView(APIView, UserRolePermission):
 @api_view(['PUT'])
 @permission_classes([IsAdminOrStaffOrTourGuideOrReadOnly])
 def accept_booking(request, pk):
-    booking_details = None
-    request_data = request.data.copy()
     try:
         booking_details = BookingDetails.objects.get(pk=pk)
-    except ObjectDoesNotExist as error:
-        return Response({"error": str(error)}, status=status.HTTP_404_NOT_FOUND)
-    
-    try:
-        seller = booking_details.cart.service.package.user
+        seller: User = booking_details.cart.service.package.user
         if seller.id != request.user.id:
             return Response({"error": "You are not the owner of this package."}, status=status.HTTP_403_FORBIDDEN)
         
@@ -128,7 +124,7 @@ def accept_booking(request, pk):
         booking_details.is_accepted = True
         booking_details.save()
 
-        destination = seller.payment_method_set.first().stripe_payment_method_id
+        destination = seller.paymentmethod_set.first().stripe_payment_method_id
         percentage_commission = Decimal(booking_details.cart.service.package.commission.percentage_of_sale_price)
         commission_price = Decimal(booking_details.unit_price) - ((Decimal(100.00) - percentage_commission) * booking_details.unit_price / Decimal(100.00))
         sale_price = (Decimal('100.00') - Decimal(booking_details.percentage_discount)) * Decimal(booking_details.unit_price) / Decimal('100.00')
@@ -136,17 +132,63 @@ def accept_booking(request, pk):
 
         currency = booking_details.booking.currency
 
-        transfer = create_transfer(destination=destination, amount=amount, currency=currency)
+        # ====================================>> Transfer money to tour-guide <<====================================
+        # Unable to perform since we dont have tour-guide connect acc id
+        # transfer = create_transfer(destination=destination, amount=amount, currency=currency)
 
-        transfer["seller"] = seller.id
-        transfer["booking_details"] = booking_details.id
-        transfer["commission"] = percentage_commission
-        transfer["amount_received"] = transfer.amount
-        transfer["amount"] = amount
-        transfer["payment_method"] = seller.payment_method_set.first().id
-        seller_transaction = store_seller_transaction(transfer)
+        # transfer["seller"] = seller.id
+        # transfer["booking_details"] = booking_details.id
+        # transfer["commission"] = percentage_commission
+        # transfer["amount_received"] = transfer.amount
+        # transfer["amount"] = amount
+        # transfer["payment_method"] = seller.paymentmethod_set.first().id
+        # seller_transaction = store_seller_transaction(transfer)
 
-        return Response(SellerTransactionSerializer(seller_transaction).data, status=status.HTTP_200_OK)
+        return Response({"message": "ការកក់បានយល់ព្រម"}, status=status.HTTP_200_OK)
+    except Exception as error:
+        return Response({"error": str(error)}, status=status.HTTP_400_BAD_REQUEST)
+    
+@api_view(['PUT'])
+@permission_classes([IsAdminOrStaffOrTourGuideOrReadOnly])
+def reject_booking(request, pk):
+    try:
+        current_booking_details: BookingDetails = BookingDetails.objects.get(pk=pk)
+        seller: User = current_booking_details.cart.service.package.user
+        if seller.id != request.user.id:
+            return Response({"error": "You are not the owner of this package."}, status=status.HTTP_403_FORBIDDEN)
+        
+        if current_booking_details.is_closed:
+            return Response({"error": "Booking is already closed."}, status=status.HTTP_400_BAD_REQUEST)
+        
+        if current_booking_details.is_accepted:
+            return Response({"message": "Booking is already accepted."}, status=status.HTTP_400_BAD_REQUEST)
+
+        current_booking_details.is_closed = True
+        current_booking_details.save()
+
+        # ==========================>> Perform refund <<==========================
+        # * Check booking that include all booking_detail to refund them at one
+        # * Perform refund only if current booking_detail is the last reject
+        booking: Booking = current_booking_details.booking
+
+        # :: Check not reviewed booking ::
+        not_review_booking_exist : bool = BookingDetails.objects.filter(Q(booking=booking) & Q(is_closed=False) & Q(is_accepted=False)).exists()
+        # :: If no more all booking reviewed ::
+        if(not not_review_booking_exist):
+            rejected_booking_details = BookingDetails.objects.filter(Q(booking=booking) & Q(is_closed=True) & Q(is_accepted=False))
+            refund_amount: Decimal = 0
+            for bk in rejected_booking_details:
+                charge_price = calculate_charge_price(bk.unit_price, bk.percentage_discount)
+                refund_amount += charge_price * bk.cart.customer_amount
+
+            #  :: Perform refund ::
+            payment_intent: str = booking.customerpayment.payment_intent_id
+            refund = create_refund(payment_intent, refund_amount)
+            
+            return Response({"message": refund}, status=status.HTTP_200_OK)
+
+        # return Response({"message": refund}, status=status.HTTP_200_OK)
+        return Response({"message": "ការកក់បានបដិសេធ និងបិទ"}, status=status.HTTP_200_OK)
     except Exception as error:
         return Response({"error": str(error)}, status=status.HTTP_400_BAD_REQUEST)
 

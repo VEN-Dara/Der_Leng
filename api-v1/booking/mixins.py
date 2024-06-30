@@ -40,7 +40,7 @@ class BookingMixin:
         customer_payment_data["customer"] = user_id
         customer_payment_data["booking"] = booking_id
         customer_payment_data["payment_method"] = payment_method_id
-        customer_payment_data["id"] = payment_intent["id"]
+        customer_payment_data["payment_intent_id"] = payment_intent["id"]
         customer_payment_data["amount"] = payment_intent["amount"]
         customer_payment_data["amount_received"] = payment_intent["amount_received"]
         customer_payment_data["currency"] = payment_intent["currency"]
@@ -56,4 +56,7 @@ class BookingMixin:
         # Calculate the time when the task should be executed (e.g., LIMIT_TIME_FOR_BOOKING_ACCEPT from now)
         execution_time = timezone.now() + timezone.timedelta(minutes=int(base.LIMIT_TIME_FOR_BOOKING_ACCEPT))
         cancel_payment_task.apply_async(args=[customer_payment_id], eta=execution_time)
+
+def calculate_charge_price(unit_price, percentage_discount):
+    return (Decimal('100.00') - Decimal(percentage_discount)) * Decimal(unit_price) / Decimal('100.00')
 

@@ -25,15 +25,11 @@ import CartBox from './Cart';
 import PaymentBox from './Payment';
 import { changeLayoutMode } from '../../../../resource/redux/themeLayout/actionCreator';
 import { useSelector } from 'react-redux';
+import { isStaffOrAbove } from '../../../utility/function/permission'
 
 const FILE_ENDPOINT = process.env.REACT_APP_FILE_ENDPOINT
 
 const AuthInfo = React.memo(() => {
-  const [user, setUser] = useState({
-    fullname: "",
-    profile_image: "",
-    role: {name: "customer", id: ""}
-  })
 
   const dispatch = useDispatch();
   const [state, setState] = useState({
@@ -43,9 +39,10 @@ const AuthInfo = React.memo(() => {
   const { i18n } = useTranslation();
   const { flag } = state;
 
-  const { layoutMode } = useSelector((state) => {
+  const { layoutMode, user } = useSelector((state) => {
     return {
       layoutMode: state.ChangeLayoutMode.mode,
+      user: state.userReducer.user
     };
   });
 
@@ -67,14 +64,6 @@ const AuthInfo = React.memo(() => {
     dispatch(changeLayoutMode(mode));
   };
 
-  useEffect(() => {
-    // :: Set user info ::
-    const user_info = localStorage.getItem("user")
-    if(user_info) {
-      setUser(JSON.parse(user_info))
-    }
-  }, [])
-
   const userContent = (
     <div>
       <div className="min-w-[280px] sm:min-w-full pt-4">
@@ -83,8 +72,8 @@ const AuthInfo = React.memo(() => {
             <img
               className='object-cover w-full h-full'
               src={
-                user.profile_image ?
-                `${FILE_ENDPOINT}${user.profile_image}` : 
+                user.profileImage ?
+                `${FILE_ENDPOINT}${user.profileImage}` : 
                 require('../../../static/img/default_img/derleng-default-profile.png')
               }
               alt="" 
@@ -103,17 +92,9 @@ const AuthInfo = React.memo(() => {
               to="/tour-guide/profile/myProfile"
               className="inline-flex items-center hover:bg-shadow-transparent text-light dark:text-white60 dark:hover:text-white hover:text-primary dark:hover:bg-white10 dark:rounded-4 hover:pl-6 w-full px-2.5 py-3 text-sm transition-all ease-in-out delay-150"
             >
-              <UilUser className="w-4 h-4 ltr:mr-3 rtl:ml-3" /> Profile
+              <UilUser className="w-4 h-4 ltr:mr-3 rtl:ml-3" /> គណនី​របស់ខ្ញុំ
             </Link>
           </li>
-          {/* <li>
-            <Link
-              to="#"
-              className="inline-flex items-center hover:bg-shadow-transparent text-light dark:text-white60 dark:hover:text-white hover:text-primary dark:hover:bg-white10 dark:rounded-4 hover:pl-6 w-full px-2.5 py-3 text-sm transition-all ease-in-out delay-150"
-            >
-              <UilSetting className="w-4 h-4 ltr:mr-3 rtl:ml-3" /> Settings
-            </Link>
-          </li> */}
           <li className={layoutMode === 'lightMode' ? '' : 'hidden'}>
             <Link
               to="#"
@@ -123,7 +104,7 @@ const AuthInfo = React.memo(() => {
               }}
               className=" border-none inline-flex items-center hover:bg-shadow-transparent text-light dark:text-white60 dark:hover:text-white hover:text-primary dark:hover:bg-white10 dark:rounded-4 hover:pl-6 w-full px-2.5 py-3 text-sm transition-all ease-in-out delay-150"
             >
-              <UilMoon className="w-4 h-4 ltr:mr-3 rtl:ml-3" /> Dark
+              <UilMoon className="w-4 h-4 ltr:mr-3 rtl:ml-3" /> ងងឹត
             </Link>
           </li>
           <li className={layoutMode !== 'lightMode' ? '' : 'hidden'}>
@@ -135,15 +116,26 @@ const AuthInfo = React.memo(() => {
               }}
               className=" border-none inline-flex items-center hover:bg-shadow-transparent text-light dark:text-white60 dark:hover:text-white hover:text-primary dark:hover:bg-white10 dark:rounded-4 hover:pl-6 w-full px-2.5 py-3 text-sm transition-all ease-in-out delay-150"
             >
-              <UilSun className="w-4 h-4 ltr:mr-3 rtl:ml-3" /> Light
+              <UilSun className="w-4 h-4 ltr:mr-3 rtl:ml-3" /> ពន្លឺ
             </Link>
           </li>
+          {
+            isStaffOrAbove(user.role) &&
+            <li>
+              <Link
+                to="/staff"
+                className="inline-flex items-center hover:bg-shadow-transparent text-light dark:text-white60 dark:hover:text-white hover:text-primary dark:hover:bg-white10 dark:rounded-4 hover:pl-6 w-full px-2.5 py-3 text-sm transition-all ease-in-out delay-150"
+              >
+                <UilExchange className="w-4 h-4 ltr:mr-3 rtl:ml-3" /> ប្តូរជា៖ បុគ្គលិក
+              </Link>
+            </li>
+          }
           <li>
             <Link
               to="/"
               className="inline-flex items-center hover:bg-shadow-transparent text-light dark:text-white60 dark:hover:text-white hover:text-primary dark:hover:bg-white10 dark:rounded-4 hover:pl-6 w-full px-2.5 py-3 text-sm transition-all ease-in-out delay-150"
             >
-              <UilExchange className="w-4 h-4 ltr:mr-3 rtl:ml-3" /> Switch: Customer
+              <UilExchange className="w-4 h-4 ltr:mr-3 rtl:ml-3" /> ប្តូរជា៖ អតិថិជន
             </Link>
           </li>
         </ul>
@@ -152,7 +144,7 @@ const AuthInfo = React.memo(() => {
           onClick={SignOut}
           className="flex items-center justify-center text-sm font-medium bg-[#f4f5f7] dark:bg-[#32333f] h-[50px] text-light hover:text-primary dark:hover:text-white60 dark:text-white87 mx-[-15px] mb-[-15px] rounded-b-6"
         >
-          <UilSignout className="w-4 h-4 ltr:mr-3 rtl:ml-3" /> Sign Out
+          <UilSignout className="w-4 h-4 ltr:mr-3 rtl:ml-3" /> ចាកចេញ
         </Link>
       </div>
     </div>
@@ -198,9 +190,9 @@ const AuthInfo = React.memo(() => {
 
   return (
     <div className="flex items-center justify-end flex-auto">
-      <div className="md:hidden">
+      {/* <div className="md:hidden">
         <Search />
-      </div>
+      </div> */}
       <Message />
       <Notification />
 
@@ -220,8 +212,8 @@ const AuthInfo = React.memo(() => {
           <Link to="#" className="flex items-center text-light whitespace-nowrap">
             <Avatar 
             src={
-                user.profile_image ?
-                `${FILE_ENDPOINT}${user.profile_image}` : 
+                user.profileImage ?
+                `${FILE_ENDPOINT}${user.profileImage}` : 
                 require('../../../static/img/default_img/derleng-default-profile.png')
               } />
             <span className="ltr:mr-1.5 rtl:ml-1.5 ltr:ml-2.5 rtl:mr-2.5 text-body dark:text-white60 text-sm font-medium md:hidden">

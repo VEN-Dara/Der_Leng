@@ -32,7 +32,7 @@ const useScrollFetcher = ({path, moreVariablePath=''}) => {
 
     const fetchPackage = async (page) => {
         try {
-            const response = await DataService.get(`${path}?page=${page}&${moreVariablePath}}`);
+            const response = await DataService.get(`${path}?page=${page}&${moreVariablePath}`);
             if (response.status === 200) {
                 console.log("Add data..")
                 setState(prevState => ({

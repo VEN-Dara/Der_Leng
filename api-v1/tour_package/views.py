@@ -1,7 +1,8 @@
 from django.db.models import Avg, Count
 from django.forms import ValidationError
 from rest_framework import viewsets, filters, status
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.exceptions import PermissionDenied
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
@@ -11,7 +12,7 @@ from rest_framework.pagination import PageNumberPagination
 from django_filters.rest_framework import DjangoFilterBackend
 
 from tour_package.models import *
-from authentication.permissions import IsAdminOrStaffOrReadOnly, IsAdminOrStaffOrTourGuideOrReadOnly
+from authentication.permissions import IsAdminOrStaffOrReadOnly, IsAdminOrStaffOrTourGuide, IsAdminOrStaffOrTourGuideOrReadOnly
 from tour_package.serializers import *
 from tour_package.mixins import *
 
@@ -90,8 +91,6 @@ class PackageViewSet(viewsets.ModelViewSet, PackageMixin):
     def update(self, request, *args, **kwargs):
         try:
             request_data = request.data.copy()
-            print("============================================")
-            print(request_data)
             package_instance = self.get_object()
             request_data['user'] = request.user.id
 
@@ -151,6 +150,39 @@ class CategoryViewSet(viewsets.ModelViewSet):
     filter_backends = [DjangoFilterBackend]
     filterset_fields = '__all__'
 
+class ScheduleViewSet(viewsets.ModelViewSet):
+    queryset = PackageSchedule.objects.all()
+    serializer_class = PackageScheduleSerializer
+    permission_classes = [IsAdminOrStaffOrTourGuideOrReadOnly]
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = '__all__'
+
+class ServiceViewSet(viewsets.ModelViewSet):
+    queryset = PackageService.objects.all()
+    serializer_class = PackageServiceSerializer
+    permission_classes = [IsAdminOrStaffOrTourGuideOrReadOnly]
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = '__all__'
+
+    """
+    Service is not allowed to delete to prevent from preblem that customer already booked but Service turn to null. 
+    Instead of delete Service.is_close = True
+    """
+    def destroy(self, request, *args, **kwargs):
+        try:
+            user: User = request.user
+            delete_service: PackageService = self.get_object()
+
+            #Validate Authorize if tour-guide is owner of service
+            if(user.role.name == "tour_guide" and delete_service.package.user.id != user.id):
+                raise PermissionDenied("You do not have permission to perform this action.")
+
+            delete_service.is_close = True
+            delete_service.save()
+            return Response({"message": "Service closed successfully."}, status=status.HTTP_200_OK)
+        except Exception as error:
+            return Response({"error": str(error)}, status=status.HTTP_404_NOT_FOUND)
+
 class FavoritePackageAPIView(APIView):
     permission_classes = [IsAuthenticated]
 
@@ -204,6 +236,31 @@ def get_create_package_setup(request):
         response = {
             "categories": category_data,
             "charge_types": charge_types_data
+        }
+        return Response(response, status=status.HTTP_200_OK)
+    except Exception as error:
+        return Response( {'error' : str(error)} , status=status.HTTP_400_BAD_REQUEST)
+    
+@api_view(['GET'])
+@permission_classes([IsAuthenticated, IsAdminOrStaffOrTourGuide])
+def get_update_package_setup(request, pk):
+    try:
+        # :: Get category ::
+        categories = PackageCategory.objects.all()
+        category_data = PackageCategorySerializer(categories, many=True).data
+
+        # :: Get charge type ::
+        charge_types = PackageChargeType.objects.all()
+        charge_types_data = PackageChargeTypeSerializer(charge_types, many=True).data
+
+        # :: Get package info ::
+        package = Package.objects.get(id=pk)
+        package_data = BasicPackageSerializer(package).data
+
+        response = {
+            "categories": category_data,
+            "charge_types": charge_types_data,
+            "package_data": package_data
         }
         return Response(response, status=status.HTTP_200_OK)
     except Exception as error:

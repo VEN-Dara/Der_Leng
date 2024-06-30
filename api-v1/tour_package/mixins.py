@@ -44,10 +44,10 @@ class PackageMixin:
         existing_service_ids = set(service["id"] for service in services if service.get("id"))
 
         # Close service if service not exist when update
-        for existed_service in package_instance.packageservice_set.all():
-            if existed_service.id not in existing_service_ids:
-                existed_service.is_close = True
-                existed_service.save()
+        # for existed_service in package_instance.packageservice_set.all():
+        #     if existed_service.id not in existing_service_ids:
+        #         existed_service.is_close = True
+        #         existed_service.save()
 
         for service_data in services:
             service_instance = PackageService.objects.filter(id=service_data.get("id")).first()

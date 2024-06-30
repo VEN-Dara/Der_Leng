@@ -9,7 +9,7 @@ import { GlobalUtilityStyle } from '../../styled';
 import Heading from '../../../../resource/components/heading/heading';
 import { Button } from '../../../../resource/components/buttons/buttons';
 import { deleteCart, putCart } from '../../../hooks/Product/useCartFetcher';
-import { formatDate } from '../../../utility/date';
+import { formatDate } from '../../../utility/format-function/date';
 
 const FILE_ENDPOINT = process.env.REACT_APP_FILE_ENDPOINT
 
