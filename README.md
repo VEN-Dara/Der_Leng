@@ -42,7 +42,7 @@
 
 7. **Switch to Frontend Directory:**
    ```bash
-   cd ../web-v1  # Assuming web-v1 is located in the parent directory
+   cd ../web-v1
    ```
 
 8. **Install Node.js Dependencies:**
@@ -60,6 +60,43 @@
 Once both backend and frontend servers are running:
 - Django API server should be available at: `http://localhost:8000`
 - React development server should be available at: `http://localhost:3000`
+
+
+### Testing User Accounts
+
+Use the following credentials to log in and test different roles in the application:
+
+- **Admin Role:**
+  ```json
+  {
+      "username": "derleng",
+      "password": "123"
+  }
+  ```
+
+- **Staff Role:**
+  ```json
+  {
+      "username": "staff",
+      "password": "staff@123.com"
+  }
+  ```
+
+- **Tour Guide Role:**
+  ```json
+  {
+      "username": "tourguide",
+      "password": "tourguide@123.com"
+  }
+  ```
+
+- **Customer Role:**
+  ```json
+  {
+      "username": "customer",
+      "password": "customer@123.com"
+  }
+  ```
 
 ### Troubleshooting and Support
 
