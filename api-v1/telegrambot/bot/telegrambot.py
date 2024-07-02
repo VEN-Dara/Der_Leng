@@ -99,7 +99,7 @@ def handle_response(user_query, telegram_account: TelegramAccount) -> str:
     elif telegram_account.last_bot_message.startswith("សូម​បញ្ចូល​ពាក្យ​សម្ងាត់​គណនីដើរលេងរបស់អ្នក"):
         username = telegram_account.last_user_response
         password = user_query
-        find_users = User.objects.filter(Q(username=username) or Q(email=username) or Q(phone=username))
+        find_users = User.objects.filter(Q(username=username) | Q(email=username) | Q(phone=username))
         for user in find_users:
             auth : User = authenticate(username=user.username, password=password)
             if(auth):
