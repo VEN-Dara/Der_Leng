@@ -1,0 +1,19 @@
+{/* ===========================================> Skill Profile <=========================================== */}
+
+  const useFetcher = new UseFetcher();
+  const [state, setState] = useState({
+    isLoading: false,
+    data: [],
+    next: null,
+    page: 1,
+    message: null,
+  })
+
+  useEffect(() => {
+    useFetcher.get(setState, url)
+  }, [])
+
+    const FILE_ENDPOINT = process.env.REACT_APP_FILE_ENDPOINT
+
+Change order of Row col: md:order-[-1]
+<Col xxl={18} lg={16} md={14} xs={24} className="md:order-[-1] md:mb-[25px]">

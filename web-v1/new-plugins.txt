@@ -1,0 +1,9 @@
+=============================> UI Library <========================
+flowbite-react
+npm i -D daisyui@latest
+
+npm i react-phone-number-input
+
+npm install -g depcheck // For report unused dependency
+
+npm install gh-pages --save-dev

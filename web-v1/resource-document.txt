@@ -1,0 +1,13 @@
+=======================> Default Layout <======================
+Topmenu, rlt : src\config\config.js     name when import in use: CustomizerWrap
+
+
+=======================> Layout <======================
+Left-Menu: src\layout\MenueItems.js
+Header-Layout: src\layout\withAdminLayout.js
+Topmenu: src\layout\TopMenu.js
+Initial config: src\resource\config\config.js
+
+======================> Content Container <====================
+Router-sceen : src\routes\admin\index.js
+

@@ -1,0 +1,15 @@
+User: hello
+    hello@123.com
+    hello@123.com
+
+SuperUser:
+    derleng
+    123
+
+Generate_Client:
+    client_id: Wydpxn7G9BWLIgEqbxStNnnm2Q5cAFDZJdJmSDc4
+    client_secret: t2nSA0EbDOOCQBjX7KunqGDpasuFauXpUU1Lj3krXostFpDBeRvfSTgGSUYWAMhypQ0BjOF6ZZXuL8okCjxyFw64ZS7OGwJLhFr5yawD7zD6BsZOosxd7iNCVSv2TtRF
+
+Stripe API Key:
+    public: pk_test_51OZ39KEhnoYmMdGFSvv1RIwpmpTwomgfuDgC8ot0IhZjMQadFcvKCrG9S4WtF4rH8KYAJYXk8KoTLfDS0Ik4PhJM00EkgSHA9W
+    Screte: sk_test_51OZ39KEhnoYmMdGF7p13XMaeYH88r4uMiUKAiI6dwgasyO8cJ3dKCY1VXgkImx6maKtoJHnzrsV9eoRlcYukrkvd00Qze0DlDs

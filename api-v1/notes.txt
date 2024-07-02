@@ -1,0 +1,71 @@
+// ::_>> Admin
+{
+    "username": "derleng",
+    "password": "123"
+}
+// ::_>> Staff
+{
+    "username": "staff",
+    "password": "staff@123.com"
+}
+
+// ::_>> Tour guide
+{
+    "username": "tourguide",
+    "password": "tourguide@123.com"
+}
+
+// ::_>> Customer
+{
+    "username": "customer",
+    "password": "customer@123.com"
+}
+
+Generate_Client:
+    client_id: FJfTHZjuIRwzmOgjtJQeYzt5r5FXmgJHwDnMNsXP
+    client_secret: fpdySFRYEReIJ0cTONkHTlIEXxoVooli4Gmxvm3XXhb0RGgchOCTTXNIq05VXuXDZNNFKgePjqkgK3AfAj9MhT3xziaFnokBXQMELqhgwNjEXTnQuz34TcnlTx34gWlU
+
+Stripe API Key:
+    public: pk_test_51OZ39KEhnoYmMdGFSvv1RIwpmpTwomgfuDgC8ot0IhZjMQadFcvKCrG9S4WtF4rH8KYAJYXk8KoTLfDS0Ik4PhJM00EkgSHA9W
+    Screte: sk_test_51OZ39KEhnoYmMdGF7p13XMaeYH88r4uMiUKAiI6dwgasyO8cJ3dKCY1VXgkImx6maKtoJHnzrsV9eoRlcYukrkvd00Qze0DlDs
+
+# ===============================> Core Library <=====================================
+# ===============================> Third Party <=====================================
+# ===============================> Local <=====================================
+
+==============================================================================>> Usage command
+#=================> Seed Data
+python manage.py loaddata ./database/0004_initail_data.json         # Use the latest file json
+
+#==================> Backup database to Json
+python -Xutf8 ./manage.py dumpdata app-1 app-2 --indent 4 > data.json
+or
+python ./manage.py dumpdata app-1 app-2 --indent 4 -o data.json
+
+#==================> Fake database
+python manage.py seed app-1 --number=15
+
+
+==============================================================================>> Install package
+pip install django
+pip install djangorestframework
+pip install djangorestframework-simplejwt
+pip install django-environ
+pip install drf_social_oauth2==2.1.3
+python -m pip install django-cors-headers
+python -m pip install Pillow
+
+pip install pipreqs for write requirement.txt
+pipreqs /path/to/project
+
+pip install django-filter
+
+pip install stripe
+
+pip install --upgrade setuptools
+
+pip install django-seed         # Auto fake data to db
+
+pip install psycopg2
+
+pip install celery[redis]       # For future task 

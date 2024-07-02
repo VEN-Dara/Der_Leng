@@ -1,0 +1,18 @@
+[
+  {
+    "model": "tour_package.packagecommission",
+    "pk": "613b6caf-7bee-4d6d-a58a-c1641eb21a4f",
+    "fields": {
+      "type": "free",
+      "percentage_of_sale_price": 0.0
+    }
+  },
+  {
+    "model": "tour_package.packagecommission",
+    "pk": "8123e37e-d617-42e6-a3dd-929c0091cb21",
+    "fields": {
+      "type": "normal",
+      "percentage_of_sale_price": 5.00
+    }
+  }
+]
