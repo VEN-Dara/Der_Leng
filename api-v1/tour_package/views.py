@@ -61,7 +61,7 @@ class PackageViewSet(viewsets.ModelViewSet, PackageMixin):
             package_instance = package_serializer.save()
 
             images = request_data.getlist("images")
-            if not images or len(images):
+            if not images or len(images) == 0:
                 raise ValidationError({"images": "package's images is required at least one and at most ten."})
             
             self.assign_image(package_instance=package_instance, images=images)
