@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'booking',
     'tour_guide',
     'staff',
+    'telegrambot',
     
     # ======> package app <======
     'rest_framework',
@@ -81,12 +82,14 @@ CORS_ALLOWED_ORIGINS = [
     os.getenv("FRONEND_TRUSTED_ORIGINS_1"),
     os.getenv("FRONEND_TRUSTED_ORIGINS_2"),
     os.getenv("FRONEND_TRUSTED_ORIGINS_3"),
+    "https://*.ngrok-free.app",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     os.getenv("FRONEND_TRUSTED_ORIGINS_1"),
     os.getenv("FRONEND_TRUSTED_ORIGINS_2"),
     os.getenv("FRONEND_TRUSTED_ORIGINS_3"),
+    "https://*.ngrok-free.app",
 ]
 
 TEMPLATES = [
@@ -214,13 +217,19 @@ AUTH_USER_MODEL = 'authentication.User'
 #===========================> Media Dir and File <===========================
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
-FILE_UPLOAD_MAX_MEMORY_SIZE = 10 * 1024 * 1024 # 10 Mb limit
+FILE_UPLOAD_MAX_MEMORY_SIZE = 10 * 1024 * 1024 * 10 # 10 Mb limit
 
 #===========================> Stripe Key <===========================
 STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLISHABLE_KEY')
 STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY')
 
 #===========================> Celery Conf <===========================
-
 LIMIT_TIME_FOR_BOOKING_ACCEPT = 1
+
+#===========================> URL <===========================
+API_DOMAIN_NAME = os.getenv('API_DOMAIN_NAME', 'http://localhost:8000')
+
+#===========================> Telegram <===========================
+TELEGRAM_API_URL = "https://api.telegram.org"
+TELGRAM_BOT_TOKEN = os.getenv('TELGRAM_BOT_TOKEN')
 
