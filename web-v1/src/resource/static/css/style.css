@@ -37,6 +37,7 @@ hr{
   direction: rtl;
 }
 
+
 /* Grid Style */
 .grid-style .ant-row .ant-col, .grid-style .ant-row-flex .ant-col,
 .grid-style-gutter .ant-row .ant-col .gutter-box, .grid-style-gutter .ant-row-flex .ant-col .gutter-box,

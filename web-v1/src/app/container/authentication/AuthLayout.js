@@ -15,9 +15,9 @@ const AuthLayout = (WraperContent) => {
       >
         <div
           style={{ backgroundImage: `url("${AdminBgLight}")` }}
-          className="bg-top bg-no-repeat"
+          className="bg-top bg-no-repeat bg-white dark:bg-[#010413]"
         >
-          <div className="py-[120px] 2xl:py-[80px] px-[15px]">
+          <div className="py-[120px] 2xl:py-[80px] px-[15px]bg">
             <div className="flex justify-center">
               <img className="dark:hidden" src={DerlengLogo.default} alt="" />
               <img className="hidden dark:block" src={DerlengLogo.default} alt="" />

@@ -7,7 +7,6 @@ import { PageHeader } from '../../../resource/components/page-headers/page-heade
 import { getBooking } from '../../hooks/Checkout/useBookingFetcher';
 
 const BookingTable = lazy(() => import('../sale/overview/BookingTable'));
-const Ordersummary = lazy(() => import('../sale/overview/Ordersummary'));
 
 function BookingPage() {
   const PageRoutes = [

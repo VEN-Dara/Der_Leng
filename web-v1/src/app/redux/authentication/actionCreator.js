@@ -3,8 +3,6 @@ import actions from './actions';
 import axios from 'axios';
 import { DataService } from '../../config/dataService/dataService';
 import { getItem } from '../../utility/function/localStorageControl';
-import { useDispatch } from 'react-redux';
-import { useNavigation } from 'react-router-dom';
 import { FETCH_USER_SUCCESS } from '../user-info/actions';
 
 const { loginBegin, loginSuccess, loginErr, logoutBegin, logoutSuccess, logoutErr } = actions;
@@ -23,7 +21,7 @@ const login = (values, callback) => {
         Cookies.set('logedIn', true);
 
         // =============> Save User Info to Local Storage <=============
-        localStorage.setItem("user", JSON.stringify(response.data.user))
+        // localStorage.setItem("user", JSON.stringify(response.data.user))
         dispatch({
           type: FETCH_USER_SUCCESS,
           payload: response.data.user
@@ -44,6 +42,13 @@ const register = (values) => {
     dispatch(loginBegin());
     try {
       const response = await axios.post(`${API_ENDPOINT}/auth/users/register`, values, {headers: {'Content-Type': 'application/json'}});
+      // ================== Save user info to globle variable ==================
+      console.log(response.data)
+      dispatch({
+        type: FETCH_USER_SUCCESS,
+        payload: response.data
+      });
+
       dispatch(loginSuccess(false));
       return response
     } catch (err) {
@@ -53,12 +58,14 @@ const register = (values) => {
   };
 };
 
+
 const logOut = (callback) => {
   return async (dispatch) => {
     dispatch(logoutBegin());
     try {
       Cookies.remove('logedIn');
       Cookies.remove('access_token');
+      Cookies.remove('refresh_token');
       localStorage.removeItem('user')
       dispatch(logoutSuccess(false));
       callback();
@@ -82,8 +89,8 @@ const refreshToken = async () => {
 
 const isUsernameExist = async (values) => {
     try {
-      const response = await axios.get(`${API_ENDPOINT}/auth/users/?username=${values}`); 
-      return response.data.count > 0
+      const response = await axios.get(`${API_ENDPOINT}/auth/user/is_username_exist/${values}`); 
+      return response.data.is_username_exist
     } catch (err) {
       throw err
     }

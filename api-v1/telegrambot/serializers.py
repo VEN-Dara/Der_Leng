@@ -5,3 +5,8 @@ class TelegramAccountSerializer(serializers.ModelSerializer):
     class Meta:
         model = TelegramAccount
         fields = '__all__'
+
+class BasicTelegramAccountSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TelegramAccount
+        fields = ['id', 'first_name', 'last_name',  "username"]

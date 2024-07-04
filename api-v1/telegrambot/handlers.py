@@ -16,10 +16,7 @@ def handle_update(update: Update):
 
         # Exist acc
         try:
-            print("-===============")
-            print(chat_id)
             acc = TelegramAccount.objects.get(id=chat_id)
-            print("acc")
         except TelegramAccount.DoesNotExist:
             data = {
                 'id': chat.id,
@@ -31,13 +28,14 @@ def handle_update(update: Update):
             serializer = TelegramAccountSerializer(data=data)
             serializer.is_valid(raise_exception=True)
             acc = serializer.save()
-            print(acc)
 
         response = handle_response(text, acc)
+
     # elif update.channel_post:
     #     chat_id = update.channel_post.chat.id
     #     text = update.channel_post.text
     #     response = handle_response(text)
+    
     else:
         return
 

@@ -79,7 +79,7 @@ function CreatePackage() {
             });
             const response = await api.post('/packages/', data);
             if(response && response.data) {
-                navigate(`/tour-service/${response.data.id}`)
+                navigate(`/tour-guide/tour-package/${response.data.id}`)
             }
             // Load message success
             message.destroy();

@@ -18,11 +18,11 @@ function Product() {
   const PageRoutes = [
     {
       path: '/',
-      breadcrumbName: 'Home',
+      breadcrumbName: 'ទំព័រដើម',
     },
     {
       path: '',
-      breadcrumbName: 'Tour Service',
+      breadcrumbName: 'កញ្ចប់ដំណើរកម្សាន្ត',
     },
   ];
   const path = '.';
@@ -58,7 +58,7 @@ function Product() {
     <>
       <PageHeader
         routes={PageRoutes}
-        title="Shop"
+        title="កញ្ចប់ដំណើរកម្សាន្ត"
         className="flex  justify-between items-center px-8 xl:px-[15px] pt-2 pb-6 sm:pb-[30px] bg-transparent sm:flex-col"
       />
       <main className="min-h-[715px] lg:min-h-[580px] bg-transparent px-8 xl:px-[15px] pb-[50px] ssm:pb-[30px]">
@@ -74,7 +74,7 @@ function Product() {
           {/* ================================> Sort Nav Prduct <================================ */}
           <div className="flex items-center flex-wrap gap-[25px] 3xl:justify-center">
             <div className="text-body dark:text-white60 flex flex-wrap items-center gap-[20px] 3xl:justify-center">
-              <span>Sort by:</span>
+              <span>តម្រៀបតាម:</span>
               <Radio.Group
                 onChange={onSorting}
                 defaultValue="-amount_rating,-avg_rating"
@@ -90,7 +90,7 @@ function Product() {
                       : 'text-light-extra dark:text-white60'
                     }`}
                 >
-                  Top Rated
+                  វាយតម្លៃកំពូល
                 </Radio.Button>
                 <Radio.Button
                   value="-created_at"
@@ -102,7 +102,7 @@ function Product() {
                       : 'text-light-extra dark:text-white60'
                     }`}
                 >
-                  Newest
+                  ថ្មីបំផុត
                 </Radio.Button>
                 {/* <Radio.Button
                   value="popular"

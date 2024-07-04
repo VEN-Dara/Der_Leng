@@ -2,15 +2,9 @@ import React, { useState, useCallback } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { Form, Input, Button, Row, Col } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { Auth0Lock } from 'auth0-lock';
 import { login } from '../../../redux/authentication/actionCreator';
 import { Checkbox } from '../../../components/checkbox/checkbox';
-// import { auth0options } from '../../../../config/auth0';
 import { LoginGoogle } from './GoogleLogin';
-
-const domain = process.env.REACT_APP_AUTH0_DOMAIN;
-const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
 
 function SignIn() {
   const history = useNavigate();
@@ -21,15 +15,12 @@ function SignIn() {
   const [state, setState] = useState({
     checked: null,
   });
-
-  // const lock = new Auth0Lock(clientId, domain, auth0options);
-
   const handleSubmit = useCallback(
     (values) => {
       dispatch(login(values, () => history.push('/')))
         .catch((error) => {
           if(error.response) {
-            setMessage(error.response.data.errors)
+            setMessage("ពាក្យសម្ងាត់មិនត្រឹមត្រូវទេ សូមពិនិត្យពាក្យសម្ងាត់របស់អ្នកពីរដង ហើយព្យាយាមម្តងទៀត។")
           }
         });
     },
@@ -39,17 +30,6 @@ function SignIn() {
   const onChange = (checked) => {
     setState({ ...state, checked });
   };
-
-  // lock.on('authenticated', (authResult) => {
-  //   lock.getUserInfo(authResult.accessToken, (error) => {
-  //     if (error) {
-  //       return;
-  //     }
-
-  //     handleSubmit();
-  //     lock.hide();
-  //   });
-  // });
 
   return (
     <Row justify="center">
@@ -62,9 +42,9 @@ function SignIn() {
             <Form name="login" form={form} onFinish={handleSubmit} layout="vertical">
               <Form.Item
                 name="username"
-                rules={[{ message: 'Please input your username or Email!', required: true }]}
+                rules={[{ message: 'សូមបញ្ចូលអាសយដ្ឋានអ៊ីមែល ឈ្មោះគណនី ឬលេខទូរស័ព្ទ', required: true }]}
                 initialValue="customer"
-                label="Username or Email Address"
+                label="អាសយដ្ឋានអ៊ីមែល ឈ្មោះគណនី ឬលេខទូរស័ព្ទ"
                 className="[&>div>div>label]:text-sm [&>div>div>label]:text-dark dark:[&>div>div>label]:text-white60 [&>div>div>label]:font-medium"
               >
                 <Input placeholder="name@example.com" />
@@ -72,18 +52,18 @@ function SignIn() {
               <Form.Item
                 name="password"
                 initialValue="customer@123.com"
-                label="Password"
+                label="ពាក្យសម្ងាត់"
                 className="[&>div>div>label]:text-sm [&>div>div>label]:text-dark dark:[&>div>div>label]:text-white60 [&>div>div>label]:font-medium"
               >
                 <Input.Password placeholder="Password" />
               </Form.Item>
               <p className='text-red-500'>{message !== '' ? message : null}</p>
-              <div className="flex flex-wrap items-center justify-between gap-[10px]">
-                <Checkbox onChange={onChange} checked={state.checked} className="text-xs text-light dark:text-white60">
+              <div className="flex flex-wrap items-center justify-end gap-[10px]">
+                {/* <Checkbox onChange={onChange} checked={state.checked} className="text-xs text-light dark:text-white60">
                   Keep me logged in
-                </Checkbox>
+                </Checkbox> */}
                 <NavLink className=" text-primary text-13" to="/forgotPassword">
-                  Forgot password?
+                  ភ្លេចពាក្យសម្ងាត់មែនទេ?
                 </NavLink>
               </div>
               <Form.Item>
@@ -93,20 +73,20 @@ function SignIn() {
                   type="primary"
                   size="large"
                 >
-                  {isLoading ? 'Loading...' : 'Sign In'}
+                  {isLoading ? 'សូមរងចាំ...' : 'ចូលគណនី'}
                 </Button>
               </Form.Item>
               <p className="relative text-body dark:text-white60 -mt-2.5 mb-6 text-center text-13 font-medium before:absolute before:w-full before:h-px ltr:before:left-0 rtl:before:right-0 before:top-1/2 before:-translate-y-1/2 before:z-10 before:bg-gray-200 dark:before:bg-white10">
-                <span className="relative z-20 px-4 bg-white dark:bg-[#1b1d2a]">Or</span>
+                <span className="relative z-20 px-4 bg-white dark:bg-[#1b1d2a]">ឬ</span>
               </p>
               <LoginGoogle/>
             </Form>
           </div>
           <div className="p-6 text-center bg-gray-100 dark:bg-white10 rounded-b-md">
             <p className="mb-0 text-sm font-medium text-body dark:text-white60">
-              Don`t have an account?
+            មិនទាន់មានគណនីមែនទេ?
               <Link to="/register" className="ltr:ml-1.5 rtl:mr-1.5 text-info hover:text-primary">
-                Sign up
+                ចុះឈ្មោះ
               </Link>
             </p>
           </div>

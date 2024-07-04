@@ -13,10 +13,10 @@ import { formatDate } from '../../../utility/format-function/date';
 
 const FILE_ENDPOINT = process.env.REACT_APP_FILE_ENDPOINT
 
-function CartTable({dataProp, setRefreshData}) {
+function CartTable({ dataProp, setRefreshData }) {
   const cartData = dataProp.carts
   const isLoading = dataProp.isLoader
-  
+
   const [state, setState] = useState({
     coupon: 0,
     promo: 0,
@@ -26,21 +26,21 @@ function CartTable({dataProp, setRefreshData}) {
   const incrementUpdate = (id, quantity) => {
     const data = parseInt(quantity, 10) + 1;
     const customer_amount = data;
-    putCart({customer_amount, id});
+    putCart({ customer_amount, id });
     setRefreshData(true);
   };
 
   const decrementUpdate = (id, quantity) => {
     const data = parseInt(quantity, 10) >= 2 ? parseInt(quantity, 10) - 1 : 1;
     const customer_amount = data;
-    putCart({customer_amount, id});
+    putCart({ customer_amount, id });
     setRefreshData(true);
   };
 
   const cartDeleted = (id) => {
-      deleteCart(id);
-      message.success('Cart delete successfully!');
-      setRefreshData(true);
+    deleteCart(id);
+    message.success('Cart delete successfully!');
+    setRefreshData(true);
   }
 
   const productTableData = [];
@@ -57,7 +57,7 @@ function CartTable({dataProp, setRefreshData}) {
               <img
                 className="max-w-[80px] min-h-[80px] ltr:mr-[25px] rtl:ml-[25px] rounded-[10px]"
                 style={{ width: 80 }}
-                src={ productData.thumbnail ? `${FILE_ENDPOINT}/${productData.thumbnail}` : require(`@/resource/static/img/default_img/travel-cambodia.png`)}
+                src={productData.thumbnail ? `${FILE_ENDPOINT}/${productData.thumbnail}` : require(`@/resource/static/img/default_img/travel-cambodia.png`)}
                 alt=""
               />
               <figcaption>
@@ -87,22 +87,30 @@ function CartTable({dataProp, setRefreshData}) {
         ),
         price: <span className="text-body dark:text-white60 text-[15px]">${service.price}</span>,
         quantity: (
-          <div className="cart-single-quantity">
-            <Button
-              onClick={() => decrementUpdate(id, customer_amount)}
-              className=" bg-normalBG dark:bg-normalBGdark w-9 h-9 ltr:mr-4 rtl:ml-4 px-3 text-body dark:text-white60 border-none rounded-[10px]"
-              type="default"
-            >
-              <UilMinus className="w-[12px] h-[12px]" />
-            </Button>
-            {customer_amount}
-            <Button
-              onClick={() => incrementUpdate(id, customer_amount)}
-              className=" bg-normalBG dark:bg-normalBGdark w-9 h-9 ltr:ml-4 rtl:mr-4 px-3 text-body dark:text-white60 border-none rounded-[10px]"
-              type="default"
-            >
-              <UilPlus className="w-[12px] h-[12px]" />
-            </Button>
+          <div className="cart-single-quantity flex items-center">
+            {productData?.charge_type.name === "flat rate" ? (
+              <p className='m-0 font-medium'>
+                គិតម៉ៅ {productData.max_people} នាក់
+              </p>) : (
+              <>
+                <Button
+                  onClick={() => decrementUpdate(id, customer_amount)}
+                  className=" bg-normalBG dark:bg-normalBGdark w-9 h-9 ltr:mr-4 rtl:ml-4 px-3 text-body dark:text-white60 border-none rounded-[10px]"
+                  type="default"
+                >
+                  <UilMinus className="w-[12px] h-[12px]" />
+                </Button>
+                {customer_amount}
+                <Button
+                  onClick={() => incrementUpdate(id, customer_amount)}
+                  className=" bg-normalBG dark:bg-normalBGdark w-9 h-9 ltr:ml-4 rtl:mr-4 px-3 text-body dark:text-white60 border-none rounded-[10px]"
+                  type="default"
+                >
+                  <UilPlus className="w-[12px] h-[12px]" />
+                </Button>
+              </>
+            )}
+
           </div>
         ),
         total: (

@@ -3,6 +3,7 @@
         "model": "tour_package.packagecategory",
         "pk": "15b9fc8c-637c-48fc-b60a-69091d2dc3f8",
         "fields": {
+            "kh_name": "🛕ប្រាសាទបុរាណ",
             "name": "🛕Temple"
         }
     },
@@ -10,6 +11,7 @@
         "model": "tour_package.packagecategory",
         "pk": "6d8c7924-36b9-4d12-aa81-488b35efa5aa",
         "fields": {
+            "kh_name": "🌊សមុទ្រ",
             "name": "🌊Sea"
         }
     },
@@ -17,6 +19,7 @@
         "model": "tour_package.packagecategory",
         "pk": "75646237-76cd-41bf-82e4-c2eb435a73b7",
         "fields": {
+            "kh_name": "🚙ការផ្សងព្រេង",
             "name": "🚙Artventure"
         }
     },
@@ -24,6 +27,7 @@
         "model": "tour_package.packagecategory",
         "pk": "91d2ad1e-b8ad-4772-a5f1-c066156f799e",
         "fields": {
+            "kh_name": "⛰️ព្រៃភ្នំ",
             "name": "⛰️Mountain"
         }
     },
@@ -31,6 +35,7 @@
         "model": "tour_package.packagecategory",
         "pk": "c49ed9cb-0933-4ed3-b359-ce08006b2de2",
         "fields": {
+            "kh_name": "🏕️កន្លែងបោះតង់",
             "name": "🏕️Camping"
         }
     }

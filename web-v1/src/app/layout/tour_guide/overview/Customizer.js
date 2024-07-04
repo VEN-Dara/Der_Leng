@@ -67,7 +67,7 @@ function Customizer() {
   return (
     <>
       <div>
-        <Link
+        {/* <Link
           className="inline-flex items-center bg-normalBG hover:bg-primary/10 hover:text-primary dark:bg-[#282b37] dark:text-white60 min-h-[34px] sm:w-[34px] sm:justify-center px-4 sm:px-0 sm:mx-[10px] xl:mx-[12px] mx-[20px] rounded-2xl gap-[8px] dark:hover:bg-white60 group dark:hover:text-dark transition duration-300"
           to="#"
           onClick={() => {
@@ -78,7 +78,7 @@ function Customizer() {
           <span className="text-sm font-medium text-body group-hover:text-primary dark:text-white60 dark:group-hover:text-currentColor sm:hidden">
             {t('Customize')}...
           </span>
-        </Link>
+        </Link> */}
         <div
           className={`fixed top-0 ltr:right-0 rtl:left-0 bg-white dark:bg-[#323541] w-[350px] sm:w-[300px] h-full translate-x-0 shadow-regular dark:shadow-[0_5px_30px_rgba(1,4,19,.60)] z-998 overflow-y-auto transition-all ${
             customizerAction

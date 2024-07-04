@@ -20,6 +20,7 @@ import PaymentCard from './PaymentCard';
 import { deletePaymentMedthod, getPaymentMethod } from '../../../../resource/hooks/Checkout/usePaymentFecher';
 import { putCart } from '../../../hooks/Product/useCartFetcher';
 import CheckOutModal from './CheckoutModal';
+import { postBooking } from '../../../hooks/Checkout/useBookingFetcher';
 
 const FILE_ENDPOINT = process.env.REACT_APP_FILE_ENDPOINT
 
@@ -98,15 +99,15 @@ function CheckOut({ dataProp, setRefreshCartData }) {
 
   const handleOk = async () => {
     const listCartId = cartData.map(cart => cart.id);
-    const carts = listCartId.map(id => ({id}))
+    const carts = listCartId.map(id => ({ id }))
     const data = {
       payment_method: JSON.parse(paymentMethodSelected).id,
       carts: JSON.stringify(carts)
     }
-    
+
     const response = await postBooking(data)
-    
-    if(response.status === 200) {
+
+    if (response.status === 200) {
       setState({
         ...state,
         status: 'finish',
@@ -115,13 +116,13 @@ function CheckOut({ dataProp, setRefreshCartData }) {
       });
     }
     else {
-      
+
       notification.error({
         message: 'Failed Checkout!',
-        description:`We apologize, but it seems there was an issue processing your order at this time. Please double-check your payment information and try again. If the problem persists, feel free to reach out to our customer support team for assistance. Thank you for your patience and understanding`,
+        description: `We apologize, but it seems there was an issue processing your order at this time. Please double-check your payment information and try again. If the problem persists, feel free to reach out to our customer support team for assistance. Thank you for your patience and understanding`,
       });
     }
-    
+
     setIsModalOpen(false)
   };
 
@@ -130,11 +131,11 @@ function CheckOut({ dataProp, setRefreshCartData }) {
   };
 
   const done = () => {
-    if(!paymentMethodSelected) {
+    if (!paymentMethodSelected) {
       message.error("Please select a payment method to proceed with your purchase!")
       return
     }
-    if(cartData.length===0) {
+    if (cartData.length === 0) {
       message.warning("We're sorry, but it appears that your shopping cart is currently empty!")
       return
     }
@@ -153,7 +154,7 @@ function CheckOut({ dataProp, setRefreshCartData }) {
     cartData.map((data) => {
       const { id, customer_amount, booking_date, created_at, service } = data;
       const productData = data["package"]
-      const discountPrice = productData.percentage_discount*service.price/100;
+      const discountPrice = productData.percentage_discount * service.price / 100;
       subtotal += parseInt(customer_amount, 10) * parseInt(service.price, 10);
       subDiscountPrice += parseInt(customer_amount, 10) * parseInt(discountPrice, 10)
       return dataSource.push({
@@ -195,21 +196,28 @@ function CheckOut({ dataProp, setRefreshCartData }) {
         price: <span className="text-body dark:text-white60 text-[15px]">${service.price}</span>,
         quantity: (
           <div className="flex items-center gap-x-4">
-            <Button
-              onClick={() => decrementUpdate(id, customer_amount)}
-              className="flex items-center justify-center bg-section dark:bg-white10 w-9 h-9 p-0 text-body dark:text-white60 border-none rounded-[10px]"
-              type="default"
-            >
-              <UilMinus className="w-3 h-3" />
-            </Button>
-            {customer_amount}
-            <Button
-              onClick={() => incrementUpdate(id, customer_amount)}
-              className="flex items-center justify-center bg-section dark:bg-white10 w-9 h-9 p-0 text-body dark:text-white60 border-none rounded-[10px]"
-              type="default"
-            >
-              <UilPlus className="w-3 h-3" />
-            </Button>
+            {productData?.charge_type.name === "flat rate" ? (
+              <p className='m-0 font-medium'>
+                គិតម៉ៅ {productData.max_people} នាក់
+              </p>) : (
+              <>
+                <Button
+                  onClick={() => decrementUpdate(id, customer_amount)}
+                  className=" bg-normalBG dark:bg-normalBGdark w-9 h-9 ltr:mr-4 rtl:ml-4 px-3 text-body dark:text-white60 border-none rounded-[10px]"
+                  type="default"
+                >
+                  <UilMinus className="w-[12px] h-[12px]" />
+                </Button>
+                {customer_amount}
+                <Button
+                  onClick={() => incrementUpdate(id, customer_amount)}
+                  className=" bg-normalBG dark:bg-normalBGdark w-9 h-9 ltr:ml-4 rtl:mr-4 px-3 text-body dark:text-white60 border-none rounded-[10px]"
+                  type="default"
+                >
+                  <UilPlus className="w-[12px] h-[12px]" />
+                </Button>
+              </>
+            )}
           </div>
         ),
         total: (
@@ -252,16 +260,17 @@ function CheckOut({ dataProp, setRefreshCartData }) {
     data: []
   })
   const [paymentMethodSelected, setPaymentMethodSelected] = useState(null);
-  const [refreshData , setRefreshData] = useState()
+  const [refreshData, setRefreshData] = useState()
 
   const paymentMethodDeleted = async (id) => {
     const response = await deletePaymentMedthod(id)
-    if(response.status===200) {
-      message.success('Payment delete successfully!');
-      setRefreshData(!refreshData);
+    if (response.status === 200) {
+      message.success('លុបការទូទាត់ដោយជោគជ័យ!');
+      setPaymentMethod((prevPayment) => ({...prevPayment, data: prevPayment.data.filter(pm => pm.id != id)}))
+      // setRefreshData(!refreshData);
     }
   }
-  
+
   useEffect(() => {
     getPaymentMethod(setPaymentMethod)
     setRefreshData(false)
@@ -291,33 +300,34 @@ function CheckOut({ dataProp, setRefreshCartData }) {
                           <div className='w-full h-full flex justify-center items-center'>
                             <Spin />
                           </div>
-                        ) : paymentMathod.data.length ? (
+                        ) : paymentMathod.data.length > 0 ? (
                           <Radio.Group style={{ width: '100%' }} value={paymentMethodSelected} onChange={e => setPaymentMethodSelected(e.target.value)}>
                             {paymentMathod.data.map(({ id, last4, brand, exp_month, exp_year, is_default }) => {
                               return (
                                 <div className='mb-[15px] flex justify-between items-center'>
                                   <PaymentCard key={id} creditCard={{ id, last4, brand, expMonth: exp_month, expYear: exp_year }} />
                                   <div className="text-end">
-                                  <Button
-                                    onClick={() => paymentMethodDeleted(id)}
-                                    className="bg-white dark:bg-white10 h-[38px] px-[11px] text-body dark:text-white60 border-none shadow-none hover:bg-danger-transparent hover:text-danger"
-                                    to="#"
-                                    size="default"
-                                    type="danger"
-                                    shape="circle"
-                                    transparented
-                                  >
-                                    <UilTrashAlt className="w-[14px] h-[14px]" />
-                                  </Button>
-                                </div>
+                                    <Button
+                                      onClick={() => paymentMethodDeleted(id)}
+                                      className="bg-white dark:bg-white10 h-[38px] px-[11px] text-body dark:text-white60 border-none shadow-none hover:bg-danger-transparent hover:text-danger"
+                                      to="#"
+                                      size="default"
+                                      type="danger"
+                                      shape="circle"
+                                      transparented
+                                    >
+                                      <UilTrashAlt className="w-[14px] h-[14px]" />
+                                    </Button>
+                                  </div>
                                 </div>
                               )
                             })}
                           </Radio.Group>
                         ) : (
-                          <p>No credit card.</p>
+                          <p className='text-body'>No credit card.</p>
                         )}
                       </div>
+                      hello
 
                       {/* ================================> Other payment Choice <============================ */}
 
@@ -367,14 +377,14 @@ function CheckOut({ dataProp, setRefreshCartData }) {
                             Payment Method
                           </Heading>
                         </div>
-                        { paymentMethodSelected && (
+                        {paymentMethodSelected && (
                           <PaymentCard key={`${paymentMethodSelected.id}-selected`} creditCard={JSON.parse(paymentMethodSelected)} isSelected={true} />
                           // <div>Hello</div>
                         )}
                       </div>
                       <div className="bg-regularBG dark:bg-white10 mb-[25px] p-[25px] rounded-[15px]">
                         <div className="border-b table-responsive table-bg-transparent table-head-none hover-tr-none table-td-border-none border-regular dark:border-white10">
-                          <Table pagination={false} dataSource={dataSource} columns={columns}/>
+                          <Table pagination={false} dataSource={dataSource} columns={columns} />
                         </div>
                         <Row justify="end">
                           {/* <Col xxl={8} xl={5} md={9} sm={14} xs={24} offset={!rtl ? 10 : 0}> */}
@@ -430,7 +440,7 @@ function CheckOut({ dataProp, setRefreshCartData }) {
         onDone={done}
         isfinished={isFinished}
       />
-      <CheckOutModal subDiscountPrice={subDiscountPrice} subtotal={subtotal} handleOk={handleOk} handleCancel={handleCancel} visible={isModalOpen}/>
+      <CheckOutModal subDiscountPrice={subDiscountPrice} subtotal={subtotal} handleOk={handleOk} handleCancel={handleCancel} visible={isModalOpen} />
     </>
   );
 }

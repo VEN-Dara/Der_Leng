@@ -1,13 +1,13 @@
 import random
 from django_filters.filters import Q
-import spacy
+# import spacy
 from telegram import Chat
 from django.contrib.auth import authenticate
 
 from authentication.models import User
 from telegrambot.models import TelegramAccount
 
-nlp = spacy.load("en_core_web_md")
+# nlp = spacy.load("en_core_web_md")
 
 # Question
 sales_questions = [
@@ -99,7 +99,7 @@ def handle_response(user_query, telegram_account: TelegramAccount) -> str:
     elif telegram_account.last_bot_message.startswith("សូម​បញ្ចូល​ពាក្យ​សម្ងាត់​គណនីដើរលេងរបស់អ្នក"):
         username = telegram_account.last_user_response
         password = user_query
-        find_users = User.objects.filter(Q(username=username) or Q(email=username) or Q(phone=username))
+        find_users = User.objects.filter(Q(username=username) | Q(email=username) | Q(phone=username))
         for user in find_users:
             auth : User = authenticate(username=user.username, password=password)
             if(auth):

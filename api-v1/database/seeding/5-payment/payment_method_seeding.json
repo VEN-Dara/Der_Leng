@@ -1,0 +1,74 @@
+[
+    {
+        "model": "payment.paymentmethod",
+        "pk": "fa4aeb88-0aca-4bff-8466-7a402fbb62f6",
+        "fields": {
+            "user": "38a42599-1550-4a4a-9de9-a7caf8068433",
+            "type": "card",
+            "holder_name": "VEN Dara",
+            "brand": "visa",
+            "last4": "4242",
+            "stripe_customer_id": "cus_PRlUPzXsShB0sX",
+            "stripe_payment_method_id": "pm_1PYlBfEhnoYmMdGF0cIG181G",
+            "exp_month": 12,
+            "exp_year": 2066,
+            "is_active": true,
+            "is_default": true,
+            "created_at": "2024-07-04T08:38:44.545Z"
+        }
+    },
+    {
+        "model": "payment.paymentmethod",
+        "pk": "fa4aeb88-0aca-4bff-8466-7a402fbb62f7",
+        "fields": {
+            "user": "0bb13a1d-e5f2-4c68-a5c4-0ee708168954",
+            "type": "card",
+            "holder_name": "VEN Dara",
+            "brand": "visa",
+            "last4": "4242",
+            "stripe_customer_id": "cus_PRlUPzXsShB0sX",
+            "stripe_payment_method_id": "pm_1PYlBfEhnoYmMdGF0cIG181G",
+            "exp_month": 12,
+            "exp_year": 2066,
+            "is_active": true,
+            "is_default": true,
+            "created_at": "2024-07-04T08:38:44.545Z"
+        }
+    },
+    {
+        "model": "payment.paymentmethod",
+        "pk": "fa4aeb88-0aca-4bff-8466-7a402fbb62f8",
+        "fields": {
+            "user": "33be413a-dd3e-477a-ac7a-e8280c33ebbf",
+            "type": "card",
+            "holder_name": "VEN Dara",
+            "brand": "visa",
+            "last4": "4242",
+            "stripe_customer_id": "cus_PRlUPzXsShB0sX",
+            "stripe_payment_method_id": "pm_1PYlBfEhnoYmMdGF0cIG181G",
+            "exp_month": 12,
+            "exp_year": 2066,
+            "is_active": true,
+            "is_default": true,
+            "created_at": "2024-07-04T08:38:44.545Z"
+        }
+    },
+    {
+        "model": "payment.paymentmethod",
+        "pk": "fa4aeb88-0aca-4bff-8466-7a402fbb62f9",
+        "fields": {
+            "user": "35e74bc7-c3d3-4e7d-be44-8c2ac13ca096",
+            "type": "card",
+            "holder_name": "VEN Dara",
+            "brand": "visa",
+            "last4": "4242",
+            "stripe_customer_id": "cus_PRlUPzXsShB0sX",
+            "stripe_payment_method_id": "pm_1PYlBfEhnoYmMdGF0cIG181G",
+            "exp_month": 12,
+            "exp_year": 2066,
+            "is_active": true,
+            "is_default": true,
+            "created_at": "2024-07-04T08:38:44.545Z"
+        }
+    }
+]

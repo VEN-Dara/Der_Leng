@@ -16,7 +16,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework import status, viewsets
 from rest_framework.decorators import api_view, permission_classes
 import stripe
-from authentication.models import User
+from authentication.models import Notification, User
 from authentication.permissions import IsAdmin, IsAdminOrStaffOrReadOnly, IsAdminOrStaffOrTourGuide, IsAdminOrStaffOrTourGuideOrReadOnly, IsStaff, IsTour_Guide, UserRolePermission
 from booking.tasks import cancel_payment_task
 from django_filters.rest_framework import DjangoFilterBackend
@@ -26,6 +26,7 @@ from rest_framework.pagination import PageNumberPagination
 #=========================================> Local
 from booking.mixins import BookingMixin, calculate_charge_price
 from booking.models import Booking, BookingDetails, Cart
+from booking.utils import NotificationType, get_nested_attr
 from payment.models import PaymentMethod
 from payment.mixins import create_payment_intent, create_refund, create_transfer
 from booking.serializers import *
@@ -124,13 +125,22 @@ def accept_booking(request, pk):
         booking_details.is_accepted = True
         booking_details.save()
 
-        destination = seller.paymentmethod_set.first().stripe_payment_method_id
-        percentage_commission = Decimal(booking_details.cart.service.package.commission.percentage_of_sale_price)
-        commission_price = Decimal(booking_details.unit_price) - ((Decimal(100.00) - percentage_commission) * booking_details.unit_price / Decimal(100.00))
-        sale_price = (Decimal('100.00') - Decimal(booking_details.percentage_discount)) * Decimal(booking_details.unit_price) / Decimal('100.00')
-        amount = int(sale_price - commission_price)
+        # ======================>> Create notification for user <<=====================
+        notification = Notification(
+            user = booking_details.cart.user,
+            title = seller.fullname,
+            message = "បានទទួលយកការកក់របស់អ្នក, សូមរីករាយជាមួយដំណើរកំសាន្ត✨។",
+            type = "accept_booking"
+        )
+        notification.save()
 
-        currency = booking_details.booking.currency
+        # destination = seller.paymentmethod_set.first().stripe_payment_method_id
+        # percentage_commission = Decimal(booking_details.cart.service.package.commission.percentage_of_sale_price)
+        # commission_price = Decimal(booking_details.unit_price) - ((Decimal(100.00) - percentage_commission) * booking_details.unit_price / Decimal(100.00))
+        # sale_price = (Decimal('100.00') - Decimal(booking_details.percentage_discount)) * Decimal(booking_details.unit_price) / Decimal('100.00')
+        # amount = int(sale_price - commission_price)
+
+        # currency = booking_details.booking.currency
 
         # ====================================>> Transfer money to tour-guide <<====================================
         # Unable to perform since we dont have tour-guide connect acc id
@@ -165,6 +175,15 @@ def reject_booking(request, pk):
 
         current_booking_details.is_closed = True
         current_booking_details.save()
+
+        # ======================>> Create notification for user <<=====================
+        notification = Notification(
+            user = current_booking_details.cart.user,
+            title = seller.fullname,
+            message = "បានបដិសេធការកក់របស់អ្នក, ពួកយើង​បាន​ផ្ញើ​ប្រាក់​បង្វិល​សង​របស់​អ្នក​ទៅវិញ សូម​ពិនិត្យ​!✅📫",
+            type = "reject_booking"
+        )
+        notification.save()
 
         # ==========================>> Perform refund <<==========================
         # * Check booking that include all booking_detail to refund them at one
@@ -266,6 +285,16 @@ class ReviewAPIView(APIView):
             serializers = ReviewSerializer(data=data)
             serializers.is_valid(raise_exception=True)
             serializers.save()
+
+            # ======================>> Create notification for tour-guide <<=====================
+            package = Package.objects.get(id=data['package_id'])
+            notification = Notification(
+                user = package.user,
+                title = request.user.fullname,
+                message = "បានបញ្ចូលការវាយតម្លៃលើកញ្ចប់ដំណើរកម្សាន្តរបស់អ្នក។✨📦",
+                type = "review"
+            )
+            notification.save()
             
             respone_data = {
                 'message' : 'Review post successfully.' ,
@@ -274,7 +303,7 @@ class ReviewAPIView(APIView):
             return Response( respone_data , status=status.HTTP_201_CREATED)
         
         except Exception as error:
-            return Response( error.detail , status=status.HTTP_400_BAD_REQUEST)
+            return Response( {'error' : str(error)} , status=status.HTTP_400_BAD_REQUEST)
         
     def get(self ,request):
         try:
@@ -319,3 +348,36 @@ class ReviewAPIView(APIView):
             return Response({'error': 'Review not found'}, status=status.HTTP_404_NOT_FOUND)
         except Exception as error:
             return Response({'error': str(error)}, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
+def get_notification(request):
+    try:
+        user = request.user
+        notifications = []
+
+        accept_bookings = [
+            {
+                "type": "accept_booking",
+                "title": get_nested_attr(booking, 'cart.service.package.user.fullname', "Unknown"),
+                "message": "បានទទួលយកការកក់របស់អ្នក, សូមរីករាយជាមួយដំណើរកំសាន្ត✨។"
+            }
+            for booking in BookingDetails.objects.filter(Q(is_accepted=True) & Q(booking__customer=user))
+        ]
+
+        reject_bookings = [
+            {
+                "type": "reject_booking",
+                "title": get_nested_attr(booking, 'cart.service.package.user.fullname', "Unknown"),
+                "message": "បានបដិសេធការកក់របស់អ្នក, ពួកយើង​បាន​ផ្ញើ​ប្រាក់​បង្វិល​សង​របស់​អ្នក​ទៅវិញ សូម​ពិនិត្យ​!✅📫"
+            }
+            for booking in BookingDetails.objects.filter(Q(is_accepted=False) & Q(is_closed=True) & Q(booking__customer=user))
+        ]
+
+        notifications.extend(accept_bookings)
+        notifications.extend(reject_bookings)
+
+        return Response({"notifications": notifications}, status=status.HTTP_200_OK)
+
+    except Exception as error:
+        return Response({'error': str(error)}, status=status.HTTP_400_BAD_REQUEST)

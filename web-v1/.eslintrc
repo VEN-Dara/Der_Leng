@@ -52,6 +52,7 @@
     "radix": 0,
     "consistent-return": 0,
     "no-alert": 0,
-    "func-names": 0
+    "func-names": 0,
+    "no-undef": 2
   }
 }

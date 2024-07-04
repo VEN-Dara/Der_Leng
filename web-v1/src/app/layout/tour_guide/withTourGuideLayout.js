@@ -18,7 +18,7 @@ import CustomizerWrap from './overview/Customizer';
 import { FooterStyle, LayoutContainer, SmallScreenAuthInfo, TopMenuSearch } from './Style';
 import MenueItems from './MenueItems';
 import TopMenu from './TopMenu';
-import Search from './auth-info/Search';
+// import Search from './auth-info/Search';
 import AuthInfo from './auth-info/AuthInfo';
 import { ReactComponent as MySVG } from '../../static/img/icon/left-bar.svg';
 

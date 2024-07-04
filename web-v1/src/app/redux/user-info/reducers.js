@@ -10,6 +10,7 @@ const initialUser = {
       id: null,
       name: 'customer'
   },
+  telegram_account: null,
   profileImage: null,
   coverImage: null
 }

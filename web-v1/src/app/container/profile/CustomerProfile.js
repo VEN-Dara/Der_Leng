@@ -18,9 +18,6 @@ import { useSelector } from 'react-redux';
 const UserCards = lazy(() => import('./overview/UserCard'));
 const CoverSection = lazy(() => import('./overview/CoverSection'));
 const UserBio = lazy(() => import('./overview/UserBio'));
-const Overview = lazy(() => import('./overview/Overview'));
-const Timeline = lazy(() => import('./overview/Timeline'));
-const Activity = lazy(() => import('./overview/Activity'));
 
 const FILE_ENDPOINT = process.env.REACT_APP_FILE_ENDPOINT
 
@@ -41,17 +38,17 @@ function CustomerProfile() {
   return (
     <>
       <PageHeader
-        className={ isCustomer(data.role) ? "px-8" : 'flex flex-wrap items-center justify-between px-8 xl:px-[15px] pt-2 pb-6 sm:pb-[30px] bg-transparent sm:flex-col sm:justify-center'}
+        className={isCustomer(data.role) ? "px-8" : 'flex flex-wrap items-center justify-between px-8 xl:px-[15px] pt-2 pb-6 sm:pb-[30px] bg-transparent sm:flex-col sm:justify-center'}
         title="គណនី​របស់ខ្ញុំ"
-        routes={ isCustomer(data.role) ? null : PageRoutes}
+        routes={isCustomer(data.role) ? null : PageRoutes}
         ghost
         buttons={[
           <Link
-          to='/tour-guide-registration'
-          key="1"
-          className="page-header-actions"
+            to='/tour-guide-registration'
+            key="1"
+            className="page-header-actions"
           >
-            { isCustomer(data.role) && 
+            {isCustomer(data.role) &&
               <Button
                 className="bg-primary hover:bg-hbr-primary border-solid border-1 border-primary text-white dark:text-white87 text-[14px] font-semibold leading-[22px] inline-flex items-center justify-center rounded-[4px] px-[15px] h-[32px]"
                 // className="text-primary hover:text-hbr-primary bg-transparent border-none shadow-none text-base font-medium leading-[22px] inline-flex items-center justify-center rounded-[4px] px-[15px] h-[32px]"
@@ -73,11 +70,11 @@ function CustomerProfile() {
                   <Skeleton avatar active paragraph={{ rows: 3 }} />
                 </div>
               }
-            > 
-              { data &&
-              <UserCards
-                user={{ name: data.fullname, designation: data.role.name, img: data.profileImage ? `${FILE_ENDPOINT}${data.profileImage}` : defaultProfile }}
-              />
+            >
+              {data &&
+                <UserCards
+                  user={{ name: data.fullname, designation: data.role.name, img: data.profileImage ? `${FILE_ENDPOINT}${data.profileImage}` : defaultProfile }}
+                />
               }
             </Suspense>
             <div className="mt-[25px]">
@@ -88,13 +85,12 @@ function CustomerProfile() {
                   </div>
                 }
               >
-                { data && 
-                <UserBio user={{email:data.email, phone:data.phone}} />
+                {data &&
+                  <UserBio user={{ email: data.email, phone: data.phone, telegram: data.telegram_account }} />
                 }
               </Suspense>
             </div>
           </Col>
-          {/* <Col xxl={18} lg={16} md={14} xs={24} className="md:order-[-1] md:mb-[25px]"> */}
           <Col xxl={18} lg={16} md={14} xs={24} className=" md:mb-[25px]">
             <>
               <div className="relative z-[1] bg-white dark:bg-white10 rounded-10 mb-[25px]">
@@ -104,40 +100,10 @@ function CustomerProfile() {
                       <Skeleton active />
                     </div>
                   }
-                > 
-                  { data && 
-                  <CoverSection img={data.coverImage ? `${FILE_ENDPOINT}${data.coverImage}` : defaultCover} />
+                >
+                  {data &&
+                    <CoverSection img={data.coverImage ? `${FILE_ENDPOINT}${data.coverImage}` : defaultCover} />
                   }
-
-                  {/* ===========================================> Nav Profile <=========================================== */}
-                  {/* <nav className="px-[25px]">
-                    <ul className="m-0 flex items-center gap-[22px]">
-                      <li>
-                        <NavLink
-                          className="relative block py-[20px] px-[5px] text-light dark:text-white60 [&.active]:text-primary after:[&.active]:bg-primary after:absolute after:bottom-0 ltr:after:left-0 rtl:after:right-0 after:w-full after:h-[2px] after:bg-transparent after:transition-all after:duration-300 after:ease-in-out after:invisible [&.active]:after:visible font-medium"
-                          to={`${path}/overview`}
-                        >
-                          Overview
-                        </NavLink>
-                      </li>
-                      <li>
-                        <NavLink
-                          className="relative block py-[20px] px-[5px] text-light dark:text-white60 [&.active]:text-primary after:[&.active]:bg-primary after:absolute after:bottom-0 ltr:after:left-0 rtl:after:right-0 after:w-full after:h-[2px] after:bg-transparent after:transition-all after:duration-300 after:ease-in-out after:invisible [&.active]:after:visible font-medium"
-                          to={`${path}/timeline`}
-                        >
-                          Timeline
-                        </NavLink>
-                      </li>
-                      <li>
-                        <NavLink
-                          className="relative block py-[20px] px-[5px] text-light dark:text-white60 [&.active]:text-primary after:[&.active]:bg-primary after:absolute after:bottom-0 ltr:after:left-0 rtl:after:right-0 after:w-full after:h-[2px] after:bg-transparent after:transition-all after:duration-300 after:ease-in-out after:invisible [&.active]:after:visible font-medium"
-                          to={`${path}/activity`}
-                        >
-                          Activity
-                        </NavLink>
-                      </li>
-                    </ul>
-                  </nav> */}
                 </Suspense>
               </div>
 
@@ -149,10 +115,10 @@ function CustomerProfile() {
                 }
               >
                 <Routes>
-                  <Route index element={<FavoriteProductList/>}/>
-                  <Route path="favorite" element={<FavoriteProductList/>}/>
-                  <Route path="setting/*" element={<EditProfile/>}/>
-                  <Route path="*" element={<NotFound/>}/>
+                  <Route index element={<FavoriteProductList />} />
+                  <Route path="favorite" element={<FavoriteProductList />} />
+                  <Route path="setting/*" element={<EditProfile />} />
+                  <Route path="*" element={<NotFound />} />
                 </Routes>
               </Suspense>
             </>

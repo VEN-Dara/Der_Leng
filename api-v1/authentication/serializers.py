@@ -3,8 +3,9 @@ from django.db.models import Q
 
 from authentication.validations import is_valid_password
 from booking.models import BookingDetails
+from telegrambot.serializers import BasicTelegramAccountSerializer
 
-from .models import TourGuideRegistration, User, User_role
+from .models import Notification, TourGuideRegistration, User, User_role
 
 class User_roleSerializer(serializers.ModelSerializer):
     class Meta:
@@ -44,9 +45,18 @@ class BasicUserSerializer(serializers.ModelSerializer):
     
 class UserSerializer(serializers.ModelSerializer):
     role = BasicUser_roleSerializer()
+    telegram_account = BasicTelegramAccountSerializer()
     class Meta:
         model = User
-        fields = ['id', 'username', 'email', 'fullname', "phone", 'role', "profileImage", "coverImage"]
+        fields = ['id', 'username', 'email', 'fullname', "phone", 'role', "telegram_account","profileImage", "coverImage"]
+    
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+
+        # :: Get telegram user ::
+
+
+        return data 
 
     def to_representation(self, instance):
         data = super().to_representation(instance)
@@ -86,3 +96,18 @@ class SetPasswordSerializer(serializers.Serializer):
             raise serializers.ValidationError({"password": "Your password must be at least 8 charectors long, one letter and one digit."})
         
         return data
+    
+class SetNewPasswordSerializer(serializers.Serializer):
+    password = serializers.CharField(write_only=True, required=True)
+    confirm_password = serializers.CharField(write_only=True, required=True)
+
+    def validate(self, data):
+        if not is_valid_password(data['password']):
+            raise serializers.ValidationError({"password": "Your password must be at least 8 charectors long, one letter and one digit."})
+        
+        return data
+    
+class NotificationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Notification
+        fields = '__all__'

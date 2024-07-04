@@ -99,20 +99,20 @@ function TopMenu() {
         <ul>
           <li className="has-subMenu">
             <Link to="#" className="parent">
-              Categories
+              ប្រភេទទេសចរណ៍
             </Link>
             {
               !categories ? (
                 <ul className='subMenu w-[600px] md:w-[200px] h-[200px] flex items-center justify-center'>
-                  No categories☹️
+                  មិនមានប្រភេទទេសចរណ៍ទេ☹️
                 </ul>
               ) : (
                 <ul className="subMenu w-[600px] md:w-[200px] grid grid-cols-3 md:grid-cols-1">
                   {
                     categories.map((category) => (
                       <li key={category.id}>
-                        <NavLink to={`${path}/${category.name}`} onClick={addParentActive}>
-                          {category.name}
+                        <NavLink to={`${path}/${category.name}`} onClick={addParentActive} className="font-medium" >
+                          {category.kh_name}
                         </NavLink>
                       </li>
                     ))

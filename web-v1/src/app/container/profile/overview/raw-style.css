@@ -1,0 +1,37 @@
+.ant5-otp {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.ant5-otp .ant5-input {
+  width: 48px;
+  height: 48px;
+  text-align: center;
+  font-size: 1.2rem;
+  border-radius: 4px;
+  border: 1px solid #d9d9d9;
+  transition: border-color 0.3s ease;
+}
+
+.ant5-otp .ant5-input:hover {
+  @apply border-primary
+}
+
+.ant5-otp .ant5-input:focus {
+  box-shadow: 0 0 0 2px rgba(130, 49, 211, 0.3);
+  @apply border-primary
+}
+
+.ant5-otp .ant5-input::placeholder {
+  color: #bfbfbf;
+}
+
+.ant5-otp .ant5-input-error {
+  border-color: #ff4d4f;
+  box-shadow: 0 0 0 2px rgba(255, 77, 79, 0.2);
+}
+
+.ant-input-affix-wrapper-status-error:not(.ant-input-affix-wrapper-disabled):not(.ant-input-affix-wrapper-borderless).ant-input-affix-wrapper, .ant-input-affix-wrapper-status-error:not(.ant-input-affix-wrapper-disabled):not(.ant-input-affix-wrapper-borderless).ant-input-affix-wrapper:hover {
+  background-color: transparent !important;
+}

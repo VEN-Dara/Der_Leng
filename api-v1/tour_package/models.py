@@ -11,6 +11,7 @@ class PackageCategory (models.Model):
             default = uuid.uuid4,
             editable = False)
     name = models.CharField(max_length=30)
+    kh_name = models.CharField(max_length=30)
 
     def __str__(self) -> str:
         return f'{self.name}'

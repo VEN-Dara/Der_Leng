@@ -1,9 +1,12 @@
+from datetime import timedelta
+import random
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from django.contrib.auth import authenticate
 from django.utils import timezone
 
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import permissions, status, viewsets, filters
@@ -13,8 +16,9 @@ from django_filters.rest_framework import DjangoFilterBackend
 
 from rest_framework_simplejwt.tokens import AccessToken, RefreshToken
 
-from authentication.models import TourGuideRegistration
+from authentication.models import OTP, Notification, TourGuideRegistration
 from core.settings.rest_framework import SIMPLE_JWT
+from telegrambot.handlers import send_message
 from .validations import user_validation, is_valid_email, is_valid_username, validate_user_update
 from .serializers import *
 from .permissions import IsAdmin, IsAdminOrStaff, IsAdminOrStaffOrReadOnly, IsStaff
@@ -49,7 +53,7 @@ class UserLogin(APIView):
     def get_tokens_for_user(self, user):
         refresh = RefreshToken.for_user(user)
         access_token = refresh.access_token
-        user_data = BasicUserSerializer(user).data
+        user_data = UserSerializer(user).data
 
         return {
             'refresh_token': str(refresh),
@@ -70,7 +74,6 @@ class UserLogin(APIView):
 
     def post(self, request):
         data = request.data
-        print(data)
         username = data.get('username', '')
         password = data.get('password', '')
 
@@ -122,6 +125,7 @@ class CurrentUserView(APIView):
             return Response({'error': errors}, status=status.HTTP_400_BAD_REQUEST)
         
 class SetPasswordView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         serializer = SetPasswordSerializer(data=request.data)
         if serializer.is_valid():
@@ -138,6 +142,25 @@ class SetPasswordView(APIView):
             return Response({"message": "Password has been updated successfully."}, status=status.HTTP_200_OK)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def reset_password(request):
+    try:
+        serializer = SetNewPasswordSerializer(data=request.data)
+        if serializer.is_valid():
+            password = serializer.validated_data['password']
+            confirm_password = serializer.validated_data['confirm_password']
+            user = request.user
+            if password != confirm_password:
+                return Response({"message": "Password and confirmation do not match."}, status=status.HTTP_400_BAD_REQUEST)
+            user.set_password(password)
+            user.save()
+            return Response({"message": "Password has been updated successfully."}, status=status.HTTP_200_OK)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    except Exception as error:
+        return Response( {'error' : str(error)} , status=status.HTTP_400_BAD_REQUEST)
 
 class SocialLoginView(ConvertTokenView):
     permission_classes = (permissions.AllowAny,)
@@ -207,3 +230,103 @@ class UserViewSet(viewsets.ModelViewSet):
 
         except ObjectDoesNotExist as error:
             return Response({"error": str(error)}, status=status.HTTP_404_NOT_FOUND)
+        
+@api_view(['GET'])
+def generate_otp(request, username):
+    try:
+        user = User.objects.get(Q(username=username) | Q(phone=username) | Q(email=username))
+        if not user.telegram_account:
+            return Response( {'error' : "User have not verified with telegram yet."} , status=status.HTTP_400_BAD_REQUEST)
+        
+        otp, created = OTP.objects.update_or_create(
+            user=user,
+            is_verified=False,
+            defaults={'expires_at': timezone.now() + timedelta(minutes=5), 'code': random.randint(100000, 999999)}
+        )
+        otp.save()
+        response = f"**`{otp.code}`** គឺជាលេខកូដ ដើម្បីផ្ទៀងផ្ទាត់គណនីដើរលេងរបស់អ្នក។📫✨"
+
+        send_message("sendMessage", {
+            'chat_id': user.telegram_account.id,
+            'text': response,
+            'parse_mode': 'Markdown'
+        })
+        return Response({f"message": "Otp has been sent."}, status=status.HTTP_200_OK)
+    except Exception as error:
+        return Response( {'error' : str(error)} , status=status.HTTP_400_BAD_REQUEST)
+    
+@api_view(['POST'])
+def verify_otp(request, username):
+    try:
+        data = request.data.copy()
+        code: str = data["code"]
+        print(code=="938459")
+
+        user = User.objects.get(Q(username=username) | Q(phone=username) | Q(email=username))
+        if not user.telegram_account:
+            return Response( {'error' : "User have not verified with telegram yet."} , status=status.HTTP_400_BAD_REQUEST)
+
+        print(user)
+        otp = OTP.objects.get(Q(code=code))
+        # otp = OTP.objects.get(Q(user=user) & Q(code=code))
+        print(otp)
+
+        if otp.is_verified:
+            return Response( {'error' : "OTP is verified."} , status=status.HTTP_400_BAD_REQUEST)
+        
+        if otp.expires_at < timezone.now():
+            return Response( {'error' : "OTP is expired."} , status=status.HTTP_400_BAD_REQUEST)
+        
+        otp.delete()
+        user.last_login = timezone.now()
+        user.save()
+        return Response(get_tokens_for_user(user=user), status=status.HTTP_200_OK)
+
+    except Exception as error:
+        return Response( {'error' : str(error)} , status=status.HTTP_400_BAD_REQUEST)
+    
+@api_view(['GET'])
+def is_username_exist(request, username):
+    try:
+
+        username_exist = User.objects.filter(username=username).exists()
+
+        return Response({"is_username_exist": username_exist}, status=status.HTTP_200_OK)
+    except Exception as error:
+        return Response( {'error' : str(error)} , status=status.HTTP_400_BAD_REQUEST)
+    
+def get_tokens_for_user(user):
+    refresh = RefreshToken.for_user(user)
+    access_token = refresh.access_token
+    user_data = UserSerializer(user).data
+
+    return {
+        'refresh_token': str(refresh),
+        'refresh_token_exp': SIMPLE_JWT['REFRESH_TOKEN_LIFETIME'],
+        'access_token': str(access_token),
+        'refresh_token_exp': SIMPLE_JWT['ACCESS_TOKEN_LIFETIME'],
+        'user': user_data,
+    }
+
+class NotificationViewSet(viewsets.ModelViewSet):
+    queryset = Notification.objects.all().order_by('is_read', '-created_at')
+    permission_classes = [IsAuthenticated]
+    serializer_class = NotificationSerializer
+
+    def list(self, request, *args, **kwargs):
+        # Fetch all notifications for the authenticated user
+        queryset = self.get_queryset().filter(user=request.user)
+
+        # Apply pagination
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            # Update notifications in the current page to is_read=True
+            Notification.objects.filter(id__in=[notification.id for notification in page]).update(is_read=True)
+
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
+        # If not paginated, update all fetched notifications
+        queryset.update(is_read=True)
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)

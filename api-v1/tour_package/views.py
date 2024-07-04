@@ -31,7 +31,7 @@ class PackageViewSet(viewsets.ModelViewSet, PackageMixin):
     search_fields = ["name", "description", "packageservice__detail", "packageschedule__destination", "address"]
 
     def get_queryset(self):
-        queryset = super().get_queryset()
+        queryset = super().get_queryset().filter(is_close=False)
 
         category_name = self.request.query_params.get('category_name')
         if category_name:
