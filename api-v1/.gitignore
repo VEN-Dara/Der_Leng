@@ -9,7 +9,8 @@ __pycache__/
 *.sqlite3
 db.sqlite3
 mydatabase
-# /media/
+/media/files/
+/media/images/
 # /static/
 
 # IDE/Editor Files

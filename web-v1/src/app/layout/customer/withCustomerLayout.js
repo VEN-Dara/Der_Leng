@@ -168,21 +168,21 @@ const withCustomerLayout = (WrappedComponent) => {
                       <Row>
                         <Col md={12} xs={24}>
                           <span className="inline-block w-full font-medium admin-footer__copyright md:text-center text-theme-gray dark:text-white60 md:mb-[10px]">
-                            © 2023
+                            © 2024
                             <Link className="mx-[4px] text-primary" to="#">
-                              SovWare
+                              ដើរលេង Derleng
                             </Link>
                           </span>
                         </Col>
                         <Col md={12} xs={24}>
                           <div className="justify-end md:justify-center items-center flex gap-[15px]">
                             <NavLink className="text-theme-gray dark:text-white60 text-[14px] hover:text-primary" to="#">
-                              About
+                              I4 GIC
                             </NavLink>
-                            <NavLink className="text-theme-gray dark:text-white60 text-[14px] hover:text-primary" to="#">
-                              Team
+                            <NavLink className="text-theme-gray dark:text-white60 text-[14px] hover:text-primary" target='_blank' to="https://github.com/VEN-Dara/der_leng">
+                              Github
                             </NavLink>
-                            <NavLink className="text-theme-gray dark:text-white60 text-[14px] hover:text-primary" to="#">
+                            <NavLink className="text-theme-gray dark:text-white60 text-[14px] hover:text-primary" target='_blank' to="https://t.me/dara_ven">
                               Contact
                             </NavLink>
                           </div>

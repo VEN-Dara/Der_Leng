@@ -4,7 +4,7 @@ import { Button } from '../../../../resource/components/buttons/buttons';
 import Heading from '../../../../resource/components/heading/heading';
 import { Tag } from '../../../../resource/components/tags/tags';
 import { GlobalUtilityStyle } from '../../styled';
-import { isUsernameExist } from '../../../../resource/redux/authentication/actionCreator';
+import { isUsernameExist } from '../../../redux/authentication/actionCreator'
 import UseFetcher from '../../../hooks/useFetcher';
 
 const { Option } = Select;
@@ -32,7 +32,7 @@ function Profile() {
   useEffect(() => {
     if(state.data !== null && state.success === true) {
       message.destroy();
-      message.success("Your information has been successfully updated.")
+      message.success("ព័ត៌មានរបស់អ្នកត្រូវបានធ្វើបច្ចុប្បន្នភាពដោយជោគជ័យ។✅✨")
     }
   }, [state])
 

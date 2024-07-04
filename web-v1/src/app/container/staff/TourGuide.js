@@ -51,8 +51,6 @@ function TourGuide() {
     
   }
 
-  console.log(users)
-
   const dataSource = [];
   if (users.length)
     users.map((value) => {
@@ -151,7 +149,7 @@ function TourGuide() {
     <>
       <PageHeader
         routes={PageRoutes}
-        title="Sellers"
+        title="ម​គ្គុ​ទេស​ក៍​ទេសចរណ៍"
         className="flex  justify-between items-center px-8 xl:px-[15px] pt-2 pb-6 sm:pb-[30px] bg-transparent sm:flex-col"
       />
       <div className="min-h-[715px] lg:min-h-[580px] bg-transparent px-8 xl:px-[15px] pb-[50px] ssm:pb-[30px]">
@@ -159,11 +157,13 @@ function TourGuide() {
           <Row gutter={15}>
             <Col xs={24}>
               <div className="flex flex-wrap items-center justify-between gap-[20px] mb-[20px] md:flex-col md:justify-center">
-                <div className="flex items-center flex-wrap gap-[20px] md:justify-center">
+
+                {/* ============= Search Input ================= */}
+                {/* <div className="flex items-center flex-wrap gap-[20px] md:justify-center">
                   <div className="[&>div>div>span>.ant-select-selection-search-input]:bg-regularBG dark:[&>div>div>span>.ant-select-selection-search-input]:bg-regularBGdark [&>div>div>span>.ant-select-selection-search-input]:h-10 [&>div>div>span>.ant-select-selection-search-input]:border-none [&>div>div>span>.ant-select-selection-search-input>input]:bg-regularBG dark:[&>div>div>span>.ant-select-selection-search-input>input]:bg-transparent min-lg:[&>div>div>span>span>input]:min-w-[350px]">
                     <AutoComplete onSearch={handleSearch} dataSource={searchKeyData} width="100%" patterns />
                   </div>
-                </div>
+                </div> */}
 
                 {/* ============= Some Btn ================= */}
                 {/* <div className="flex items-center justify-end gap-[6px] md:justify-center">

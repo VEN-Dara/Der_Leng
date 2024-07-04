@@ -25,11 +25,11 @@ function PackageView() {
   const PageRoutes = [
     {
       path: '',
-      breadcrumbName: 'Home',
+      breadcrumbName: 'ទំព័រដើម',
     },
     {
       path: '',
-      breadcrumbName: 'Product Details',
+      breadcrumbName: 'ព័ត៌មានកញ្ចប់ទេសចរណ៍',
     },
   ];
 

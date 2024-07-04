@@ -18,12 +18,12 @@ const FILE_ENDPOINT = process.env.REACT_APP_FILE_ENDPOINT
 function ProductDetails() {
   const PageRoutes = [
     {
-      path: '',
-      breadcrumbName: 'Home',
+      path: '/',
+      breadcrumbName: 'ទំព័រដើម',
     },
     {
       path: '',
-      breadcrumbName: 'Product Details',
+      breadcrumbName: 'ព័ត៌មានកញ្ចប់ទេសចរណ៍',
     },
   ];
 
@@ -35,7 +35,7 @@ function ProductDetails() {
     <>
       <PageHeader
         routes={PageRoutes}
-        title="Product Details"
+        title="ព័ត៌មានកញ្ចប់ទេសចរណ៍"
         className="flex  justify-between items-center px-8 xl:px-[15px] pt-2 pb-6 sm:pb-[30px] bg-transparent sm:flex-col"
       />
 

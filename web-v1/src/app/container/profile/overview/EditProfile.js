@@ -1,18 +1,14 @@
-import { Suspense, useEffect, useState } from "react"
-import UseFetcher, { get } from "../../../hooks/useFetcher"
+import { Suspense } from "react"
 import { Skeleton } from "antd";
-import List from "../../tour_package/overview/List";
 import { NavLink, Route, Routes } from "react-router-dom";
 import Profile from "./Profile";
 import Password from "./Password";
 import NotFound from "../../pages/404";
 import EditPaymentMethod from "./EditPaymentMethod";
-import { useSelector } from "react-redux";
 import SyncTelegram from "./SyncTelegram";
 
 function EditProfile() {
     const path = '.';
-    const user = useSelector(state => state.userReducer.user)
 
     return (
         <>

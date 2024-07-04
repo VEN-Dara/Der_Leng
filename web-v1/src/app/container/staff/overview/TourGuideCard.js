@@ -15,9 +15,7 @@ function TourGuideCard({data, handleAcceptRegistration, handleRejectRegistration
                         <img src={ data.profile_image ? `${FILE_ENDPOINT}${data.profile_image}` : DefaultPackageImage} className='object-cover h-full w-full' />
                     </div>
                     <div className='flex flex-col justify-start min-md:justify-between'>
-                        <Link to={`/tour-guide/tour-package/${data.user}`}>
-                            <p className='p-0 m-0 font-kantumruy-pro text-primary font-semibold text-base'>{data.fullname_khmer} {data.fullname_english}</p>
-                        </Link>
+                        <p className='p-0 m-0 font-kantumruy-pro text-primary font-semibold text-base'>{data.fullname_khmer} {data.fullname_english}</p>
                         <p className='p-0 m-0 font-kantumruy-pro font-normal text-base'>{data.phone} • {data.email}</p>
                         <p className='p-0 m-0 hidden min-md:block font-kantumruy-pro font-normal text-base'>
                             ទីតាំង: {data.address}

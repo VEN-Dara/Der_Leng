@@ -154,7 +154,7 @@ function ForgotPassword() {
       console.log(error)
       message.destroy()
       if (error?.response?.data?.error === "User matching query does not exist.") {
-        setErrMessage("លេខទូរស័ព្ទ ឈ្មោះគណនី ឬអ៊ីមែលរបស់អ្នកមិនត្រឹមត្រូវទេ!")
+        message.warning("លេខទូរស័ព្ទ ឈ្មោះគណនី ឬអ៊ីមែលរបស់អ្នកមិនត្រឹមត្រូវទេ!")
       }
       if (error?.response?.data?.error === "User have not verified with telegram yet.") {
         message.warning("អ្នកប្រើប្រាស់មិនទាន់បានផ្ទៀងផ្ទាត់ជាមួយ Telegram នៅឡើយទេ!")
