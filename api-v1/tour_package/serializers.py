@@ -1,8 +1,9 @@
-from django.db.models import Q, Avg
+from django.db.models import Q, Avg, Count, F
+from django.db.models.functions import TruncDate
 from django.utils import timezone
 from rest_framework import serializers
 
-from booking.models import Cart
+from booking.models import Booking, Cart
 from core.settings.base import MEDIA_URL
 from authentication.serializers import UserSerializer
 from tour_package.models import Package, PackageCategory, PackageChargeType, PackageImage, PackageSchedule, PackageService, PackageUnavailableDate
@@ -102,9 +103,38 @@ class PackageSerializer(serializers.ModelSerializer):
         data['avg_rating'] = instance.review_set.all().aggregate(Avg("rating", default=0))['rating__avg']
         data['amount_rating'] = instance.review_set.count()
         data['favorite'] = False
-        data['is_available'] = is_package_available_today(instance)
         data['package_service'] = PackageServiceSerializer(instance.packageservice_set.filter(is_close=False), many=True).data
         data['package_schedule'] = PackageScheduleSerializer(instance.packageschedule_set.all().order_by("start_time"), many=True).data
+        
+        # ============>> Select unavialable date <<============
+        try:
+            booked_date = Cart.objects.filter(
+                Q(booking_date__gt=timezone.now()) & Q(bookingdetails__is_closed=False) & Q(bookingdetails__isnull=False)
+                ).annotate(
+                    date_only=TruncDate('booking_date')
+                ).values(
+                    'date_only'
+                ).annotate(
+                    num_booking=Count('date_only')
+                ).filter(
+                    service__package__max_daily_bookings__lte=F('num_booking')
+                )
+        except Exception as e:
+            print(f"An error occurred: {e}")
+            booked_date = []
+
+        unavailable_dates = []
+        for item in booked_date:
+            booked_dates = [
+                {   
+                "date_only": item['date_only'],
+                "date": date,
+                "num_booking": item['num_booking']
+                } for date in Cart.objects.filter( booking_date__date=item['date_only'] ).values_list('booking_date', flat=True)
+            ]
+            unavailable_dates.extend(booked_dates)
+
+        data["unavailable_dates"] = unavailable_dates
 
         # Access user information from the request object
         request = self.context.get('request')
@@ -115,6 +145,11 @@ class PackageSerializer(serializers.ModelSerializer):
 
 
 # =======================> Package Serializers Mixin <======================= 
+
+class BookingDateOnlySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Booking
+        fields = ['booking_date']
         
 def get_thumbnail_image(instance):
     thumbnail = instance.packageimage_set.first()

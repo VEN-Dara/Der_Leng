@@ -42,9 +42,9 @@ call_command("loaddata", "./database/seeding/1-data-setup/package_commission_see
 print("\033[1;34m..........::>> Seed: ./database/seeding/3-package/package_seeding.json\033[0m")
 call_command("loaddata", "./database/seeding/3-package/package_seeding.json")
 
-print("\n\033[1;34m...............................::>> Payment <<::...............................\033[0m")
-print("\033[1;34m..........::>> Seed: ./database/seeding/5-payment/payment_method_seeding.json\033[0m")
-call_command("loaddata", "./database/seeding/5-payment/payment_method_seeding.json")
+# print("\n\033[1;34m...............................::>> Payment <<::...............................\033[0m")
+# print("\033[1;34m..........::>> Seed: ./database/seeding/5-payment/payment_method_seeding.json\033[0m")
+# call_command("loaddata", "./database/seeding/5-payment/payment_method_seeding.json")
 
 print("\n\033[1;34m...............................::>> Social Oauth 2 <<::...............................\033[0m")
 print("\033[1;34m..........::>> Seed: ./database/seeding/1-data-setup/oauth2_application_seeding.json\033[0m")

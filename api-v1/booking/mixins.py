@@ -1,9 +1,12 @@
 from decimal import Decimal
 
+from django.db.models.functions import TruncDate
+from django.forms import ValidationError
 from django.utils import timezone
+from django_filters.filters import Q
 from core.settings import base
 from booking.tasks import cancel_payment_task
-from booking.models import Cart
+from booking.models import BookingDetails, Cart
 from booking.serializers import BookingDetailsSerializer
 from payment.serializers import CustomerPaymentSerializer
 
@@ -18,6 +21,18 @@ class BookingMixin:
 
             if not cart_instance:
                 raise Cart.DoesNotExist
+            
+            # :: Validate : preform delete other unbooking cart if daily_booking = 1 :: 
+            booking_date = cart_instance.booking_date.date()
+            service = cart_instance.service
+            booking_count = BookingDetails.objects.annotate(
+                booking_date_only=TruncDate('cart__booking_date')
+                ).filter(
+                    booking_date_only=booking_date, cart__service__id = service.id
+                )
+            
+            if booking_count.count() >= cart_instance.service.package.max_daily_bookings:
+                raise ValidationError("កាលបរិច្ឆេទដែលអ្នកចង់កក់មិននូវទំនេរទៀតទេ!")
             
             booking_details_data = {}
             booking_details_data["cart"] = cart_instance.id

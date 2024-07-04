@@ -115,13 +115,6 @@ function CheckOut({ dataProp, setRefreshCartData }) {
         current: 0,
       });
     }
-    else {
-
-      notification.error({
-        message: 'Failed Checkout!',
-        description: `We apologize, but it seems there was an issue processing your order at this time. Please double-check your payment information and try again. If the problem persists, feel free to reach out to our customer support team for assistance. Thank you for your patience and understanding`,
-      });
-    }
 
     setIsModalOpen(false)
   };
