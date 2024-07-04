@@ -53,6 +53,7 @@ const logOut = (callback) => {
     try {
       Cookies.remove('logedIn');
       Cookies.remove('access_token');
+      Cookies.remove('refresh_token');
       localStorage.removeItem('user')
       dispatch(logoutSuccess(false));
       callback();

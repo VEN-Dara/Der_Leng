@@ -9,4 +9,5 @@ urlpatterns = [
     path('carts/<uuid:pk>', CartAPIView.as_view(), name='cart'),
     path('reviews' , ReviewAPIView.as_view(), name=''),
     path('reviews/<uuid:pk>' , ReviewAPIView.as_view(), name=''),
+    path('notifications' , get_notification, name='get_notification'),
 ]

@@ -3,6 +3,7 @@ import { Provider, useDispatch, useSelector } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
 import { BrowserRouter as Router, Navigate, Route, Routes } from 'react-router-dom';
 import { ConfigProvider } from 'antd';
+import { ConfigProvider as ConfigProvider5 } from 'antd-v5';
 // import store from './resource/redux/store';   // resource store
 import store from './app/redux/store';   // local store
 import Customer from './app/routes/customer';
@@ -56,7 +57,7 @@ function ProviderConfig() {
   }, [setPath]);
 
   return (
-    <ConfigProvider direction={rtl ? 'rtl' : 'ltr'}>
+    <ConfigProvider5 prefixCls="ant5" direction={rtl ? 'rtl' : 'ltr'}>
       <ThemeProvider theme={{ ...theme, rtl, topMenu, mainContent }}>
         <Router basename={process.env.PUBLIC_URL}>
           {!isLoggedIn ? (
@@ -65,7 +66,7 @@ function ProviderConfig() {
             </Routes>
           ) : (
             <Routes>
-              <Route path="/tour-guide/*" element={<AuthorizeProtectedRoute path="/*" Component={TourGuide} isAuthorized={isTourGuideOrAbove()} />} />
+              <Route path="/tour-guide/*" element={<AuthorizeProtectedRoute path="/*" Component={TourGuide} isAuthorized={isTourGuideOrAbove(user.role)} />} />
               <Route path="/staff/*" element={<AuthorizeProtectedRoute path="/*" Component={Staff} isAuthorized={isStaffOrAbove(user.role)} />} />
               <Route path="/*" element={<ProtectedRoute path="/*" Component={Customer} />} />
               <Route path="*" element={<NotFound />} />
@@ -78,7 +79,7 @@ function ProviderConfig() {
           )}
         </Router>
       </ThemeProvider>
-    </ConfigProvider>
+    </ConfigProvider5>
   );
 }
 

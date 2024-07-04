@@ -44,6 +44,6 @@ call_command("dumpdata", "--indent", "2", "authentication", "tour_package", "oau
 print(f"Data dumped to {backup_path}")
 
 # ============================>> Command for backup support Xutf8
-# python -Xutf8 ./manage.py dumpdata authentication tour_package payment oauth2_provider > backup_text.json
+# python -Xutf8 ./manage.py dumpdata authentication tour_package payment oauth2_provider > database/backup/backup_000.json
 
 

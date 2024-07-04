@@ -14,7 +14,12 @@ const getPaymentMethod = async (setState) => {
             }))
         }
     } catch (error) {
-        alert(error.response)
+        setState((prevState) => ({
+            ...prevState,
+            isLoading: false
+        }))
+        console.error("Get payment", error)
+        console.log(error.response)
     }
 }
 

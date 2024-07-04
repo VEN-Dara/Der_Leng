@@ -193,8 +193,8 @@ const AuthInfo = React.memo(() => {
       {/* <div className="md:hidden">
         <Search />
       </div> */}
-      <Message />
-      <Notification />
+      {/* <Message />
+      <Notification /> */}
 
     {/* =====================> Setting and Flag <===================== */}
       {/* <Settings />

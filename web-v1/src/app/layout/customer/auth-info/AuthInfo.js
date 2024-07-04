@@ -144,7 +144,7 @@ const AuthInfo = React.memo(() => {
           </li>
 
           {/* ======================================>> Only tour guide or above have this nav <<======================================== */}
-          { isTourGuideOrAbove() && 
+          { isTourGuideOrAbove(user.role) && 
           <li>
             <Link
               to="/tour-guide"
@@ -220,12 +220,12 @@ const AuthInfo = React.memo(() => {
       <div className="md:hidden">
         <Search />
       </div>
-      <Message />
       <Notification />
-      {/* <PaymentBox/> */}
       <CartBox/>
 
     {/* =====================> Setting and Flag <===================== */}
+      {/* <Message /> */}
+      {/* <PaymentBox/> */}
       {/* <Settings />
       <div className="flex mx-3">
         <Dropdown placement="bottomRight" content={country} trigger="click">

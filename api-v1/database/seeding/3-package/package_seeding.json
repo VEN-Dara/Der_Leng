@@ -3,55 +3,40 @@
         "model": "tour_package.package",
         "pk": "17629e69-35f1-4c9d-8bf7-09a6934e1724",
         "fields": {
-            "user": "38a42599-1550-4a4a-9de9-a7caf8068433",
-            "name": "Phunm Penh",
-            "description": "Embark on an unforgettable journey through the heart of Cambodia's capital city, Phnom Penh. Our tour service offers you a unique opportunity to immerse yourself in the rich history, vibrant culture, and captivating beauty of this bustling metropolis.\n\nExperience the Majesty of the Royal Palace:\nStep into the opulent world of Cambodian royalty as you explore the magnificent Royal Palace. Marvel at the intricate architecture, gilded spires, and ornate decorations that adorn this historic landmark, once home to the kings of Cambodia.",
-            "category": "91d2ad1e-b8ad-4772-a5f1-c066156f799e",
+            "user": "33be413a-dd3e-477a-ac7a-e8280c33ebbf",
+            "name": "ប្រាសាទ អង្គរវត្ត",
+            "description": "ប្រាសាទ អង្គរវត្ត ឬ នគរវត្ត (អង់គ្លេស: Angkor Wat) or (Nokor Wat) ជាប្រាសាទ ដែលធំបំផុត នៅក្នុងប្រទេសកម្ពុជា ដែលមានមាឌដ្ឋានលើផ្ទៃដីទំហំ ១៦២,៦ ហិចតា ដោយស្មើនឹង (1,626,000 m2) ។ រចនាសម្ព័ននៃសំណង់ប្រាសាទត្រូវ បានចាត់ទុកជាស្ថាបត្យកម្មដ៏កំពូល នៃ អច្ឆរិយៈវត្ថុរបស់ពិភពលោក ដែលត្រូវបានសាងសង់ឡើងក្នុងស.វទី១២ ដោយព្រះបាទ សូរ្យវរ្ម័នទី២ ដែលជាព្រះមហាក្សត្រ នាសម័យកាល ចក្រភពខ្មែរ ប្រាសាទនេះសាងសង់ ដើម្បីឧទ្ទិសឱ្យ ព្រហ្មញ្ញសាសនា នៃលទ្ធិជំនឿលើ ព្រះវិស្ណុ ដូចនេះហើយ ប្រាសាទអង្គរវត្តត្រូវបានគេសន្មតថា ជាប្រាសាទសាសនា ដែលធំបំផុតនៅលើពិភពលោក ដែលជាប់ក្នុងកំណត់ត្រាពិភពលោក (Guinness World Records) ក្នុងអំឡុងឆ្នាំ ១៩៨៥ ",
+            "category": "15b9fc8c-637c-48fc-b60a-69091d2dc3f8",
             "charge_type": "dc4a63bc-56c6-4385-abeb-963c40150b60",
             "max_people": 5,
             "num_days": 1,
             "max_daily_bookings": 1,
             "percentage_discount": "20.00",
-            "location_url": "https://maps.app.goo.gl/2hoYZCqNFnW7yBh68",
-            "address": "PhnumPenh City",
+            "location_url": "https://maps.app.goo.gl/ce7SWk8XtCRaVF619",
+            "address": "Krong Siem Reap, Cambodia",
             "commission": "8123e37e-d617-42e6-a3dd-929c0091cb21",
             "is_close": false,
-            "created_at": "2024-05-03T03:48:40.680Z",
-            "favorites": [
-                "35e74bc7-c3d3-4e7d-be44-8c2ac13ca096"
-            ]
+            "created_at": "2024-05-03T03:48:40.680Z"
         }
     },
     {
         "model": "tour_package.package",
         "pk": "34014616-9d1a-4511-9879-d0ffe7a0ec62",
         "fields": {
-            "user": "38a42599-1550-4a4a-9de9-a7caf8068433",
-            "name": "Phunm Penh",
-            "description": "Embark on an unforgettable journey through the heart of Cambodia's capital city, Phnom Penh. Our tour service offers you a unique opportunity to immerse yourself in the rich history, vibrant culture, and captivating beauty of this bustling metropolis.\n\nExperience the Majesty of the Royal Palace:\nStep into the opulent world of Cambodian royalty as you explore the magnificent Royal Palace. Marvel at the intricate architecture, gilded spires, and ornate decorations that adorn this historic landmark, once home to the kings of Cambodia.",
+            "user": "33be413a-dd3e-477a-ac7a-e8280c33ebbf",
+            "name": "ឧទ្យានជាតិព្រះមុនីវង្សបូកគោ",
+            "description": "រូបភាពតូច|រូបភាពផ្លូវឡើងភ្នំបូកគោ ភ្នំបូកគោគឺជាឧទ្យានជាតិ នៅខេត្តកំពតភាគខាងត្បូងនៃប្រទេសកម្ពុជា។ វាត្រូវបានគេស្គាល់ផងដែរថាជា ឧទ្យានជាតិភ្នំបូកគោ។ ភ្នំបូកគោស្ថិតនៅក្នុងតំបន់ខ្ពង់រាប ដែលបង្កើតជាតំបន់ភាគអាគ្នេយ៍នៃ ជួរភ្នំក្រវាញ ។ ភាគច្រើននៃឧទ្យាននេះមានកម្ពស់ប្រហែល ១០០០ ម៉ែត្រពីលើផ្ទៃសមុទ្រហើយកំពូលភ្នំបូកគោមានកំពស់ ១១០១ម៉ែត្រដែលគេហៅថាភ្នំបូកគោ។ ភ្នំបូគោគឺជាភ្នំមួយដែលស្ថិតនៅក្នុងខេត្តកំពត ភ្នំបូគោមានចម្ងាយ ៣២គីឡូម៉ែត្រគិតចាប់ពីផ្លូវជាតិលេខ៣ ដល់កំពូលភ្នំបូកគោហើយភ្នំបូកគោមានកំពស់ ១១០១ម និងមានផ្ទៃដីសរុប១៤០០០ហិចតាយោងតាម គណៈគ្រប់គ្រងភ្នំបូកគោ។",
             "category": "91d2ad1e-b8ad-4772-a5f1-c066156f799e",
             "charge_type": "dc4a63bc-56c6-4385-abeb-963c40150b60",
-            "max_people": 5,
+            "max_people": 10,
             "num_days": 1,
             "max_daily_bookings": 1,
-            "percentage_discount": "20.00",
-            "location_url": "https://maps.app.goo.gl/2hoYZCqNFnW7yBh68",
-            "address": "PhnumPenh City",
+            "percentage_discount": "10.00",
+            "location_url": "https://maps.app.goo.gl/4nDiVJy2LeW9vqmh6",
+            "address": "National Hwy 3 Preah Monivong Bokor National Park",
             "commission": "8123e37e-d617-42e6-a3dd-929c0091cb21",
             "is_close": false,
-            "created_at": "2024-05-03T03:58:48.851Z",
-            "favorites": [
-                "35e74bc7-c3d3-4e7d-be44-8c2ac13ca096"
-            ]
-        }
-    },
-    {
-        "model": "tour_package.packageimage",
-        "pk": "0a009d61-1a45-4133-9631-762f7c96736b",
-        "fields": {
-            "package": "34014616-9d1a-4511-9879-d0ffe7a0ec62",
-            "image": "images/package_images/Angkor_Wat_Temple_6kJbnHO.jpg",
-            "type": "cover"
+            "created_at": "2024-05-03T03:58:48.851Z"
         }
     },
     {
@@ -59,7 +44,43 @@
         "pk": "10d04251-8da0-4160-858b-55e52365f981",
         "fields": {
             "package": "34014616-9d1a-4511-9879-d0ffe7a0ec62",
-            "image": "images/package_images/elephant-bayon-temple-angor-wat-cambodia_980x650_9waCeN1.jpg",
+            "image": "images/initail_package_images/Bokor National Park.jpg",
+            "type": "normal"
+        }
+    },
+    {
+        "model": "tour_package.packageimage",
+        "pk": "10d04251-8da0-4160-858b-55e52365f982",
+        "fields": {
+            "package": "34014616-9d1a-4511-9879-d0ffe7a0ec62",
+            "image": "images/initail_package_images/A-Guide-to-Bokor-National-Park-1.jpg",
+            "type": "normal"
+        }
+    },
+    {
+        "model": "tour_package.packageimage",
+        "pk": "10d04251-8da0-4160-858b-55e52365f983",
+        "fields": {
+            "package": "34014616-9d1a-4511-9879-d0ffe7a0ec62",
+            "image": "images/initail_package_images/Bokor_palace_hotel_Cambodia.jpg",
+            "type": "normal"
+        }
+    },
+    {
+        "model": "tour_package.packageimage",
+        "pk": "10d04251-8da0-4160-858b-55e52365f984",
+        "fields": {
+            "package": "34014616-9d1a-4511-9879-d0ffe7a0ec62",
+            "image": "images/initail_package_images/bokor-national-park (1).jpg",
+            "type": "normal"
+        }
+    },
+    {
+        "model": "tour_package.packageimage",
+        "pk": "1a1fbbeb-4454-4137-9288-91c98106dc2e",
+        "fields": {
+            "package": "17629e69-35f1-4c9d-8bf7-09a6934e1724",
+            "image": "images/initail_package_images/Angkor_Wat_Temple.jpg",
             "type": "normal"
         }
     },
@@ -68,25 +89,16 @@
         "pk": "139fe836-09e3-425d-bedb-68d323c29f29",
         "fields": {
             "package": "17629e69-35f1-4c9d-8bf7-09a6934e1724",
-            "image": "images/package_images/Angkor_Wat_Temple_iVrlmi7.jpg",
+            "image": "images/initail_package_images/ak.jpg",
             "type": "cover"
-        }
-    },
-    {
-        "model": "tour_package.packageimage",
-        "pk": "1a1fbbeb-4454-4137-9288-91c98106dc2e",
-        "fields": {
-            "package": "17629e69-35f1-4c9d-8bf7-09a6934e1724",
-            "image": "images/package_images/elephant-bayon-temple-angor-wat-cambodia_980x650_O38pear.jpg",
-            "type": "normal"
         }
     },
     {
         "model": "tour_package.packageimage",
         "pk": "809456ca-e247-429f-815e-4e83309222d2",
         "fields": {
-            "package": "34014616-9d1a-4511-9879-d0ffe7a0ec62",
-            "image": "images/package_images/derleng-default-profile_gtP0dVO.png",
+            "package": "17629e69-35f1-4c9d-8bf7-09a6934e1724",
+            "image": "images/initail_package_images/GettyImages-865119770.jpg",
             "type": "normal"
         }
     },
@@ -94,17 +106,8 @@
         "model": "tour_package.packageimage",
         "pk": "85ec66e8-af50-421c-9051-c1cc07223768",
         "fields": {
-            "package": "34014616-9d1a-4511-9879-d0ffe7a0ec62",
-            "image": "images/package_images/Bokor_palace_hotel_Cambodia_BDDP5OJ.jpg",
-            "type": "normal"
-        }
-    },
-    {
-        "model": "tour_package.packageimage",
-        "pk": "8ebdd708-58ea-4923-9056-83fa22eb9445",
-        "fields": {
             "package": "17629e69-35f1-4c9d-8bf7-09a6934e1724",
-            "image": "images/package_images/derleng-default-profile_SGR4qcM.png",
+            "image": "images/initail_package_images/aa.jpg",
             "type": "normal"
         }
     },
@@ -112,45 +115,9 @@
         "model": "tour_package.packageimage",
         "pk": "aad5d267-a348-40db-8c16-37c5f506388c",
         "fields": {
-            "package": "34014616-9d1a-4511-9879-d0ffe7a0ec62",
-            "image": "images/package_images/Bokor_palace_hotel_Cambodia_kzhlo4p.jpg",
+            "package": "17629e69-35f1-4c9d-8bf7-09a6934e1724",
+            "image": "images/initail_package_images/1200px-Ankor_Wat_temple.jpg",
             "type": "thumbnail"
-        }
-    },
-    {
-        "model": "tour_package.packageimage",
-        "pk": "b7981309-99c6-4987-a0bd-c7712916d28d",
-        "fields": {
-            "package": "34014616-9d1a-4511-9879-d0ffe7a0ec62",
-            "image": "images/package_images/maxresdefault_2_kyDgsZS.jpg",
-            "type": "normal"
-        }
-    },
-    {
-        "model": "tour_package.packageimage",
-        "pk": "be7f4d75-0fd9-4a2e-8293-ac9fb4856649",
-        "fields": {
-            "package": "17629e69-35f1-4c9d-8bf7-09a6934e1724",
-            "image": "images/package_images/Bokor_palace_hotel_Cambodia_zaKUDJC.jpg",
-            "type": "thumbnail"
-        }
-    },
-    {
-        "model": "tour_package.packageimage",
-        "pk": "f0e21149-2a91-4260-8de7-654b0e224a7b",
-        "fields": {
-            "package": "17629e69-35f1-4c9d-8bf7-09a6934e1724",
-            "image": "images/package_images/Bokor_palace_hotel_Cambodia_2HMcvz2.jpg",
-            "type": "normal"
-        }
-    },
-    {
-        "model": "tour_package.packageimage",
-        "pk": "fcafa11e-bbe9-4c04-b31c-406a80187bb3",
-        "fields": {
-            "package": "17629e69-35f1-4c9d-8bf7-09a6934e1724",
-            "image": "images/package_images/maxresdefault_2_E8Y1Fg6.jpg",
-            "type": "normal"
         }
     },
     {

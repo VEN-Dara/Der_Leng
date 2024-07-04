@@ -1,0 +1,14 @@
+[
+    {
+        "model": "telegrambot.telegramaccount",
+        "pk": 1127107615,
+        "fields": {
+            "first_name": "វ៉េន ដារ៉ា -",
+            "last_name": "VEN DARA",
+            "username": "dara_ven",
+            "type": "private",
+            "last_bot_message": "អ្នកបានភ្ជាប់គណនី ដើរលេង របស់អ្នកដោយជោគជ័យជាមួយ Telegram ។✅✨",
+            "last_user_response": "derleng"
+        }
+    }
+]

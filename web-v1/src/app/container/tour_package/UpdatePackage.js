@@ -76,7 +76,7 @@ function UpdatePackage({ id }) {
                 packageData: packageRes.data
             }))
         } catch (error) {
-
+            message.destroy()
         } finally {
             setSetupData(prevState => ({
                 ...prevState,
@@ -113,6 +113,7 @@ function UpdatePackage({ id }) {
                 type: 'success'
             });
         } catch (error) {
+            message.destroy()
             console.log(error.response)
             message.error("error")
         } finally {

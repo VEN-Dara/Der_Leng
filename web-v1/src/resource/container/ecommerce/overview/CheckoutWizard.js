@@ -290,7 +290,7 @@ function CheckOut({ dataProp, setRefreshCartData }) {
                           <div className='w-full h-full flex justify-center items-center'>
                             <Spin />
                           </div>
-                        ) : paymentMathod.data.length ? (
+                        ) : paymentMathod.data.length > 0 ? (
                           <Radio.Group style={{ width: '100%' }} value={paymentMethodSelected} onChange={e => setPaymentMethodSelected(e.target.value)}>
                             {paymentMathod.data.map(({ id, last4, brand, exp_month, exp_year, is_default }) => {
                               return (
@@ -314,7 +314,7 @@ function CheckOut({ dataProp, setRefreshCartData }) {
                             })}
                           </Radio.Group>
                         ) : (
-                          <p>No credit card.</p>
+                          <p className='text-body'>No credit card.</p>
                         )}
                       </div>
 
@@ -368,7 +368,6 @@ function CheckOut({ dataProp, setRefreshCartData }) {
                         </div>
                         { paymentMethodSelected && (
                           <PaymentCard key={`${paymentMethodSelected.id}-selected`} creditCard={JSON.parse(paymentMethodSelected)} isSelected={true} />
-                          // <div>Hello</div>
                         )}
                       </div>
                       <div className="bg-regularBG dark:bg-white10 mb-[25px] p-[25px] rounded-[15px]">

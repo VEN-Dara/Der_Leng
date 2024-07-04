@@ -54,7 +54,7 @@ function EditPaymentMethod() {
                     <div className='w-full h-full flex justify-center items-center'>
                       <Spin />
                     </div>
-                  ) : paymentMathod.data.length ? (
+                  ) : paymentMathod.data.length > 0 ? (
                     <Radio.Group disabled style={{ width: '100%' }} value={paymentMethodSelected} onChange={e => setPaymentMethodSelected(e.target.value)}>
                       {paymentMathod.data.map(({ id, last4, brand, exp_month, exp_year, is_default }) => {
                         return (

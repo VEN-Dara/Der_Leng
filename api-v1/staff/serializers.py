@@ -12,5 +12,6 @@ class TourGuideRegistrationSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         data = super().to_representation(instance)
         data['email'] = instance.user.email
-        data['profile_image'] = '/media/' + str(instance.user.profileImage)
+        if(instance.user.profileImage) :
+            data['profile_image'] = '/media/' + str(instance.user.profileImage)
         return data

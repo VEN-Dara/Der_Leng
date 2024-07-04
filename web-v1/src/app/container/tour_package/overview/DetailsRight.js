@@ -1,32 +1,28 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { NavLink, useLocation } from 'react-router-dom';
+import React, { useRef, useState } from 'react';
 import { ReactSVG } from 'react-svg';
 
 // ==============================> Library <==============================
 import { Rate, DatePicker, Select, message, notification } from 'antd';
 import moment from 'moment';
 import UilHeart from '@iconscout/react-unicons/icons/uil-heart';
-import UilShareAlt from '@iconscout/react-unicons/icons/uil-share-alt';
 import UilShoppingBag from '@iconscout/react-unicons/icons/uil-shopping-bag';
 import PropTypes from 'prop-types';
-import FontAwesome from 'react-fontawesome';
 
 // =============================================> Local <====================================
 import Heading from '@/resource/components/heading/heading';
-import { updateWishList } from '@/resource/redux/product/actionCreator';
 import { Button } from '@/resource/components/buttons/buttons';
 import { postCart } from '../../../hooks/Product/useCartFetcher';
 import UseFetcher from '../../../hooks/useFetcher';
+import { Link } from 'react-router-dom';
 
-const { Option, OptGroup } = Select;
+const { Option } = Select;
 
 const DetailsRight = React.memo(({ product }) => {
   const [state, setState] = useState({
     customer_amount: 1,
-    service: null,
+    service: product.package_service[0].id,
     booking_date: null
-  });  
+  });
 
   const { id, name, description, percentage_discount, tour_place_coordinate, address, video_url, is_close, create_at, category, user, package_image, package_schedule, package_service, avg_rating, amount_rating } = product;
   const { customer_amount } = state;
@@ -55,25 +51,30 @@ const DetailsRight = React.memo(({ product }) => {
   };
 
   const onServiceChange = (service) => {
-    setState({ ...state, service})
+    setState({ ...state, service })
     const serviceObj = package_service.find(service_obj => service_obj.id === service)
     setShowPrice(serviceObj.price)
   };
 
   const addToCard = () => {
-    if(state.service===null) {
-      message.error('Please select tour service.');
+    if (state.service === null) {
+      message.warning('សូមជ្រើសរើសសេវាកម្មទេសចរណ៍!');
       scrollToSection(bookingElementRef);
       return
     }
-    if(state.booking_date===null) {
-      message.error('Please select booking date.');
+    if (state.booking_date === null) {
+      message.warning('សូមជ្រើសរើសកាលបរិច្ឆេទកក់!');
       return
     }
-    if(state.customer_amount===0) {
-      message.error('Please tourist can not be 0.');
+    if (state.customer_amount === 0) {
+      message.warning('ចំនួនភ្ញៀវទេសចរណ៍មិនអាច 0!');
       return
     }
+    // if (product?.max_daily_bookings === 0) {
+    //   message.warning('កញ្ចប់នេះអស់សេវាកម្មសម្រាប់ថ្ងៃនេះ!');
+    //   return
+    // }
+
     postCart(state) && openSuccessCartNotification();
   }
 
@@ -84,25 +85,25 @@ const DetailsRight = React.memo(({ product }) => {
   const openSuccessCartNotification = () => {
     notification.open({
       message: 'Package added to cart',
-      icon: <ReactSVG src={require('@/resource/static/img/icon/shopping-cart.svg').default} className='text-green-400 mt-[1px]' width="12px"/>,
+      icon: <ReactSVG src={require('@/resource/static/img/icon/shopping-cart.svg').default} className='text-green-400 mt-[1px]' width="12px" />,
 
     });
   };
 
   // ================> Function to scroll to a specific content section <================
   const bookingElementRef = useRef(null);
-  
+
   const scrollToSection = (ref) => {
     ref.current.scrollIntoView({ behavior: 'smooth' });
   };
-  
+
   // ================> Favirite <================
   const useFetcher = new UseFetcher();
   const [stateFavorite, setStateFavorite] = useState(
     {
       isLoading: false,
       data: null,
-      message: null, 
+      message: null,
       success: false
     }
   )
@@ -110,23 +111,23 @@ const DetailsRight = React.memo(({ product }) => {
   const [isFavorite, setIsFavorite] = useState(product.favorite)
 
   const handleFavorite = (package_id) => {
-    if(isFavorite) {
+    if (isFavorite) {
       setIsFavorite(false)
       removeFromFavorite(package_id);
       return
     }
-    
+
     setIsFavorite(true)
     addToFavorite(package_id);
   }
-  
+
   const addToFavorite = (package_id) => {
-    const data = {package: package_id};
+    const data = { package: package_id };
     useFetcher.post(apiUrl, setStateFavorite, data);
   }
 
   const removeFromFavorite = (package_id) => {
-    const data = {package: package_id};
+    const data = { package: package_id };
     useFetcher.put(apiUrl, setStateFavorite, data);
   }
 
@@ -139,35 +140,36 @@ const DetailsRight = React.memo(({ product }) => {
         {name}
       </Heading>
       <Rate className="relative -top-[3px] [&>li]:mr-0.5" allowHalf defaultValue={avg_rating} disabled />
-      <span className="inline-block ltr:mr-1 ltr:ml-2 rtl:ml-1 rtl:mr-2 text-dark dark:text-white87 text-[15px] font-semibold">
+      <span className="inline-block ltr:mr-1 ltr:ml-2 rtl:ml-1 rtl:mr-2 text-dark dark:text-white87 text-base font-semibold">
         {Number(avg_rating).toFixed(1)}
       </span>
-      <span className="font-normal text-light dark:text-white60"> {amount_rating} Reviews</span>
-      <p ref={bookingElementRef} >
-        <span className="inline-block ltr:mr-1.5 rtl:ml-1.5 mb-2 text-light dark:text-white60 text-[13px]">
-          Tour Guide
+      <span className="font-normal text-light dark:text-white60"> {amount_rating} នៃការវាយតម្លៃ</span>
+      <p ref={bookingElementRef} className='my-1' >
+        <span className="inline-block ltr:mr-1.5 rtl:ml-1.5 text-light dark:text-white60 text-base">
+        ម​គ្គុ​ទេស​ក៍​ទេសចរណ៍
         </span>
-        <span className="text-dark dark:text-white87 text-[13px] font-medium">{user.fullname}</span>
+        <span className="text-dark dark:text-white87 text-base font-medium">{user.fullname}</span>
       </p>
-      <Heading className="text-dark dark:text-white87 mt-[18px] mb-2 text-[22px] font-medium" as="h3">
-        <span className="text-sm text-light dark:text-white60">$</span>
+      <Link to={`${product.location_url}`} target='_blank'>
+        <span className="inline-block ltr:mr-1.5 rtl:ml-1.5 mb-2 text-light dark:text-white60 text-base">
+        🗺️ទីតាំង
+        </span>
+        <span className="text-primary hover:underline text-base font-medium">{product.address} </span>
+      </Link>
+      <Heading className="text-dark dark:text-white87 mt-[18px] mb-2 text-2xl font-medium" as="h3">
+        <span className="text-base text-light dark:text-white60">$</span>
         <span>{(100 - percentage_discount) / 100 * showPrice}</span>
       </Heading>
       {parseFloat(percentage_discount) !== 0 && (
         <Heading className="text-dark dark:text-white87 mb-[22px] font-semibold inline-flex items-center" as="h6">
-          <del className="text-base font-normal text-light dark:text-white60">${showPrice}</del>{' '}
-          <span className="inline-block text-xs ltr:ml-2 rtl:mr-2 text-primary">{percentage_discount}% Off</span>
+          <del className="text-base font-medium text-light dark:text-white60">${showPrice}</del>{' '}
+          <span className="inline-block text-base ltr:ml-2 rtl:mr-2 text-primary">{percentage_discount}% Off</span>
         </Heading>
       )}
-      {/* {parseFloat(percentage_discount) !== 0 && (
-      <Heading className="text-primary my-2 text-[22px] font-medium" as="h3">
-        <span>{percentage_discount}% Off</span>
-      </Heading>
-      )} */}
       <p className="max-w-[580px] mb-2 text-body dark:text-white60 text-[15px]">{description}</p>
       <div className="mt-[25px]">
         <p className="my-[30px] text-body dark:text-white60 flex flex-col gap-1">
-          <span className="mr-[30px] text-secondary dark:text-white87 font-medium">Services:</span>
+          <span className="mr-[30px] text-secondary dark:text-white87 font-medium">សេវាកម្ម:</span>
           <Select
             className="[&>div]:border-normal w-[287px] dark:[&>div]:border-white10 [&>div]:rounded-6 [&>.ant-select-arrow]:text-theme-gray dark:[&>.ant-select-arrow]:text-white60 [&>div>div>div>span]:bg-transparent [&>div]:h-[38px] [&>div>div>div>span]:items-center [&>div>.ant-select-selection-item]:flex [&>div>.ant-select-selection-item]:items-center dark:[&>div>.ant-select-selection-item]:text-white60"
             defaultValue={package_service[0].id}
@@ -184,12 +186,17 @@ const DetailsRight = React.memo(({ product }) => {
           </Select>
         </p>
         <p className=" text-body dark:text-white60 flex flex-col gap-1">
-          <span className="mr-[30px] text-secondary dark:text-white87 font-medium">Booking date:</span>
+          <span className="mr-[30px] text-secondary dark:text-white87 font-medium">កាលបរិច្ឆេទកក់:</span>
           <DatePicker onChange={onDateChange} disabledDate={disabledDate} className='w-[287px]' />
         </p>
         <p className="my-[30px] text-body dark:text-white60">
-          <span className="mr-[30px] text-secondary dark:text-white87 font-medium">Tourist:</span>
+          <span className="mr-[30px] text-secondary dark:text-white87 font-medium">ចំនួនភ្ញៀវទេសចរ:</span>
 
+          { product?.charge_type?.name === "flat rate"  ? (
+          <>
+            <span className="-ml-4 text-light dark:text-white60 text-base font-medium">គិតតម្លៃម៉ៅ សម្រាប់អ្នកទេសចរ {product.max_people} នាក់</span>
+          </>) : (
+          <>
           <Button
             className="w-[38px] h-[38px] bg-section dark:bg-white10 mr-[15px] p-x-3 text-sm text-body dark:text-white60 font-semibold border-none rounded-[10px]"
             onClick={decrementCustomer_amount}
@@ -202,21 +209,17 @@ const DetailsRight = React.memo(({ product }) => {
             className="w-[38px] h-[38px] bg-section dark:bg-white10 ml-[15px] p-x-3 text-sm text-body dark:text-white60 font-semibold border-none rounded-[10px]"
             onClick={incrementCustomer_amount}
             type="default"
+            disabled={customer_amount >= product.max_people}
           >
             +
           </Button>
-          <span className="ml-[15px] text-light dark:text-white60 text-[13px]">tourist</span> 
+          <span className="ml-[15px] text-light dark:text-white60 text-base">អ្នកទេសចរ (ច្រើន​បំផុត {product.max_people} នាក់)</span>
+          </>) }
+
         </p>
       </div>
       <div className="flex items-center flex-wrap mb-7 pb-[30px] border-b border-regular dark:border-white10 gap-[10px]">
         <div className="flex flex-wrap items-center gap-[10px]">
-          <Button
-            size="small"
-            type="primary"
-            className="flex items-center h-[44px] px-[30px] bg-primary text-white dark:text-white87 text-sm font-semibold border-primary rounded-[6px]"
-          >
-            Buy Now
-          </Button>
           <Button
             size="small"
             type="white"
@@ -225,12 +228,12 @@ const DetailsRight = React.memo(({ product }) => {
             onClick={addToCard}
           >
             <UilShoppingBag className="w-[14px] h-[14px]" />
-            Add To Cart
+            បញ្ចូលទៅក្នុងកន្ត្រក
           </Button>
 
           <Button
             onClick={() => handleFavorite(id)}
-            className={` inline-flex items-center justify-center bg-white dark:bg-white10 w-[40px] h-[40px] ltr:mr-[10px] rtl:ml-[10px] border-none rounded-full shadow-[0_5px_10px_rgba(160,160,260,0.13)] dark:shadow-[0_5px_30px_rgba(1,4,19,.60)] ${false ? 'text-danger' : 'text-body dark:text-white60'
+            className={` inline-flex items-center justify-center bg-gray-200 hover:bg-gray-300 dark:bg-white10 w-[40px] h-[40px] ltr:mr-[10px] rtl:ml-[10px] border-none rounded-full shadow-[0_5px_10px_rgba(160,160,260,0.13)] dark:shadow-[0_5px_30px_rgba(1,4,19,.60)] ${false ? 'text-danger' : 'text-body dark:text-white60'
               } `}
             size="default"
             raised
@@ -243,69 +246,6 @@ const DetailsRight = React.memo(({ product }) => {
               <UilHeart className="w-[14px] h-[14px]" />
             )}
           </Button>
-          {/* <button
-          onClick={() => handleFavorite(id)}
-          className={` inline-flex items-center justify-center absolute min-3xl:ltr:right-5 min-3xl:rtl:left-5 ltr:right-0 rtl:left-0  min-3xl:top-[15px] top-0 bg-white dark:bg-white10 w-[40px] h-[40px] rounded-full shadow-[0_5px_10px_rgba(160,160,260,0.13)] ${
-            true ? 'text-danger' : 'text-body dark:text-white60'
-          } `}
-        >
-          {isFavorite ? (
-            <ReactSVG src={require(`@/resource/static/img/icon/heart-fill.svg`).default} />
-          ) : (
-            <UilHeart className="w-[18px] h-[18px]" />
-          )}
-          </button> */}
-          <Button
-            size="default"
-            raised
-            type="white"
-            shape="circle"
-            className="inline-flex items-center justify-center bg-white dark:bg-white10 text-body dark:text-white60 w-[40px] h-[40px] ltr:mr-[10px] rtl:ml-[10px] border-none rounded-full shadow-[0_5px_10px_rgba(160,160,260,0.13)] dark:shadow-[0_5px_30px_rgba(1,4,19,.60)]"
-          >
-            <UilShareAlt className="w-[14px] h-[14px]" />
-          </Button>
-        </div>
-        <div className="ltr:ml-[5px] rtl:mr-[5px]">
-          <NavLink to="#" className="ltr:mr-3 rtl:ml-3 group">
-            <FontAwesome
-              className="text-sm text-[#666] dark:text-white60 group-hover:text-[#8231d3]"
-              name="facebook"
-              size="2x"
-              style={{ textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)' }}
-            />
-          </NavLink>
-          <NavLink to="#" className="ltr:mr-3 rtl:ml-3 group">
-            <FontAwesome
-              className="text-sm text-[#666] dark:text-white60 group-hover:text-[#8231d3]"
-              name="twitter"
-              size="2x"
-              style={{ textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)' }}
-            />
-          </NavLink>
-          <NavLink to="#" className="ltr:mr-3 rtl:ml-3 group">
-            <FontAwesome
-              className="text-sm text-[#666] dark:text-white60 group-hover:text-[#8231d3]"
-              name="pinterest-p"
-              size="2x"
-              style={{ textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)' }}
-            />
-          </NavLink>
-          <NavLink to="#" className="ltr:mr-3 rtl:ml-3 group">
-            <FontAwesome
-              className="text-sm text-[#666] dark:text-white60 group-hover:text-[#8231d3]"
-              name="linkedin"
-              size="2x"
-              style={{ textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)' }}
-            />
-          </NavLink>
-          <NavLink to="#" className="ltr:mr-3 rtl:ml-3 group">
-            <FontAwesome
-              className="text-sm text-[#666] dark:text-white60 group-hover:text-[#8231d3]"
-              name="send"
-              size="2x"
-              style={{ textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)' }}
-            />
-          </NavLink>
         </div>
       </div>
       <ul className="mb-[10px]">

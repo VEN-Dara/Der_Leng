@@ -215,7 +215,7 @@ const withCustomerLayout = (WrappedComponent) => {
   LayoutComponent.propTypes = {
     layoutMode: propTypes.string,
     rtl: propTypes.bool,
-    topMenu: true,
+    topMenu:  propTypes.bool,
   };
 
   return connect(mapStateToProps)(LayoutComponent);

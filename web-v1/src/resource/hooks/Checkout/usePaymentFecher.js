@@ -1,3 +1,4 @@
+import { message } from "antd";
 import ApiService from "../../config/dataService/apiService"
 
 const api = new ApiService();
@@ -14,17 +15,25 @@ const getPaymentMethod = async (setState) => {
             }))
         }
     } catch (error) {
-        alert(error.response)
+        setState((prevState) => ({
+            ...prevState,
+            isLoading: false
+        }))
+        console.error("Get payment", error)
+        console.log(error.response)
     }
 }
 
 const deletePaymentMedthod = async (id) => {
+    message.loading("កាតកំពុងលុបចេញ...🗑️", 1000 * 30)
     try {
         const response = await api.delete(`/payments/${id}`);
         return response;
     } catch (error) {
-        return error.response;
         console.log(error)
+        return error.response;
+    } finally {
+        message.destroy()
     }
 }
 

@@ -1,13 +1,13 @@
 import random
 from django_filters.filters import Q
-import spacy
+# import spacy
 from telegram import Chat
 from django.contrib.auth import authenticate
 
 from authentication.models import User
 from telegrambot.models import TelegramAccount
 
-nlp = spacy.load("en_core_web_md")
+# nlp = spacy.load("en_core_web_md")
 
 # Question
 sales_questions = [

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import UseFetcher, { get } from "../../../hooks/useFetcher"
 import { Empty, Skeleton } from "antd";
 import List from "../../tour_package/overview/List";
+import { useSelector } from "react-redux";
 
 function FavoriteProductList() {
     const apiUrl = "/packages"
@@ -11,13 +12,15 @@ function FavoriteProductList() {
         next: null,
         page: 1,
     })
-    const user = JSON.parse(localStorage.getItem("user")) || {id: null, username: null};
+    const user = useSelector(state => state.userReducer.user)
     const useFetcher = new UseFetcher();
 
+
     useEffect(() => {
-        useFetcher.get(setState , `${apiUrl}?favorites=${user.id}`)
-        console.log(state)
-    }, [])
+        if (user && user.id) {
+            useFetcher.get(setState, `${apiUrl}?favorites=${user.id}`);
+        }
+    }, [user]);
 
     return (
         <>

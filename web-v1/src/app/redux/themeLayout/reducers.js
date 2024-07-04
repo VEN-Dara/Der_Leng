@@ -12,6 +12,8 @@ const initialState = {
   error: null,
 };
 
+console.log(localStorage.getItem('theme'))
+
 const {
   CHANGE_LAYOUT_MODE_BEGIN,
   CHANGE_LAYOUT_MODE_SUCCESS,
