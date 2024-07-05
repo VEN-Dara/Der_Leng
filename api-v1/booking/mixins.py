@@ -4,11 +4,13 @@ from django.db.models.functions import TruncDate
 from django.forms import ValidationError
 from django.utils import timezone
 from django_filters.filters import Q
+from authentication.models import User
 from core.settings import base
 from booking.tasks import cancel_payment_task
 from booking.models import BookingDetails, Cart
 from booking.serializers import BookingDetailsSerializer
 from payment.serializers import CustomerPaymentSerializer
+from telegrambot.handlers import send_message
 
 
 class BookingMixin:
@@ -47,6 +49,27 @@ class BookingMixin:
             total_price = total_price + (discounted_price * cart_instance.customer_amount)
 
             #=========================================> Start Notificate Seller For Accept
+            try:
+                seller: User = cart_instance.service.package.user
+                if(seller.telegram_account) :
+                    telegram = seller.telegram_account
+                    response = f'''
+**កញ្ចប់ដំណើរកម្សាន្តរបស់អ្នកបានកក់៖** \n
+**- កញ្ចប់ដំណើរកម្សាន្ត** : {cart_instance.service.package.name}
+**- ជម្រើស** : {cart_instance.service.detail}
+**- អ្នកទេសចរ** : {cart_instance.customer_amount} នាក់
+**- កក់ថ្ងៃទី** : {cart_instance.booking_date.date()}
+---------------------------------------------------------
+សូមពិនិត្យ
+                    '''
+                    send_message("sendMessage", {
+                        'chat_id': telegram.id,
+                        'text': response,
+                        'parse_mode': 'Markdown'
+                    })
+            except:
+                print('An exception occurred')
+                pass 
 
         return int(total_price)
     

@@ -105,6 +105,7 @@ function CartTable({ dataProp, setRefreshData }) {
                   onClick={() => incrementUpdate(id, customer_amount)}
                   className=" bg-normalBG dark:bg-normalBGdark w-9 h-9 ltr:ml-4 rtl:mr-4 px-3 text-body dark:text-white60 border-none rounded-[10px]"
                   type="default"
+                  disabled={customer_amount >= productData.max_people}
                 >
                   <UilPlus className="w-[12px] h-[12px]" />
                 </Button>

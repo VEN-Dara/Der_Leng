@@ -109,7 +109,7 @@ class PackageSerializer(serializers.ModelSerializer):
         # ============>> Select unavialable date <<============
         try:
             booked_date = Cart.objects.filter(
-                Q(booking_date__gt=timezone.now()) & Q(bookingdetails__is_closed=False) & Q(bookingdetails__isnull=False)
+                Q(booking_date__gt=timezone.now()) & Q(bookingdetails__is_closed=False) & Q(bookingdetails__isnull=False) & Q(service__package__id = instance.id)
                 ).annotate(
                     date_only=TruncDate('booking_date')
                 ).values(
@@ -130,7 +130,7 @@ class PackageSerializer(serializers.ModelSerializer):
                 "date_only": item['date_only'],
                 "date": date,
                 "num_booking": item['num_booking']
-                } for date in Cart.objects.filter( booking_date__date=item['date_only'] ).values_list('booking_date', flat=True)
+                } for date in Cart.objects.filter( Q(booking_date__date=item['date_only']) & Q(service__package__id = instance.id) ).values_list('booking_date', flat=True)
             ]
             unavailable_dates.extend(booked_dates)
 
