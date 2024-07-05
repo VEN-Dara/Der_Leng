@@ -55,6 +55,7 @@ class BookingPackageAPIView(APIView, BookingMixin):
                 raise ValidationError({"payment_method": "Payment_method's id is rerequired."})
 
             carts = json.loads(request_data.get("carts", "[]"))
+            print(carts)
             if not carts:
                 raise ValidationError({"carts": "Cart is rerequired."})
             
@@ -234,6 +235,7 @@ class CartAPIView(APIView):
         try:
             user = request.user
             data = request.data.copy()
+            print(data['booking_date'])
             data['user'] = user.id
             serializers = CartSerializer(data=data)
             serializers.is_valid(raise_exception=True)

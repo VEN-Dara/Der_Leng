@@ -204,6 +204,7 @@ const DetailsRight = React.memo(({ product }) => {
                   type="danger"
                   shape="circle"
                   transparented
+                  disabled = {serviceData?.length === 1}
                 >
                   <UilTrashAlt className="w-[14px] h-[14px]" />
                 </Button>

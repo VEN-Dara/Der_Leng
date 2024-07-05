@@ -24,7 +24,7 @@ const DetailsRight = React.memo(({ product }) => {
     booking_date: null
   });
 
-  const { id, name, description, percentage_discount, tour_place_coordinate, address, video_url, is_close, create_at, category, user, package_image, package_schedule, package_service, avg_rating, amount_rating } = product;
+  const { id, name, description, percentage_discount, tour_place_coordinate, address, video_url, is_close, create_at, category, user, package_image, package_schedule, package_service, avg_rating, amount_rating, unavailable_dates } = product;
   const { customer_amount } = state;
   const [showPrice, setShowPrice] = useState(package_service[0].price)
 
@@ -57,6 +57,8 @@ const DetailsRight = React.memo(({ product }) => {
   };
 
   const addToCard = () => {
+    console.log(state.booking_date)
+    // return
     if (state.service === null) {
       message.warning('សូមជ្រើសរើសសេវាកម្មទេសចរណ៍!');
       scrollToSection(bookingElementRef);
@@ -79,7 +81,18 @@ const DetailsRight = React.memo(({ product }) => {
   }
 
   function disabledDate(current) {
-    return current && current < moment().startOf('day');
+    // Disable dates in the past and today
+    if (current && (current <  moment().endOf('day'))) {
+      return true;
+    }
+  
+    // Disable specific dates from unavailable_dates
+    const disabledDates = unavailable_dates.map(item => moment(item.date).startOf('day'));
+    const isUnavailable = disabledDates.some(date => date.isSame(current, 'day'))
+    // const dateString = current.format('YYYY-MM-DD');
+    // const isUnavailable = unavailable_dates.some(date => date.date === dateString);
+  
+    return isUnavailable;
   }
 
   const openSuccessCartNotification = () => {

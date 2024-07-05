@@ -27,9 +27,7 @@ function TourPackage() {
     },
   ];
   const path = "/tour-guide/packages"
-  const { data= [], page= 1, pageSize= 1, isLoading= true, isLoadMore= false } = useScrollFetcher({path});
-
-
+  const packageFetcher = useScrollFetcher({path});
   return (
     <>
       <GlobalUtilityStyle>
@@ -41,7 +39,7 @@ function TourPackage() {
         <main className="min-h-[715px] lg:min-h-[580px] px-8 xl:px-[15px] pb-[30px] bg-transparent">
           <Row gutter={15}>
             <Col xs={24}>
-              {isLoading ?
+              {packageFetcher.isLoading ?
                 <div className="bg-white dark:bg-white10 p-[25px] rounded-[10px]">
                   <Skeleton active paragraph={{ rows: 10 }} />
                 </div>
@@ -56,7 +54,7 @@ function TourPackage() {
                     </Link>
                   </div>
                 </div>
-                  <List state={{ packages: data, current: page, pageSize: 1, isLoader: isLoading, isLoadMore }} />
+                  <List state={packageFetcher} />
                 </>
               }
             </Col>

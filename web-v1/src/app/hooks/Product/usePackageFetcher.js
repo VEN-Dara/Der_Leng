@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 // ==============================> Local <==============================
 import { DataService } from "../../config/dataService/dataService";
 import { useLocation, useParams } from "react-router-dom";
+import ApiService from "../../config/api/apiService";
 
 const usePackageFetcher = () => {
     const [state, setState] = useState({
@@ -78,14 +79,15 @@ const usePackageFetcher = () => {
 }
 
 const getPackageById = ({id}) => {
+    const api = new ApiService()
     const [state, setState] = useState({
-        product: {},
+        product: null,
         isLoader: true
     })
 
     const packageFetcher = async () => {
         try {
-            const response = await DataService.get(`/packages/${id}`);
+            const response = await api.get(`/packages/${id}`);
             console.log(response)
             if(response.status === 200) {
                 setState(prevState => ({
@@ -95,19 +97,24 @@ const getPackageById = ({id}) => {
                 }))
             }
         } catch (error) {
-            if(error.response.state === 404) {
+            console.log(error.response)
+            if(error.response.status === 404) {
                 setState(prevState => ({
                     ...prevState,
                     isLoader: false,
                 }))
-
+                
             }
+        } finally {
+            setState(prevState => ({
+                ...prevState,
+                isLoader: false,
+            }))
         }
     };
 
     useEffect(() => {
         packageFetcher();
-
     }, [id])
 
     return state;

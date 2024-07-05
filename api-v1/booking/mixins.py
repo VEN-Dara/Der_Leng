@@ -1,11 +1,16 @@
 from decimal import Decimal
 
+from django.db.models.functions import TruncDate
+from django.forms import ValidationError
 from django.utils import timezone
+from django_filters.filters import Q
+from authentication.models import User
 from core.settings import base
 from booking.tasks import cancel_payment_task
-from booking.models import Cart
+from booking.models import BookingDetails, Cart
 from booking.serializers import BookingDetailsSerializer
 from payment.serializers import CustomerPaymentSerializer
+from telegrambot.handlers import send_message
 
 
 class BookingMixin:
@@ -18,6 +23,18 @@ class BookingMixin:
 
             if not cart_instance:
                 raise Cart.DoesNotExist
+            
+            # :: Validate : preform delete other unbooking cart if daily_booking = 1 :: 
+            booking_date = cart_instance.booking_date.date()
+            service = cart_instance.service
+            booking_count = BookingDetails.objects.annotate(
+                booking_date_only=TruncDate('cart__booking_date')
+                ).filter(
+                    booking_date_only=booking_date, cart__service__id = service.id
+                )
+            
+            if booking_count.count() >= cart_instance.service.package.max_daily_bookings:
+                raise ValidationError("កាលបរិច្ឆេទដែលអ្នកចង់កក់មិននូវទំនេរទៀតទេ!")
             
             booking_details_data = {}
             booking_details_data["cart"] = cart_instance.id
@@ -32,6 +49,27 @@ class BookingMixin:
             total_price = total_price + (discounted_price * cart_instance.customer_amount)
 
             #=========================================> Start Notificate Seller For Accept
+            try:
+                seller: User = cart_instance.service.package.user
+                if(seller.telegram_account) :
+                    telegram = seller.telegram_account
+                    response = f'''
+**កញ្ចប់ដំណើរកម្សាន្តរបស់អ្នកបានកក់៖** \n
+**- កញ្ចប់ដំណើរកម្សាន្ត** : {cart_instance.service.package.name}
+**- ជម្រើស** : {cart_instance.service.detail}
+**- អ្នកទេសចរ** : {cart_instance.customer_amount} នាក់
+**- កក់ថ្ងៃទី** : {cart_instance.booking_date.date()}
+---------------------------------------------------------
+សូមពិនិត្យ
+                    '''
+                    send_message("sendMessage", {
+                        'chat_id': telegram.id,
+                        'text': response,
+                        'parse_mode': 'Markdown'
+                    })
+            except:
+                print('An exception occurred')
+                pass 
 
         return int(total_price)
     

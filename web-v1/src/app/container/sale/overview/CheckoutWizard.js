@@ -115,13 +115,6 @@ function CheckOut({ dataProp, setRefreshCartData }) {
         current: 0,
       });
     }
-    else {
-
-      notification.error({
-        message: 'Failed Checkout!',
-        description: `We apologize, but it seems there was an issue processing your order at this time. Please double-check your payment information and try again. If the problem persists, feel free to reach out to our customer support team for assistance. Thank you for your patience and understanding`,
-      });
-    }
 
     setIsModalOpen(false)
   };
@@ -213,6 +206,7 @@ function CheckOut({ dataProp, setRefreshCartData }) {
                   onClick={() => incrementUpdate(id, customer_amount)}
                   className=" bg-normalBG dark:bg-normalBGdark w-9 h-9 ltr:ml-4 rtl:mr-4 px-3 text-body dark:text-white60 border-none rounded-[10px]"
                   type="default"
+                  disabled={customer_amount >= productData.max_people}
                 >
                   <UilPlus className="w-[12px] h-[12px]" />
                 </Button>

@@ -6,9 +6,8 @@ import ApiService from '../../../config/api/apiService';
 import { alertModal } from '../../../../resource/components/modals/antd-modals';
 
 function List({ state }) {
-  const { packages=[], isLoader=true, isLoadMore=false } = state || {};
+  const { data=[], isLoading=true, isLoadMore=false } = state || {};
   const api = new ApiService();
-  const [data, setData] = useState(packages);
 
   const removePackage = async (id) => {
     alertModal.confirm({
@@ -32,11 +31,11 @@ function List({ state }) {
 
   return (
     <Row gutter={15}>
-      {isLoader ? (
+      {isLoading ? (
         <div className="spin flex items-center justify-center h-[calc(100vh-132px)]">
           <Spin />
         </div>
-      ) : data.length ? (
+      ) : data.length > 0 ? (
         data.map(({ id, name, amount_rating, avg_rating, default_price, percentage_discount, address, thumbnail, description, favorite }) => {
           return (
             <Col xs={24} key={id}>
