@@ -10,3 +10,4 @@ psycopg2
 django-cors-headers
 Pillow
 mysqlclient
+python-telegram-bot
