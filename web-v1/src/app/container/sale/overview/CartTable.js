@@ -57,7 +57,7 @@ function CartTable({ dataProp, setRefreshData }) {
               <img
                 className="max-w-[80px] min-h-[80px] ltr:mr-[25px] rtl:ml-[25px] rounded-[10px]"
                 style={{ width: 80 }}
-                src={productData.thumbnail ? `${FILE_ENDPOINT}/${productData.thumbnail}` : require(`@/resource/static/img/default_img/travel-cambodia.png`)}
+                src={productData.thumbnail ? `${FILE_ENDPOINT}${productData.thumbnail}` : require(`@/resource/static/img/default_img/travel-cambodia.png`)}
                 alt=""
               />
               <figcaption>
