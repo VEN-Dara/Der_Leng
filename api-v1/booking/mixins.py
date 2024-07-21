@@ -4,7 +4,7 @@ from django.db.models.functions import TruncDate
 from django.forms import ValidationError
 from django.utils import timezone
 from django_filters.filters import Q
-from authentication.models import User
+from authentication.models import Notification, User
 from core.settings import base
 from booking.tasks import cancel_payment_task
 from booking.models import BookingDetails, Cart
@@ -48,7 +48,16 @@ class BookingMixin:
             discounted_price = (Decimal('100.00') - Decimal(booking_details_inst.percentage_discount)) * Decimal(booking_details_inst.unit_price) / Decimal('100.00')
             total_price = total_price + (discounted_price * cart_instance.customer_amount)
 
-            #=========================================> Start Notificate Seller For Accept
+            #=========================================> Start Notificate Seller
+            notification = Notification(
+            user = cart_instance.service.package.user,
+            title = cart_instance.user.fullname,
+            message = "បានកក់យកសេវាកម្មរបស់អ្នក, សូមធ្វើការទទួល✨។",
+            type = "accept_booking"
+            )
+            notification.save()
+
+            #=========================================> Start Notificate Seller
             try:
                 seller: User = cart_instance.service.package.user
                 if(seller.telegram_account) :

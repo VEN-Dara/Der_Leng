@@ -12,3 +12,4 @@ Pillow
 mysqlclient
 python-telegram-bot
 gunicorn
+setuptools

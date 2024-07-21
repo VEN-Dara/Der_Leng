@@ -43,7 +43,7 @@ function SignIn() {
               <Form.Item
                 name="username"
                 rules={[{ message: 'សូមបញ្ចូលអាសយដ្ឋានអ៊ីមែល ឈ្មោះគណនី ឬលេខទូរស័ព្ទ', required: true }]}
-                initialValue="customer"
+                initialValue="staff"
                 label="អាសយដ្ឋានអ៊ីមែល ឈ្មោះគណនី ឬលេខទូរស័ព្ទ"
                 className="[&>div>div>label]:text-sm [&>div>div>label]:text-dark dark:[&>div>div>label]:text-white60 [&>div>div>label]:font-medium"
               >
@@ -51,7 +51,7 @@ function SignIn() {
               </Form.Item>
               <Form.Item
                 name="password"
-                initialValue="customer@123.com"
+                initialValue="staff@123.com"
                 label="ពាក្យសម្ងាត់"
                 className="[&>div>div>label]:text-sm [&>div>div>label]:text-dark dark:[&>div>div>label]:text-white60 [&>div>div>label]:font-medium"
               >
