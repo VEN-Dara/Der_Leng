@@ -15,4 +15,3 @@ python-telegram-bot
 gunicorn
 setuptools
 spacy
-en_core_web_md
