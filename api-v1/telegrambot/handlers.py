@@ -29,6 +29,7 @@ def handle_update(update: Update):
             serializer.is_valid(raise_exception=True)
             acc = serializer.save()
 
+        print(acc)
         response = handle_response(text, acc)
 
     # elif update.channel_post:

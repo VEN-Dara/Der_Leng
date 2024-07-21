@@ -30,7 +30,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', default=False)
 
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS").split(",") + ["localhost", "127.0.0.1"]
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS").split(",") + ["localhost", "127.0.0.1", "a075-203-95-197-133.ngrok-free.app"]
 
 # Application definition
 
@@ -82,14 +82,16 @@ CORS_ALLOWED_ORIGINS = os.getenv("FRONTEND_TRUSTED_ORIGINS").split(",") + [
     "http://localhost:8000",
     "http://localhost:3000",
     "http://127.0.0.1:8000",
-    "http://127.0.0.1:3000"
+    "http://127.0.0.1:3000",
+    "https://a075-203-95-197-133.ngrok-free.app"
 ]
 
 CSRF_TRUSTED_ORIGINS = os.getenv("FRONTEND_TRUSTED_ORIGINS").split(",") + [
     "http://localhost:8000",
     "http://localhost:3000",
     "http://127.0.0.1:8000",
-    "http://127.0.0.1:3000"
+    "http://127.0.0.1:3000",
+    "https://a075-203-95-197-133.ngrok-free.app"
 ]
 
 TEMPLATES = [
