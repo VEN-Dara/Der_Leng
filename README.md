@@ -1,6 +1,6 @@
 
 
-# Derleng e-commerce
+# ដើរលេង Derleng e-commerce
 
 ## Running the Project
 
@@ -15,6 +15,7 @@
 2. **Install Python Dependencies:**
    ```bash
    pip install -r requirements.txt
+   python install_plugins.py
    ```
 
 3. **Copy Environment Variables:**

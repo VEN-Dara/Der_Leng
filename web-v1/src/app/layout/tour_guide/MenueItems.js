@@ -96,14 +96,14 @@ function MenuItems({ toggleCollapsed }) {
       <NavLink onClick={toggleCollapsed} to={`${path}/dashboard`} className='font-kantumruy-pro font-meduim text-sm'>
         {t('ផ្ទាំងព័ត៍មាន')}
       </NavLink>,
-      'ផ្ទាំងព័ត៍មាន',
+      'dashboard',
       !topMenu &&  <UilCreateDashboard className='h-5 w-5' />,
     ),
     getItem(
       <NavLink onClick={toggleCollapsed} to={`${path}/tour-package`} className='font-kantumruy-pro font-meduim text-sm'>
         {t('កញ្ចប់ទេសចរណ៍')}
       </NavLink>,
-      'កញ្ចប់ទេសចរណ៍',
+      'tour-package',
       !topMenu &&  <UilBox className='h-5 w-5' />,
     ),
     getItem(

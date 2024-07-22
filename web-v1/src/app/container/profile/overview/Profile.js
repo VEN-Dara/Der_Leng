@@ -86,10 +86,10 @@ function Profile() {
     <div className="bg-white dark:bg-white10 m-0 p-0 mb-[25px] rounded-10 relative">
       <div className="py-[18px] px-[25px] text-dark dark:text-white87 font-medium text-[17px] border-regular dark:border-white10 border-b">
         <Heading as="h4" className="mb-0 text-lg font-medium">
-          Edit Profile
+          ព័ត៌មានគណនី
         </Heading>
         <span className="mb-0.5 text-light dark:text-white60 text-13 font-normal">
-          Set Up Your Personal Information
+          រៀបចំព័ត៌មានផ្ទាល់ខ្លួនរបស់អ្នក
         </span>
       </div>
       <div className="p-[25px]">
@@ -106,7 +106,7 @@ function Profile() {
                 <Form.Item
                   name="fullname"
                   initialValue={initialState.data.fullname}
-                  label="Fullname"
+                  label="​គោត្តនាម និងនាម"
                   className="mb-4 form-label-w-full form-label-text-start dark:text-white-60"
                 >
                   <Input />
@@ -114,10 +114,10 @@ function Profile() {
                 <Form.Item
                   name="username"
                   initialValue={initialState.data.username}
-                  label="@Username"
+                  label="@ឈ្មោះ​គណនី"
                   className="mb-4 form-label-w-full form-label-text-start dark:text-white-60"
                   rules={[
-                    { required: true, message: 'Please input your username!' },
+                    { required: true, message: 'សូមបញ្ចូលឈ្មោះគណនីរបស់អ្នក!' },
                     {validator: validateUsername}
                   ]}
                 >
@@ -126,19 +126,19 @@ function Profile() {
                 <Form.Item
                   name="email"
                   initialValue={initialState.data.email}
-                  label="Email"
+                  label="អ៊ីមែល"
                   className="mb-4 form-label-w-full form-label-text-start dark:text-white-60"
-                  rules={[{ required: true, message: 'Please input your email!', type: 'email' }]}
+                  rules={[{ required: true, message: 'សូមបញ្ចូលអ៊ីមែលរបស់អ្នក!', type: 'email' }]}
                 >
                   <Input />
                 </Form.Item>
                 <Form.Item
                   name="phone"
                   initialValue={initialState.data.phone}
-                  label="Phone Number"
+                  label="លេខទូរសព្ទ"
                   className="mb-4 form-label-w-full form-label-text-start"
                   rules={[
-                    { required: true, message: 'Please input your Phone number!' },
+                    { required: true, message: 'សូមបញ្ចូលលេខទូរស័ព្ទរបស់អ្នក!' },
                     { validator: validatePhone}
                   ]}
                 >
@@ -149,7 +149,7 @@ function Profile() {
                   <Button size="default" htmlType="submit" type="primary" className="h-11 px-[20px] font-semibold"
                     loading={state.isLoading}
                   >
-                    Update Profile
+                    កែប្រែគណនី
                   </Button>
                   &nbsp; &nbsp;
                   <Button
@@ -158,7 +158,7 @@ function Profile() {
                     type="light"
                     className="h-11 px-[20px] bg-regularBG dark:bg-white10 text-body dark:text-white87 font-semibold border-regular dark:border-white10"
                   >
-                    Cancel
+                    បោះបង់
                   </Button>
                 </div>
               </Form>

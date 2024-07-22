@@ -36,10 +36,10 @@ function EditPaymentMethod() {
     <div className="bg-white dark:bg-white10 m-0 p-0 mb-[25px] rounded-10 relative">
       <div className="py-[18px] px-[25px] text-dark dark:text-white87 font-medium text-[17px] border-regular dark:border-white10 border-b">
         <Heading as="h4" className="mb-0 text-lg font-medium">
-          Payment Methods
+        វិធីសាស្រ្តទូទាត់
         </Heading>
         <span className="mb-0.5 text-light dark:text-white60 text-13 font-normal">
-          Add or delete your payment methods here!
+        បន្ថែម ឬលុបវិធីបង់ប្រាក់របស់អ្នកនៅទីនេះ!
         </span>
       </div>
       <div className="p-[25px]">
@@ -49,7 +49,7 @@ function EditPaymentMethod() {
               <Radio.Group style={{ width: '100%' }}>
                 <WrappedCheckoutForm setRefreshData={setRefreshData} />
                 <div className="my-[25px] bg-regularBG dark:bg-white10 p-[25px] rounded-[15px]">
-                  <p className='font-medium text-base'>Credit Card</p>
+                  <p className='font-medium text-base'>កាត​ឥណទាន</p>
                   {paymentMathod.isLoading ? (
                     <div className='w-full h-full flex justify-center items-center'>
                       <Spin />
@@ -78,7 +78,7 @@ function EditPaymentMethod() {
                       })}
                     </Radio.Group>
                   ) : (
-                    <p>No credit card.</p>
+                    <p>គ្មានកាតឥណទាន</p>
                   )}
                 </div>
 
@@ -91,7 +91,7 @@ function EditPaymentMethod() {
                     style={{ width: '100%' }}
                     className="ltr:[&>span.ant-radio]:mr-[15px] rtl:[&>span.ant-radio]:ml-[15px] [&>span:not(.ant-radio)]:flex [&>span:not(.ant-radio)]:items-center [&>span:not(.ant-radio)]:justify-between [&>span:not(.ant-radio)]:w-full [&>span:not(.ant-radio)]:h-[60px] [&>span:not(.ant-radio)]:px-[25px] [&>span:not(.ant-radio)]:text-body dark:[&>span:not(.ant-radio)]:text-white60 [&>span:not(.ant-radio)]:text-[15px] [&>span:not(.ant-radio)]:font-medium [&>span:not(.ant-radio)]:border [&>span:not(.ant-radio)]:border-regular dark:[&>span:not(.ant-radio)]:border-white10 [&>span:not(.ant-radio)]:rounded-[10px]"
                   >
-                    Pay With PayPal (upcoming)
+                    បង់ជាមួយ PayPal (នាពេលខាងមុខ)
                     <img className="xs:hidden h-20" src={require('@/resource/static/img/PayPalLogo.png')} alt="paypal" />
                   </Radio>
                 </div>
@@ -102,7 +102,7 @@ function EditPaymentMethod() {
                     style={{ width: '100%' }}
                     className="ltr:[&>span.ant-radio]:mr-[15px] rtl:[&>span.ant-radio]:ml-[15px] [&>span:not(.ant-radio)]:flex [&>span:not(.ant-radio)]:items-center [&>span:not(.ant-radio)]:justify-between [&>span:not(.ant-radio)]:w-full [&>span:not(.ant-radio)]:h-[60px] [&>span:not(.ant-radio)]:px-[25px] [&>span:not(.ant-radio)]:text-body dark:[&>span:not(.ant-radio)]:text-white60 [&>span:not(.ant-radio)]:text-[15px] [&>span:not(.ant-radio)]:font-medium [&>span:not(.ant-radio)]:border [&>span:not(.ant-radio)]:border-regular dark:[&>span:not(.ant-radio)]:border-white10 [&>span:not(.ant-radio)]:rounded-[10px]"
                   >
-                    Cash on delivery (upcoming)
+                    សាច់ប្រាក់ (នាពេលខាងមុខ)
                   </Radio>
                 </div>
               </Radio.Group>

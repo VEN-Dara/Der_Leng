@@ -115,7 +115,7 @@ function SyncTelegram() {
   }
 
   return (
-    <div className="w-full flex flex-col items-center px-8">
+    <div className="w-full flex flex-col items-center ssm:px-0 px-8">
       <div className="my-6 w-full max-w-[600px] bg-white rounded-md dark:bg-white10 shadow-regular dark:shadow-none">
         {user.telegram_account &&
           <div className="px-5 py-4 text-center border-b border-gray-200 dark:border-white10">

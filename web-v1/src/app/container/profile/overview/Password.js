@@ -64,10 +64,10 @@ function Password() {
     <div className="bg-white dark:bg-white10 m-0 p-0 mb-[25px] rounded-10 relative">
       <div className="py-[18px] px-[25px] text-dark dark:text-white87 font-medium text-[17px] border-regular dark:border-white10 border-b">
         <Heading as="h4" className="mb-0 text-lg font-medium">
-          Password Settings
+        ការកំណត់ពាក្យសម្ងាត់
         </Heading>
         <span className="mb-0.5 text-light dark:text-white60 text-13 font-normal">
-          Change or reset your account password
+        ផ្លាស់ប្តូរ ឬកំណត់ពាក្យសម្ងាត់គណនីរបស់អ្នកឡើងវិញ
         </span>
       </div>
       <div className="p-[25px]">
@@ -75,25 +75,25 @@ function Password() {
           <Row justify="center">
             <Col xxl={12} sm={16} xs={24}>
               <Form form={form} name="changePassword" onFinish={handleSubmit}>
-                <Form.Item name="old_password" label="Old Password" className="mb-4 form-label-w-full form-label-text-start"
+                <Form.Item name="old_password" label="លេខសំងាត់​ចាស់" className="mb-4 form-label-w-full form-label-text-start"
                   rules={[
-                    { required: true, message: 'Please input your old password!' },
+                    { required: true, message: 'សូមបញ្ចូលពាក្យសម្ងាត់ចាស់របស់អ្នក!' },
                     { validator: validatePassword }
                   ]}
                 >
                   <Input.Password />
                 </Form.Item>
-                <Form.Item name="password" label="New Password" className="mb-4 form-label-w-full form-label-text-start"
+                <Form.Item name="password" label="ពាក្យសម្ងាត់​ថ្មី" className="mb-4 form-label-w-full form-label-text-start"
                   rules={[
-                    { required: true, message: 'Please input your new password!' },
+                    { required: true, message: 'សូមបញ្ចូលពាក្យសម្ងាត់ថ្មីរបស់អ្នក!' },
                     { validator: validatePassword }
                   ]}
                 >
                   <Input.Password />
                 </Form.Item>
-                <Form.Item name="confirm_password" label="Confirm Password" className="mb-4 form-label-w-full form-label-text-start"
+                <Form.Item name="confirm_password" label="បញ្ជាក់ពាក្យសម្ងាត់" className="mb-4 form-label-w-full form-label-text-start"
                   rules={[
-                    { required: true, message: 'Please input your confirmation!' },
+                    { required: true, message: 'សូមបញ្ចូលការបញ្ជាក់របស់អ្នក!' },
                     { validator: validatePassword }
                   ]}
                 >
@@ -106,7 +106,7 @@ function Password() {
                 <Form.Item className="mb-7">
                   <div className="flex items-center flex-wrap gap-[15px] mt-4">
                     <Button htmlType="submit" type="primary" className="h-11 px-[20px]" loading={state.isLoading}>
-                      Change Password
+                    ផ្លាស់ប្តូរពាក្យសម្ងាត់
                     </Button>
                     <Button
                       size="default"
@@ -114,7 +114,7 @@ function Password() {
                       type="light"
                       className="h-11 px-[20px] bg-transparent dark:text-white87 dark:border-white10 dark:hover:text-primary dark:hover:border-primary"
                     >
-                      Cancel
+                      បោះបង់
                     </Button>
                   </div>
                 </Form.Item>

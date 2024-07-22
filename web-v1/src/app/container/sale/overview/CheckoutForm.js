@@ -101,8 +101,8 @@ const CheckoutForm = ({setRefreshData}) => {
             <div className="form-row flex flex-col">
                 <Form.Item
                     name="name"
-                    rules={[{ message: 'Please input your card name holder', required: true }]}
-                    label="Cardname"
+                    rules={[{ message: 'សូមបញ្ចូលឈ្មោះកាតរបស់អ្នក!', required: true }]}
+                    label="ឈ្មោះកាតឥណទាន"
                     labelCol={{ span: 24 }}  // Label spans the full width
                     wrapperCol={{ span: 24 }} // Input spans the full width
                     className="[&>div>.ant-form-item-label]:h-10 [&>div>div>label]:text-sm [&>div>div>label]:text-dark dark:[&>div>div>label]:text-white60 [&>div>div>label]:font-medium"
@@ -112,7 +112,7 @@ const CheckoutForm = ({setRefreshData}) => {
             </div>
             <div className="form-row">
                 <label htmlFor="card-element" className="text-dark dark:text-white60 text-sm font-medium">
-                    <span className="text-red-500 mr-1">*</span>Credit or debit card
+                    <span className="text-red-500 mr-1">*</span>កាតឥណទាន ឬឥណពន្ធ
                 </label>
 
                 <CardElement
@@ -121,8 +121,8 @@ const CheckoutForm = ({setRefreshData}) => {
                 />
                 <div className="card-errors" role="alert">{stripeError}</div>
             </div>
-            <button type="submit" className="submit-btn">
-                {!isLoading ? `Submit Payment` : (
+            <button type="submit" className="submit-btn font-kantumruy-pro">
+                {!isLoading ? `បញ្ចូលកាតឥណទាន` : (
                     <div className="spin flex items-center justify-center py-1">
                         <Spin size="small" />
                     </div>

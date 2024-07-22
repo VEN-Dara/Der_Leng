@@ -79,13 +79,11 @@
 
 .submit-btn{
     margin: 10px 0;
-    width: 50% !important;
     align-self: center;
     background-color: #32325d !important;
     padding: 10px 14px;
     color: white;
     border-radius: 5px;
-    font-family: "Helvetica Neue", sans-serif;
     font-size: 15px;
 }
 

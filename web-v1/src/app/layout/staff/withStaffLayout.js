@@ -171,7 +171,7 @@ const withStaffLayout = (WrappedComponent) => {
                 </div>
                 <div className="flex items-center justify-between flex-auto ltr:mr-[10px] rtl:ml-[10px] [&>div:first-child]:flex [&>div]:items-center ">
                   {topMenu && window.innerWidth > 991 ? <TopMenu /> : <CustomizerWrap rtl={rtl} />}
-                  <div className="flex flex-row items-center md:hidden">
+                  <div className="flex flex-row items-center">
                     {topMenu && window.innerWidth > 991 ? (
                       <TopMenuSearch>
                         <div className="flex top-right-wrap">
