@@ -48,7 +48,7 @@ function ProductDetails() {
           <div className="bg-white dark:bg-white10 p-[25px] rounded-[10px]">
 
             {/* ==================================> Carousel Daisy ==================================>   */}
-            <div className=" carousel carousel-center min-md:mx-[15px] p-2 min-lg:p-4 mb-[10px] space-x-4 bg-neutral dark:bg-white rounded-box h-40 min-md:h-64 min-lg:h-80 min-xl:h-96">
+            {/* <div className=" carousel carousel-center min-md:mx-[15px] p-2 min-lg:p-4 mb-[10px] space-x-4 bg-neutral dark:bg-white rounded-box h-40 min-md:h-64 min-lg:h-80 min-xl:h-96">
               <div className="carousel-item gap-4 min-lg:gap-4 px-2 min-lg:px-4">
                 { product.package_image.map(({id, image, type}) => {
                   return (
@@ -57,7 +57,17 @@ function ProductDetails() {
                   }) }
               </div>
 
-            </div>
+            </div> */}
+              <div className="min-md:mx-[15px] p-1 min-ssm:p-2 min-lg:p-4 mb-[10px] space-x-4 bg-neutral dark:bg-white rounded-box h-40 min-md:h-64 min-lg:h-80 min-xl:h-96 overflow-x-auto">
+                <div className="flex gap-1 min-ssm:gap-2 min-lg:gap-4 h-full">
+                  {product.package_image.map(({ id, image }) => {
+                    return (
+                      <img key={id} src={image} className="rounded-box h-full" />
+                    );
+                  })}
+                </div>
+              </div>
+
 
             <div className="p-[15px] pb-0 md:px-0">
               <Row gutter={30}>

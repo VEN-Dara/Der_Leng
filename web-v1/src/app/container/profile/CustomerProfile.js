@@ -61,7 +61,7 @@ function CustomerProfile() {
           </Link>,
         ]}
       />
-      <main className="min-h-[715px] lg:min-h-[580px] bg-transparent px-8 xl:px-[15px] pb-[50px] ssm:pb-[30px]">
+      <main className="min-h-[715px] lg:min-h-[580px] bg-transparent xs:px-0 px-8 xl:px-[15px] pb-[50px] ssm:pb-[30px]">
         <Row gutter={25}>
           <Col xxl={6} lg={8} md={10} xs={24}>
             <Suspense

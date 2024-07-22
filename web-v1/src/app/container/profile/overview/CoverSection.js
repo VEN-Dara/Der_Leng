@@ -37,7 +37,7 @@ function CoverSection({img}) {
   return (
     <div className="relative min-h-[150px] max-h-[220px] overflow-hidden flex items-center">
       <img
-        className="w-full object-cover rounded-t-10"
+        className="w-full min-h-[150px] max-h-[220px] object-cover rounded-t-10"
         src={state.data ? FILE_ENDPOINT + state.data.coverImage : img}
         alt="banner"
       />
